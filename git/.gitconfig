@@ -1,0 +1,15 @@
+[user]
+	name = Noah Gitsham
+	email = nhgitsham@gmail.com
+[core]
+	editor = nvim
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[safe]
+	directory = /home/noah/.cache/paru/clone/gspt-git/src/gspt-git
+[init]
+	defaultBranch = main
