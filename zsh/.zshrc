@@ -13,15 +13,20 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# Git VCS
-autoload -Uz vcs_info
-precmd_vcs_info() { vc_info }
-
-zstyle ":vcs_info:git:*" formats "%b"
-
+# Custom prompt
 setopt PROMPT_SUBST
 # %F{red}${vcs_info_msg_0_}%f 
-PROMPT="%F{yellow}%n%f %F{gray}$ %f"
+PROMPT="%F{yellow}%n%f %F{gray}$%f "
+
+# VCS prompt
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+vcs_colour=blue
+
+RPROMPT='%F{${vcs_colour}}${vcs_info_msg_0_}%f'
+
+zstyle ":vcs_info:git:*" formats "%b"
 
 
 # Syntax Highligting
@@ -48,7 +53,6 @@ fi
 # Rehash after package install
 
 zshcache_time="$(date +%s%N)"
-
 autoload -Uz add-zsh-hook
 
 rehash_precmd() {
