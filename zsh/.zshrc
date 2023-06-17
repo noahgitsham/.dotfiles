@@ -34,7 +34,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 source /home/noah/.config/broot/launcher/bash/br
 
-# Welcome Message
+# Login Message
 if [[ -z $DISPLAY ]] then
 	echo '
          ,
