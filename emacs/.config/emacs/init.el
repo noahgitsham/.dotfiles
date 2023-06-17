@@ -23,8 +23,10 @@
 ;; Packages
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/")
-	     )
+	     '("melpa" . "https://melpa.org/packages/"))
+
+(make-directory "~/.local/share/emacs/packages" :parents)
+(setq package-user-dir "~/.local/share/emacs/packages")
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
