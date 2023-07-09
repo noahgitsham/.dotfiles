@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 case $1 in
-	"mute") pactl set-sink-mute 0 toggle ;;
+	"mute")
+		pactl set-sink-mute 0 toggle ;;
 	"-5") pactl set-sink-volume 0 -5% ;;
 	"+5") pactl set-sink-volume 0 +5% ;;
 esac

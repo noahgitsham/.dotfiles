@@ -6,7 +6,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 # Monitor setup
 bspc monitor -d I II III IV V VI VII VIII IX X
 
-#Visuals
+# Visuals
 bspc config border_width		2
 bspc config window_gap			8
 #bspc config top_padding			-8
@@ -18,6 +18,7 @@ bspc config split_ratio         	0.50
 bspc config borderless_monocle  	true
 bspc config gapless_monocle     	false
 
-#Rules
+# Rules
 bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Emacs rectangle=500x1000+8+44
+bspc rule -a Emacs state=tiled
+bspc rule -a '*:*:Picture-in-Picture' state=floating

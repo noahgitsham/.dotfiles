@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + @space
-	rofi -show drun
+	rofi -sort -sorting-method fzf -show drun
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -184,7 +184,7 @@ super + Print
 
 # Emojis
 ctrl + super + period
-	rofi -modi emoji -show emoji
+	rofi -sort -sorting-method fzf -modi emoji -show emoji
 
 # Colour Picker
 ctrl + super + comma

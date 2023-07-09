@@ -3,11 +3,28 @@
 vim.api.nvim_set_hl(0, "SignColumn", {guibg=NONE})
 vim.api.nvim_set_hl(0, "SignColumn", {guibg=NONE})
 
-local signs = { Error = "E", Warn = "W ", Hint = "H", Info = "I" }
+local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
+
+require("neodev").setup {
+	library = {
+		enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
+		-- these settings will be used for your Neovim config directory
+		runtime = true, -- runtime path
+		types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+		plugins = true, -- installed opt or start plugins in packpath
+		-- you can also specify the list of plugins to make available as a workspace library
+		-- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
+	},
+	-- With lspconfig, Neodev will automatically setup your lua-language-server
+	-- If you disable this, then you have to set {before_init=require("neodev.lsp").before_init}
+	-- in your lsp start options
+	lspconfig = true,
+	pathStrict = true,
+}
 
 -- Mason
 require("mason").setup()
@@ -28,34 +45,17 @@ require("mason-lspconfig").setup_handlers {
 			capabilities = require("cmp_nvim_lsp").default_capabilities(),
 		}
 	end,
-	["lua_ls"] = function ()
-		require("lspconfig").lua_ls.setup {
-			settings = {
-				Lua = {
-					diagnostics = {
-						globals = { "vim", "NONE" }
-					}
-				}
-			}
-		}
-	end,
-}
-
-require("neodev").setup {
-	library = {
-		enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
-		-- these settings will be used for your Neovim config directory
-		runtime = true, -- runtime path
-		types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
-		plugins = true, -- installed opt or start plugins in packpath
-		-- you can also specify the list of plugins to make available as a workspace library
-		-- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
-	},
-	-- With lspconfig, Neodev will automatically setup your lua-language-server
-	-- If you disable this, then you have to set {before_init=require("neodev.lsp").before_init}
-	-- in your lsp start options
-	lspconfig = true,
-	pathStrict = true,
+-- 	["lua_ls"] = function ()
+-- 		require("lspconfig").lua_ls.setup {
+-- 			settings = {
+-- 				Lua = {
+-- 					diagnostics = {
+-- 						globals = { "vim", "NONE" }
+-- 					}
+-- 				}
+-- 			}
+-- 		}
+-- 	end,
 }
 
 require("trouble").setup {
@@ -67,4 +67,3 @@ require("trouble").setup {
 }
 
 vim.keymap.set("n","<leader>er", vim.cmd.TroubleToggle)
-

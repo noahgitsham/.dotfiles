@@ -1,6 +1,7 @@
 -- Line numbers
 vim.opt.nu = true -- Line nums
 vim.opt.rnu = true -- Relative line nums
+vim.wo.fillchars='eob: '
 
 -- Indentation
 local indentSize = 8
@@ -24,3 +25,8 @@ vim.opt.hlsearch = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
+-- Clipboard
+vim.api.nvim_set_option("clipboard", "unnamedplus")
+
+-- Statusline
+vim.opt.laststatus = 3 -- Global Statusline

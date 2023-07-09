@@ -6,4 +6,4 @@ picom &
 ~/.fehbg &
 $HOME/.config/polybar/launch.sh &
 dunst &
-exec bspwm 
+exec dwm

@@ -4,9 +4,9 @@
 
 -- Plugin installation
 require("packer").startup(function(use)
-
-	-- Packer
 	use "wbthomason/packer.nvim"
+
+	use "/home/noah/programming/nvimPlugins/html-live.nvim"
 
 	-- Treesitter
 	use {
@@ -25,25 +25,15 @@ require("packer").startup(function(use)
 		requires = { {"nvim-lua/plenary.nvim"} }
 	}
 
-	-- Colorizer
+	-- Misc
 	use "NvChad/nvim-colorizer.lua"
-
-	-- Auto Pairs
 	use "windwp/nvim-autopairs"
-
-	-- Indent Line
 	use "lukas-reineke/indent-blankline.nvim"
-
-	-- Scroll EOF
 	use "Aasim-A/scrollEOF.nvim"
-
-	-- Zen mode + twilight
-	use {
-		"folke/zen-mode.nvim",
-		"folke/twilight.nvim"
-	}
-
+	use { "folke/zen-mode.nvim", "folke/twilight.nvim" }
 	use "ThePrimeagen/vim-be-good"
+	use "turbio/bracey.vim"
+
 
 	---------
 	-- LSP --
@@ -71,6 +61,7 @@ require("packer").startup(function(use)
 	-- LuaSnip
 	use "L3MON4D3/LuaSnip"
 	use "saadparwaiz1/cmp_luasnip"
+	use "rafamadriz/friendly-snippets"
 
 	-- Trouble
 	use "folke/trouble.nvim"
@@ -78,19 +69,11 @@ require("packer").startup(function(use)
 	-- DAP
 
 
-
-	-------------------
-	-- Colour Themes --
-	-------------------
-
+	-- Colour Themes
 	use "Shatur/neovim-ayu"
-
 	use "arturgoms/moonbow.nvim"
-
 	use "sainnhe/gruvbox-material"
-
 	use "ellisonleao/gruvbox.nvim"
-
 	use "rebelot/kanagawa.nvim"
 end)
 
@@ -145,3 +128,4 @@ require("twilight").setup {
 		"if_statement"
 	},
 }
+

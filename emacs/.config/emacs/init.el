@@ -44,7 +44,7 @@
 
 (global-display-line-numbers-mode 1)
 
-(setq-default display-line-numbers-type 'relative
+(setq-default display-line-numbers-type 'visual
 	      scroll-step 1 ; Vim scrolling
 	      scroll-margin 6) ; Scrolloff
 
