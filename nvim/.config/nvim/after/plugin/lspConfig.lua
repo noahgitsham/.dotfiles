@@ -9,6 +9,7 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
+
 require("neodev").setup {
 	library = {
 		enabled = true, -- when not enabled, neodev will not change any settings to the LSP server

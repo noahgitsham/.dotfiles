@@ -51,7 +51,6 @@ _  +[_[_+_]P/    _    |_       ____      _=--|-~
 fi
 
 # Rehash after package install
-
 zshcache_time="$(date +%s%N)"
 autoload -Uz add-zsh-hook
 
