@@ -1,6 +1,3 @@
--- Active colour scheme
-local colour = "gruvbox"
-
 vim.opt.termguicolors = true
 
 -- Indiviual colour scheme configuration
@@ -13,4 +10,5 @@ require("gruvbox").setup {
 }
 
 -- Set colour scheme
-vim.cmd("colorscheme " .. colour)
+--vim.cmd("colorscheme " .. colour)
+vim.cmd.colorscheme("gruvbox")

@@ -30,7 +30,16 @@ require("neodev").setup {
 -- Mason
 require("mason").setup()
 
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup {
+	ensure_installed = {"bashls",
+			"clangd",
+			"cssls",
+			"html",
+			"jsonls",
+			"lua_ls",
+			"pylsp",
+			"rust_analyzer"}
+}
 
 require("mason-lspconfig").setup_handlers {
 	function(server_name)

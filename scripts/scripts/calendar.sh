@@ -1,3 +1,1 @@
-#!/bin/env bash
-
-dunstify -r 1 "Calendar" "$(cal)"
+../.dotfiles/scripts/scripts/calendar.sh

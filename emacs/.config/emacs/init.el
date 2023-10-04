@@ -2,12 +2,23 @@
 (if (file-exists-p "~/.config/emacs/startupImage")
     (setq fancy-splash-image "~/.config/emacs/startupImage"))
 
-(setq fancy-startup-text '"Welcome to buffalo, an emacs configuration for sinners...")
+;; (setq fancy-startup-text ((:face variable-pitch "Welcome to buffalo, an emacs configuration for sinners...")))
 
 ;; Disable startup nonsense
 (setq-default message-log-max nil)
 ;; (setq initial-scratch-message ""
 ;;       inhibit-startup-message t)
+
+;; Load paths
+(add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
+
+;; Behavior
+(setq mode-require-final-newline nil)
+
+;; Backups
+(make-directory "~/backups/emacs" :parents)
+(setq backup-directory-alist '(("." . "~/backups/emacs"))
+      backup-by-copying t)
 
 ;; UI changes
 (tool-bar-mode -1)
@@ -18,7 +29,6 @@
 (set-frame-font "Hack 12" nil t)
 
 ;; Modeline
-
 
 ;; Packages
 (require 'package)
@@ -48,6 +58,7 @@
 	      scroll-step 1 ; Vim scrolling
 	      scroll-margin 6) ; Scrolloff
 
+
 ;; Org
 (unless (package-installed-p 'org)
   (package-install 'org))
@@ -55,14 +66,23 @@
 (setq org-hide-leading-stars t
       org-hide-emphasis-markers t)
 
+(setq org-M-RET-may-split-line nil)
+
 (add-hook 'org-mode-hook 'org-indent-mode)
 (add-hook 'org-mode-hook 'visual-line-mode)
+
+
+;; Org Tables
+;; (load 'org-table-live-update)
+;; (require 'org-table-auto-align-mode)
+
 
 ;; Org Appear
 (unless (package-installed-p 'org-appear)
   (package-install 'org-appear))
 
 (add-hook 'org-mode-hook 'org-appear-mode)
+
 
 ;; Org Fragtog
 (unless (package-installed-p 'org-fragtog)
@@ -74,10 +94,18 @@
 
 (add-hook 'org-mode-hook 'latex-preview-toggle)
 
+
 ;; Org LaTeX
+(setq org-latex-packages-alist '())
 ;; (add-to-list 'org-latex-packages-alist '("" "tikz" t))
 ;; (add-to-list 'org-latex-packages-alist '("" "pgfplots" t))
+(add-to-list 'org-latex-packages-alist '("" "mathtool" t))
 (setq org-latex-create-formula-image-program 'imagemagick)
+
+
+;; Org Exporting
+(setq org-export-with-section-numbers nil)
+
 
 ;; Evil + Org settings
 
@@ -100,7 +128,7 @@
  '(custom-safe-themes
    '("1781e8bccbd8869472c09b744899ff4174d23e4f7517b8a6c721100288311fa5" default))
  '(evil-undo-system 'undo-redo)
- '(org-agenda-files '("~/documents/org/summerTODO.org"))
+ '(org-agenda-files '("~/todo.org" "/home/noah/documents/org/summerTODO.org"))
  '(org-format-latex-options
    '(:foreground default :background default :scale 2.0 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
 		 ("begin" "$1" "$" "$$" "\\(" "\\[")))

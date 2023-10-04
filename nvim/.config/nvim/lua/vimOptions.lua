@@ -4,13 +4,14 @@ vim.opt.rnu = true -- Relative line nums
 vim.wo.fillchars='eob: '
 
 -- Indentation
-local indentSize = 8
-vim.opt.tabstop = indentSize
-vim.opt.shiftwidth = indentSize
+IndentSize = 8
+vim.opt.tabstop = IndentSize
+vim.opt.shiftwidth = IndentSize
 
 -- Line wrapping
 vim.opt.wrap = false
 vim.opt.linebreak = true
+
 
 -- Scroll
 vim.opt.scrolloff = 8
@@ -20,6 +21,8 @@ vim.opt.scrolloff = 8
 
 -- Search
 vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Buffers + Panes
 vim.opt.splitbelow = true

@@ -18,6 +18,7 @@ require("packer").startup(function(use)
 		after = "nvim-treesitter",
 		requires = "nvim-treesitter/nvim-treesitter",
 	}
+	use "nvim-treesitter/playground"
 
 	-- Telescope
 	use {
@@ -75,6 +76,7 @@ require("packer").startup(function(use)
 	use "sainnhe/gruvbox-material"
 	use "ellisonleao/gruvbox.nvim"
 	use "rebelot/kanagawa.nvim"
+	use "loctvl842/monokai-pro.nvim"
 end)
 
 -------------------------------
@@ -110,7 +112,7 @@ require("colorizer").setup {
 	buftypes = {},
 }
 
-require("indent_blankline").setup {
+require("ibl").setup {
 	show_trailing_blankline_indent = false
 }
 

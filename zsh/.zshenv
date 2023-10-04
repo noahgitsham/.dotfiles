@@ -2,5 +2,6 @@ export EDITOR="nvim"
 export SUDO_EDITOR="nvim"
 export TERMINAL="kitty"
 export BROWSER="firefox"
+
+# Themes
 export BAT_THEME="gruvbox-dark"
-export PATH=$PATH:"/home/noah/.local/share/gem/ruby/3.0.0/bin"

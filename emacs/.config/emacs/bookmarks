@@ -1,0 +1,11 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-refile-last-stored"
+ (filename . "~/uni/work/15111/assembly.org")
+ (front-context-string . "** Memory Bottle")
+ (rear-context-string . "ally equal to \n\n")
+ (position . 427)
+ (last-modified 25874 52520 121891 922000))
+)
