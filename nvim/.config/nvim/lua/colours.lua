@@ -6,9 +6,9 @@ require("ayu").setup {
 }
 
 require("gruvbox").setup {
-	contrast = "hard"
+	contrast = "hard",
+	invert_selection = true,
 }
 
 -- Set colour scheme
---vim.cmd("colorscheme " .. colour)
 vim.cmd.colorscheme("gruvbox")

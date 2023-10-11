@@ -1,7 +1,6 @@
 -- Native lsp options
 --vim.highlight.create("SignColumn", {ctermbg=0, guibg=NONE}, false)
 vim.api.nvim_set_hl(0, "SignColumn", {guibg=NONE})
-vim.api.nvim_set_hl(0, "SignColumn", {guibg=NONE})
 
 local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
 for type, icon in pairs(signs) do
@@ -32,40 +31,44 @@ require("mason").setup()
 
 require("mason-lspconfig").setup {
 	ensure_installed = {"bashls",
-			"clangd",
-			"cssls",
-			"html",
-			"jsonls",
-			"lua_ls",
-			"pylsp",
-			"rust_analyzer"}
+			    "clangd",
+			    "cssls",
+			    "html",
+			    "jsonls",
+			    "lua_ls",
+			    "pylsp",
+			    "rust_analyzer"}
 }
+
+local on_attach = function(client,bufnr)
+	-- Mappings.
+	-- See `:help vim.lsp.*` for documentation on any of the below functions
+	local bufopts = { noremap=true, silent=true, buffer=bufnr }
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+	vim.keymap.set("n", "<tab>", vim.lsp.buf.hover, bufopts)
+end
 
 require("mason-lspconfig").setup_handlers {
 	function(server_name)
 		require("lspconfig")[server_name].setup {
-			on_attach = function(client,bufnr)
-				-- Mappings.
-				-- See `:help vim.lsp.*` for documentation on any of the below functions
-				local bufopts = { noremap=true, silent=true, buffer=bufnr }
-				vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-				vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
-				vim.keymap.set("n", "<tab>", vim.lsp.buf.hover, bufopts)
-			end,
+			on_attach = on_attach,
 			capabilities = require("cmp_nvim_lsp").default_capabilities(),
 		}
 	end,
--- 	["lua_ls"] = function ()
--- 		require("lspconfig").lua_ls.setup {
--- 			settings = {
--- 				Lua = {
--- 					diagnostics = {
--- 						globals = { "vim", "NONE" }
--- 					}
--- 				}
--- 			}
--- 		}
--- 	end,
+
+	["pylsp"] = function ()
+		require("lspconfig")["pylsp"].setup {
+			on_attach = on_attach,
+			settings = {
+				pylsp = {
+					plugins = {
+						pycodestyle = {enabled = false},
+					}
+				}
+			}
+		}
+	end
 }
 
 require("trouble").setup {

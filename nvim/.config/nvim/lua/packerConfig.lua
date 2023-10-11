@@ -34,6 +34,7 @@ require("packer").startup(function(use)
 	use { "folke/zen-mode.nvim", "folke/twilight.nvim" }
 	use "ThePrimeagen/vim-be-good"
 	use "turbio/bracey.vim"
+	use "github/copilot.vim"
 
 
 	---------
@@ -113,7 +114,12 @@ require("colorizer").setup {
 }
 
 require("ibl").setup {
-	show_trailing_blankline_indent = false
+	--show_trailing_blankline_indent = false,
+	scope = {
+		enabled = false,
+		show_end = false,
+		show_start = false,
+	}
 }
 
 require("scrollEOF").setup()
@@ -130,4 +136,17 @@ require("twilight").setup {
 		"if_statement"
 	},
 }
+
+--vim.api.nvim_set_keymap("i", "<C-J", 'copilot#Accept("<CR>")', {silent = true, expr = true})
+
+--vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.g.copilot_enabled = false
+--vim.g.copilot_tab_fallback = ""
+
+vim.keymap.set("i", "<C-x>", function ()
+	vim.print(vim.g.copilot_enabled and vim.fn['copilot#GetDisplayedSuggestion']().text ~= '' and vim.fn['copilot#Accept']() ~= "" and type(vim.fn['copilot#Accept']()) == 'string')
+end)
+
+-- hello 
 

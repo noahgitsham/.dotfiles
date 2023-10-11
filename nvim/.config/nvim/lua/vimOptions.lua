@@ -33,3 +33,5 @@ vim.api.nvim_set_option("clipboard", "unnamedplus")
 
 -- Statusline
 vim.opt.laststatus = 3 -- Global Statusline
+
+vim.g.python_recommended_style = 0
