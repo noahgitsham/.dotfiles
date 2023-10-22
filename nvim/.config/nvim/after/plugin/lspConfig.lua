@@ -1,6 +1,6 @@
 -- Native lsp options
---vim.highlight.create("SignColumn", {ctermbg=0, guibg=NONE}, false)
 vim.api.nvim_set_hl(0, "SignColumn", {guibg=NONE})
+
 
 local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
 for type, icon in pairs(signs) do
@@ -76,7 +76,9 @@ require("trouble").setup {
 	fold_open = "v", -- icon used for open folds
 	fold_closed = ">", -- icon used for closed folds
 	indent_lines = false, -- add an indent guide below the fold icons
-	use_diagnostic_signs = false,
+	use_diagnostic_signs = true,
 }
 
 vim.keymap.set("n","<leader>er", vim.cmd.TroubleToggle)
+
+

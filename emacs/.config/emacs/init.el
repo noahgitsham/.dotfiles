@@ -6,14 +6,18 @@
 
 ;; Disable startup nonsense
 (setq-default message-log-max nil)
-;; (setq initial-scratch-message ""
-;;       inhibit-startup-message t)
+;;(setq initial-scratch-message ""
+;;      inhibit-startup-message t)
 
 ;; Load paths
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
 
 ;; Behavior
 (setq mode-require-final-newline nil)
+
+;; Clipboard
+(global-set-key (kbd "C-V") 'clipboard-yank)
+(global-set-key (kbd "C-C") 'clipboard-kill-ring-save)
 
 ;; Backups
 (make-directory "~/backups/emacs" :parents)
@@ -45,7 +49,8 @@
 (unless (package-installed-p 'evil)
   (package-install 'evil))
 
-(setq evil-want-C-u-scroll t)
+(setq evil-want-C-u-scroll nil
+      evil-want-C-d-scroll nil)
 
 (require 'evil)
 (evil-mode 1)
@@ -99,7 +104,7 @@
 (setq org-latex-packages-alist '())
 ;; (add-to-list 'org-latex-packages-alist '("" "tikz" t))
 ;; (add-to-list 'org-latex-packages-alist '("" "pgfplots" t))
-(add-to-list 'org-latex-packages-alist '("" "mathtool" t))
+;; (add-to-list 'org-latex-packages-alist '("" "mathtool" t))
 (setq org-latex-create-formula-image-program 'imagemagick)
 
 
@@ -128,7 +133,7 @@
  '(custom-safe-themes
    '("1781e8bccbd8869472c09b744899ff4174d23e4f7517b8a6c721100288311fa5" default))
  '(evil-undo-system 'undo-redo)
- '(org-agenda-files '("~/todo.org" "/home/noah/documents/org/summerTODO.org"))
+ '(org-agenda-files '("/home/noah/uni/weekly/w4.org" "/home/noah/todo.org"))
  '(org-format-latex-options
    '(:foreground default :background default :scale 2.0 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
 		 ("begin" "$1" "$" "$$" "\\(" "\\[")))

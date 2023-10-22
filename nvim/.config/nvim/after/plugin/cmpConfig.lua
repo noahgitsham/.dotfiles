@@ -47,3 +47,13 @@ cmp.setup {
 		{name = "buffer", keyword_length = 5},
 	},
 }
+
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+
+require("lsp_signature").setup {
+	handler_opts = {
+		border = "none"
+	},
+	hint_enable = false,
+}

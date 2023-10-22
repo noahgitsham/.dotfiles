@@ -6,7 +6,8 @@
 require("packer").startup(function(use)
 	use "wbthomason/packer.nvim"
 
-	use "/home/noah/programming/nvimPlugins/html-live.nvim"
+	-- Local plugins
+	--use "/home/noah/programming/nvimPlugins/html-live.nvim"
 
 	-- Treesitter
 	use {
@@ -19,6 +20,7 @@ require("packer").startup(function(use)
 		requires = "nvim-treesitter/nvim-treesitter",
 	}
 	use "nvim-treesitter/playground"
+	use "windwp/nvim-ts-autotag"
 
 	-- Telescope
 	use {
@@ -35,17 +37,17 @@ require("packer").startup(function(use)
 	use "ThePrimeagen/vim-be-good"
 	use "turbio/bracey.vim"
 	use "github/copilot.vim"
-
+	use "smjonas/live-command.nvim"
 
 	---------
 	-- LSP --
 	---------
 
 	-- Mason + lspconfig
+	use "neovim/nvim-lspconfig"
 	use {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
-		"neovim/nvim-lspconfig",
 	}
 
 	-- Cmp
@@ -56,6 +58,7 @@ require("packer").startup(function(use)
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-nvim-lsp-signature-help",
 	}
+	use "ray-x/lsp_signature.nvim"
 
 	-- Plugin lsp help
 	use "folke/neodev.nvim"
@@ -69,15 +72,21 @@ require("packer").startup(function(use)
 	use "folke/trouble.nvim"
 
 	-- DAP
+	use {
+		"mfussenegger/nvim-dap",
+		"jay-babu/mason-nvim-dap.nvim",
+		"rcarriga/nvim-dap-ui",
+	}
+	use "mfussenegger/nvim-dap-python"
 
 
 	-- Colour Themes
 	use "Shatur/neovim-ayu"
 	use "arturgoms/moonbow.nvim"
-	use "sainnhe/gruvbox-material"
 	use "ellisonleao/gruvbox.nvim"
 	use "rebelot/kanagawa.nvim"
 	use "loctvl842/monokai-pro.nvim"
+	use "sainnhe/gruvbox-material"
 end)
 
 -------------------------------
@@ -99,11 +108,6 @@ require("colorizer").setup {
 		css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
 		-- Available modes for `mode`: foreground, background,  virtualtext
 		mode = "background", -- Set the display mode.
-		-- Available methods are false / true / "normal" / "lsp" / "both"
-		-- True is same as normal
-		tailwind = false, -- Enable tailwind colors
-		-- parsers can contain values used in |user_default_options|
-		sass = { enable = false, parsers = { "css" }, }, -- Enable sass colors
 		virtualtext = "■",
 		-- update color values even if buffer is not focused
 		-- example use: cmp_menu, cmp_docs
@@ -138,7 +142,6 @@ require("twilight").setup {
 }
 
 --vim.api.nvim_set_keymap("i", "<C-J", 'copilot#Accept("<CR>")', {silent = true, expr = true})
-
 --vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 vim.g.copilot_enabled = false
@@ -148,5 +151,9 @@ vim.keymap.set("i", "<C-x>", function ()
 	vim.print(vim.g.copilot_enabled and vim.fn['copilot#GetDisplayedSuggestion']().text ~= '' and vim.fn['copilot#Accept']() ~= "" and type(vim.fn['copilot#Accept']()) == 'string')
 end)
 
--- hello 
+require("live-command").setup {
+	commands = {
+		Norm = {cmd = "norm"}
+	}
+}
 

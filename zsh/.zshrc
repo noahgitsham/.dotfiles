@@ -1,10 +1,12 @@
-# Lines configured by zsh-newuser-install
+# Lines configured 
+# y zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=500
 SAVEHIST=500
 unsetopt beep
 bindkey -v
 bindkey -v "^?" backward-delete-char
+KEYTIMEOUT=1
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/noah/.zshrc'
@@ -16,7 +18,7 @@ compinit
 # Custom prompt
 setopt PROMPT_SUBST
 # %F{red}${vcs_info_msg_0_}%f 
-PROMPT="%F{yellow}%n%f %F{gray}$%f "
+#PROMPT="%F{yellow}%n%f %F{gray}$%f "
 
 # VCS prompt
 autoload -Uz vcs_info
@@ -24,7 +26,17 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 vcs_colour=blue
 
-RPROMPT='%F{${vcs_colour}}${vcs_info_msg_0_}%f'
+make_prompt() {
+	if [[ -z ${vcs_info_msg_0_} ]] then
+		PROMPT="%F{yellow}%n%f %F{gray}$%f "
+	else
+		PROMPT="%F{yellow}%n%f %F{${vcs_colour}}${vcs_info_msg_0_}%f %F{gray}$%f "
+	fi
+}
+
+precmd_functions+=make_prompt
+
+# RPROMPT='%F{${vcs_colour}}${vcs_info_msg_0_}%f'
 
 zstyle ":vcs_info:git:*" formats "%b"
 
@@ -37,16 +49,10 @@ source /home/noah/.config/broot/launcher/bash/br
 # Login Message
 if [[ -z $DISPLAY ]] then
 	echo '
-         ,
-       _=|_
-     _[_## ]_
-_  +[_[_+_]P/    _    |_       ____      _=--|-~
- ~---\\_I_I_[=\\--~ ~~--[o]--==-|##==]-=-~~  o]H
--~ /[_[_|_]_]\\\\  -_  [[=]]    |====]  __  !j]H
-  /    "|"    \\      ^U-U^  - |    - ~ .~  U/~
- ~~--__~~~--__~~-__   H_H_    |_     --   _H_
--. _  ~~~#######~~~     ~~~-    ~~--  ._ - ~~-=
-           ~~~=~~  -~~--  _     . -      _ _ -
+    /|
+   (% 7
+   |  \
+   lU_,)/
 '
 fi
 

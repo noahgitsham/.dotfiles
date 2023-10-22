@@ -1,7 +1,7 @@
 -- Line numbers
 vim.opt.nu = true -- Line nums
 vim.opt.rnu = true -- Relative line nums
-vim.wo.fillchars='eob: '
+vim.wo.fillchars = "eob: "
 
 -- Indentation
 IndentSize = 8
@@ -12,12 +12,12 @@ vim.opt.shiftwidth = IndentSize
 vim.opt.wrap = false
 vim.opt.linebreak = true
 
-
 -- Scroll
 vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
 
 -- Stop autocomment on enter
--- vim.opt.formatoptions:remove("cro")
+vim.opt_local.formatoptions:remove({"r", "o"})
 
 -- Search
 vim.opt.hlsearch = true
@@ -34,4 +34,6 @@ vim.api.nvim_set_option("clipboard", "unnamedplus")
 -- Statusline
 vim.opt.laststatus = 3 -- Global Statusline
 
-vim.g.python_recommended_style = 0
+-- Remaps
+vim.g.mapleader = "\\"
+vim.keymap.set("n", "<leader>/", vim.cmd.noh)
