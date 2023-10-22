@@ -31,9 +31,12 @@ return {
 	"ray-x/lsp_signature.nvim",
 
 	-- Snippets
-	"L3MON4D3/LuaSnip",
+	{
+		"L3MON4D3/LuaSnip",
+		tag = "v2.*",
+		dependencies = "rafamadriz/friendly-snippets"
+	},
 	"saadparwaiz1/cmp_luasnip",
-	"rafamadriz/friendly-snippets",
 
 	-- DAP
 	"mfussenegger/nvim-dap",
