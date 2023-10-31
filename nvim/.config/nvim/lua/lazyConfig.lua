@@ -1,4 +1,4 @@
--- Lazy bootstrap
+-- Lazy Install Bootstrap
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -13,6 +13,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Config
---require("lazy").setup {
---	concurrency = 16,
---}
+require("lazy").setup("plugins", {
+	dev = {
+		path = "~/programming/nvimPlugins",
+	},
+})

@@ -71,5 +71,5 @@ return {
 	"sainnhe/gruvbox-material",
 
 	-- Local Plugins
-	{"/home/noah/programming/nvimPlugins/inbar.nvim", dev = true}
+	{"noahgitsham/inbar.nvim", dev = true }
 }

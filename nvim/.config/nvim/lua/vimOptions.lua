@@ -28,7 +28,7 @@ vim.opt.smartcase = true
 
 -- Buffers + Panes
 vim.opt.splitbelow = true
-vim.opt.splitright = false
+vim.opt.splitright = true
 
 -- Clipboard
 vim.api.nvim_set_option("clipboard", "unnamedplus")
