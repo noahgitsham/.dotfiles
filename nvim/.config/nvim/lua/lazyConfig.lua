@@ -17,4 +17,7 @@ require("lazy").setup("plugins", {
 	dev = {
 		path = "~/programming/nvimPlugins",
 	},
+	change_detection = {
+		notify = false,
+	},
 })
