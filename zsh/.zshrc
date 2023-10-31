@@ -5,7 +5,6 @@ HISTSIZE=500
 SAVEHIST=500
 unsetopt beep
 bindkey -v
-bindkey -v "^?" backward-delete-char
 KEYTIMEOUT=1
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
@@ -17,8 +16,6 @@ compinit
 
 # Custom prompt
 setopt PROMPT_SUBST
-# %F{red}${vcs_info_msg_0_}%f 
-#PROMPT="%F{yellow}%n%f %F{gray}$%f "
 
 # VCS prompt
 autoload -Uz vcs_info
@@ -46,6 +43,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 source /home/noah/.config/broot/launcher/bash/br
 
+
 # Login Message
 if [[ -z $DISPLAY ]] then
 	echo '
@@ -55,6 +53,7 @@ if [[ -z $DISPLAY ]] then
    lU_,)/
 '
 fi
+
 
 # Rehash after package install
 zshcache_time="$(date +%s%N)"
@@ -71,3 +70,13 @@ rehash_precmd() {
 }
 
 add-zsh-hook -Uz precmd rehash_precmd
+
+
+# Foot Integration
+precmd() {
+    print -Pn "\e]133;A\e\\"
+}
+
+
+# Aliases
+alias ls="ls --color"

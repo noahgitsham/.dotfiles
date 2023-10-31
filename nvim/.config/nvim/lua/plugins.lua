@@ -12,7 +12,7 @@ return {
 
 	-- Telescope
 	{
-		"nvim-telescope/telescope.nvim", tag = "0.1.1",
+		"nvim-telescope/telescope.nvim",
 		dependencies = "nvim-lua/plenary.nvim"
 	},
 
@@ -33,7 +33,6 @@ return {
 	-- Snippets
 	{
 		"L3MON4D3/LuaSnip",
-		tag = "v2.*",
 		dependencies = "rafamadriz/friendly-snippets"
 	},
 	"saadparwaiz1/cmp_luasnip",
@@ -47,18 +46,21 @@ return {
 	-- Languages
 	"windwp/nvim-ts-autotag",
 	"folke/neodev.nvim",
+	"lervag/vimtex",
 
 	-- Misc
-	"NvChad/nvim-colorizer.lua",
 	"windwp/nvim-autopairs",
 	"lukas-reineke/indent-blankline.nvim",
-	"Aasim-A/scrollEOF.nvim",
-	"folke/zen-mode.nvim",
-	"folke/twilight.nvim",
 	"ThePrimeagen/vim-be-good",
 	"turbio/bracey.vim",
 	"github/copilot.vim",
 	"smjonas/live-command.nvim",
+
+	-- Visuals
+	"Aasim-A/scrollEOF.nvim",
+	"NvChad/nvim-colorizer.lua",
+	"folke/zen-mode.nvim",
+	"folke/twilight.nvim",
 
 	-- Colours
 	"Shatur/neovim-ayu",
@@ -69,5 +71,5 @@ return {
 	"sainnhe/gruvbox-material",
 
 	-- Local Plugins
-	{"/home/noah/programming/nvimPlugins/html-live.nvim", dev = true}
+	{"/home/noah/programming/nvimPlugins/inbar.nvim", dev = true}
 }

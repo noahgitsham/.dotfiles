@@ -1,1 +1,0 @@
-../.dotfiles/scripts/scripts/calendar.sh

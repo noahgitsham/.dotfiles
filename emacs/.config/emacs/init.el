@@ -133,7 +133,8 @@
  '(custom-safe-themes
    '("1781e8bccbd8869472c09b744899ff4174d23e4f7517b8a6c721100288311fa5" default))
  '(evil-undo-system 'undo-redo)
- '(org-agenda-files '("/home/noah/uni/weekly/w4.org" "/home/noah/todo.org"))
+ '(org-agenda-files
+   '("~/uni/weekly/w5.org" "/home/noah/uni/weekly/w4.org" "/home/noah/todo.org"))
  '(org-format-latex-options
    '(:foreground default :background default :scale 2.0 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
 		 ("begin" "$1" "$" "$$" "\\(" "\\[")))

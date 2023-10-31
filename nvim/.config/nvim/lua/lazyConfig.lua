@@ -14,5 +14,5 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Config
 --require("lazy").setup {
---
+--	concurrency = 16,
 --}

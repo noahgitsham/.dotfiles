@@ -1,6 +1,4 @@
 -- Native lsp options
-vim.api.nvim_set_hl(0, "SignColumn", {guibg=NONE})
-
 
 local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
 for type, icon in pairs(signs) do
@@ -47,6 +45,7 @@ local on_attach = function(client,bufnr)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
 	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
 	vim.keymap.set("n", "<tab>", vim.lsp.buf.hover, bufopts)
+	--client.server_capabilities.semanticTokensProvider = nil -- Do not use lsp highlighting
 end
 
 require("mason-lspconfig").setup_handlers {
@@ -68,6 +67,13 @@ require("mason-lspconfig").setup_handlers {
 				}
 			}
 		}
+	end,
+
+	["clangd"] = function ()
+		require("lspconfig")["clangd"].setup {
+			on_attach = on_attach,
+			cmd = {"clangd", "--offset-encoding=utf-16"},
+		}
 	end
 }
 
@@ -81,4 +87,6 @@ require("trouble").setup {
 
 vim.keymap.set("n","<leader>er", vim.cmd.TroubleToggle)
 
-
+-- Vimtex
+vim.g.vimtex_view_method = "zathura"
+vim.g.vimtex_syntax_enabled = 0

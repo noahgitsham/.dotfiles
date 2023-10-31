@@ -8,4 +8,7 @@ require("gruvbox").setup {
 	contrast = "hard",
 	invert_selection = true,
 	bold = false,
+	overrides = {
+		SignColumn = {bg = "None"}
+	},
 }

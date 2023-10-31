@@ -19,6 +19,8 @@ vim.opt.sidescrolloff = 8
 -- Stop autocomment on enter
 vim.opt_local.formatoptions:remove({"r", "o"})
 
+vim.opt.cino:append("(0")
+
 -- Search
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
@@ -26,7 +28,7 @@ vim.opt.smartcase = true
 
 -- Buffers + Panes
 vim.opt.splitbelow = true
-vim.opt.splitright = true
+vim.opt.splitright = false
 
 -- Clipboard
 vim.api.nvim_set_option("clipboard", "unnamedplus")

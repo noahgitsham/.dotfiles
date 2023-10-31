@@ -1,6 +1,12 @@
 vim.opt.termguicolors = true
 
---vim.g.gruvbox_flat_style = "hard"
-
 -- Set colour scheme
-vim.cmd.colorscheme("gruvbox")
+local function setColors(termColo, ttyColo)
+	if os.getenv("DISPLAY") then
+		vim.cmd.colorscheme(termColo)
+	elseif ttyColo then
+		vim.cmd.colorscheme(ttyColo)
+	end
+end
+
+setColors("gruvbox")
