@@ -3,6 +3,7 @@ require("nvim-treesitter.configs").setup {
 	highlight = {
 		enable = true
 	},
+	auto_install = true,
 	textobjects = {
 		lsp_interop = {
 			enable = true,
@@ -13,15 +14,7 @@ require("nvim-treesitter.configs").setup {
 				["<leader>dF"] = "@class.outer",
 			},
 		}
-	}
-}
-
--- Options
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-
-require("nvim-treesitter.configs").setup {
-	auto_install = true,
+	},
 	playground = {
 		enable = true,
 		disable = {},
@@ -40,5 +33,10 @@ require("nvim-treesitter.configs").setup {
 			show_help = '?',
 		},
 	},
-	autotag = { enable = true }
+	autotag = { enable = true },
 }
+
+-- Treesitter Folding
+--vim.o.foldmethod = "expr"
+--vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+--vim.opt.foldlevelstart = -1

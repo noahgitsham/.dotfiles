@@ -21,6 +21,7 @@ return {
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	"folke/trouble.nvim",
+	{"j-hui/fidget.nvim", event = "LspAttach", tag = "legacy"},
 
 	-- CMP
 	"hrsh7th/nvim-cmp",
@@ -28,7 +29,7 @@ return {
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
 	"hrsh7th/cmp-nvim-lsp-signature-help",
-	"ray-x/lsp_signature.nvim",
+	{ "ray-x/lsp_signature.nvim", event = "VeryLazy" },
 
 	-- Snippets
 	{

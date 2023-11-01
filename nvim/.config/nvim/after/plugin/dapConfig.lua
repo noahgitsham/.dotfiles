@@ -24,9 +24,28 @@ vim.g.python_recommended_style = 0
 -- DAP UI
 local dapui = require("dapui")
 dapui.setup {
+	layouts = {
+		{
+			elements = {
+				{ id = "scopes", size = 0.4 },
+				{ id = "breakpoints", size = 0.3 },
+				{ id = "watches", size = 0.3 }
+			},
+			position = "left",
+			size = 40
+		},
+		{
+			elements = {
+				{ id = "repl", size = 1 },
+			},
+			position = "bottom",
+			size = 15
+		}
+	},
 	controls = {
-		enabled = false
-	}
+		element = "repl",
+		enabled = false,
+	},
 }
 
 -- Keymaps

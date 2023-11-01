@@ -17,6 +17,7 @@ require("neodev").setup {
 		-- you can also specify the list of plugins to make available as a workspace library
 		-- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
 	},
+	setup_jsonls = true,
 	-- With lspconfig, Neodev will automatically setup your lua-language-server
 	-- If you disable this, then you have to set {before_init=require("neodev.lsp").before_init}
 	-- in your lsp start options
@@ -38,45 +39,64 @@ require("mason-lspconfig").setup {
 			    "rust_analyzer"}
 }
 
-local on_attach = function(client,bufnr)
+local default_on_attach = function(client,bufnr)
 	-- Mappings.
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	local bufopts = { noremap=true, silent=true, buffer=bufnr }
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
 	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
 	vim.keymap.set("n", "<tab>", vim.lsp.buf.hover, bufopts)
-	--client.server_capabilities.semanticTokensProvider = nil -- Do not use lsp highlighting
+	--client.server_capabilities.semanticTokensProvider = nil
 end
+
+local default_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 require("mason-lspconfig").setup_handlers {
 	function(server_name)
 		require("lspconfig")[server_name].setup {
-			on_attach = on_attach,
-			capabilities = require("cmp_nvim_lsp").default_capabilities(),
+			on_attach = default_on_attach,
+			capabilities = default_capabilities,
 		}
 	end,
 
 	["pylsp"] = function ()
 		require("lspconfig")["pylsp"].setup {
-			on_attach = on_attach,
+			on_attach = default_on_attach,
 			settings = {
 				pylsp = {
 					plugins = {
 						pycodestyle = {enabled = false},
-					}
-				}
-			}
+					},
+				},
+			},
+			capabilities = default_capabilities,
 		}
 	end,
 
 	["clangd"] = function ()
 		require("lspconfig")["clangd"].setup {
-			on_attach = on_attach,
+			on_attach = default_on_attach,
 			cmd = {"clangd", "--offset-encoding=utf-16"},
+			capabilities = default_capabilities,
+		}
+	end,
+
+	["lua_ls"] = function ()
+		require("lspconfig")["lua_ls"].setup {
+			on_attach = default_on_attach,
+			settings = {
+				Lua = {
+					workspace = {
+						checkThirdParty = false,
+					},
+					
+				},
+			},
+			capabilities = default_capabilities,
 		}
 	end
 }
 
+-- Trouble
 require("trouble").setup {
 	icons = false,
 	fold_open = "v", -- icon used for open folds
@@ -90,3 +110,11 @@ vim.keymap.set("n","<leader>er", vim.cmd.TroubleToggle)
 -- Vimtex
 vim.g.vimtex_view_method = "zathura"
 vim.g.vimtex_syntax_enabled = 0
+
+
+-- Fidget
+require("fidget").setup {
+	text = {
+		done = "DONE:"
+	}
+}

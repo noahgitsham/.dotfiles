@@ -1,6 +1,6 @@
 require("telescope").setup {
 	defaults = {
-		path_display = { "shorten", shorten = 3}
+		path_display = { "shorten", shorten = 3},
 	}
 }
 
@@ -11,3 +11,4 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fs', builtin.lsp_document_symbols, {})
 vim.keymap.set('n', '<leader>fS', builtin.lsp_dynamic_workspace_symbols, {})
+
