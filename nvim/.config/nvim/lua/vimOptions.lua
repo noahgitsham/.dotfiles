@@ -40,5 +40,5 @@ vim.opt.laststatus = 3 -- Global Statusline
 vim.g.mapleader = "\\"
 vim.keymap.set("n", "<leader>/", vim.cmd.noh)
 
--- Highlight Cursor
+-- Cursor
 vim.opt.cursorline = true

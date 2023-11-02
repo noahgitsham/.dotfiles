@@ -7,6 +7,7 @@ local function setColors(termColo, ttyColo)
 	elseif ttyColo then
 		vim.cmd.colorscheme(ttyColo)
 	end
+	-- Else default colorscheme
 end
 
 setColors("gruvbox")

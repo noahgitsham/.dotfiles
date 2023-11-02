@@ -1,5 +1,5 @@
+-- Line wrap toggle
 local reading = false
-
 function ToggleReadingMode()
 	if reading then -- Code mode
 		vim.opt.linebreak = false
@@ -11,9 +11,9 @@ function ToggleReadingMode()
 	reading = not reading
 end
 
-vim.api.nvim_create_user_command("LineToggle", "lua ToggleReadingMode()", {})
+vim.api.nvim_create_user_command("WrapToggle", "lua ToggleReadingMode()", {})
 
--- Plugins
+-- Plugin development
 vim.api.nvim_create_user_command("P", function (table)
 	local lua = vim.fn.luaeval(table.args)
 	vim.print(lua)
