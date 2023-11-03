@@ -56,6 +56,15 @@ return {
 	"turbio/bracey.vim",
 	"github/copilot.vim",
 	"smjonas/live-command.nvim",
+	{
+		'glacambre/firenvim',
+		-- Lazy load firenvim
+		-- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+		lazy = not vim.g.started_by_firenvim,
+		build = function()
+			vim.fn["firenvim#install"](0)
+		end
+	},
 
 	-- Visuals
 	"Aasim-A/scrollEOF.nvim",
@@ -70,6 +79,7 @@ return {
 	"rebelot/kanagawa.nvim",
 	"loctvl842/monokai-pro.nvim",
 	"sainnhe/gruvbox-material",
+	"cocopon/iceberg.vim",
 
 	-- Local Plugins
 	{"noahgitsham/inbar.nvim", dev = true }

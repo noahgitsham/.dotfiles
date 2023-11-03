@@ -2,11 +2,11 @@
 local reading = false
 function ToggleReadingMode()
 	if reading then -- Code mode
-		vim.opt.linebreak = false
-		vim.opt.wrap = false
+		vim.opt_local.linebreak = false
+		vim.opt_local.wrap = false
 	else -- Reading mode
-		vim.opt.linebreak = true
-		vim.opt.wrap = true
+		vim.opt_local.linebreak = true
+		vim.opt_local.wrap = true
 	end
 	reading = not reading
 end

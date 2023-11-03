@@ -1,18 +1,21 @@
-# Lines configured 
-# y zsh-newuser-install
+# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=500
 SAVEHIST=500
 unsetopt beep
+
+# Vim keybinds
 bindkey -v
 KEYTIMEOUT=1
-# End of lines configured by zsh-newuser-install
+
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/noah/.zshrc'
-
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
+
+# Path
+path+=("/home/noah/scripts")
+export PATH
 
 # Custom prompt
 setopt PROMPT_SUBST

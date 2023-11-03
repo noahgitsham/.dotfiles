@@ -35,6 +35,7 @@ vim.api.nvim_set_option("clipboard", "unnamedplus")
 
 -- Statusline
 vim.opt.laststatus = 3 -- Global Statusline
+vim.opt.showmode = false
 
 -- Remaps
 vim.g.mapleader = "\\"

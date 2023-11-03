@@ -27,11 +27,13 @@ require("colorizer").setup {
 }
 
 require("ibl").setup {
-	--show_trailing_blankline_indent = false,
 	scope = {
 		enabled = false,
 		show_end = false,
 		show_start = false,
+	},
+	indent = {
+		char = "│"
 	}
 }
 
