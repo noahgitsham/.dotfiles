@@ -53,9 +53,12 @@ return {
 	"windwp/nvim-autopairs",
 	"lukas-reineke/indent-blankline.nvim",
 	"ThePrimeagen/vim-be-good",
-	"turbio/bracey.vim",
 	"github/copilot.vim",
 	"smjonas/live-command.nvim",
+	{
+		"turbio/bracey.vim",
+		build = "npm install --prefix server"
+	},
 	{
 		'glacambre/firenvim',
 		-- Lazy load firenvim

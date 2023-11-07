@@ -1,6 +1,6 @@
 export EDITOR="nvim"
 export SUDO_EDITOR="nvim"
-#export TERMINAL="kitty"
+export TERMINAL="foot"
 export BROWSER="firefox"
 
 # Themes

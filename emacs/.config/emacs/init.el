@@ -30,7 +30,7 @@
 (scroll-bar-mode -1)
 
 ;; Themes/Visuals
-(set-frame-font "GeistMono 12" nil t)
+(set-frame-font "Terminus 14" nil t)
 
 ;; Modeline
 
