@@ -1,12 +1,12 @@
 -- Line numbers
 vim.opt.nu = true -- Line nums
 vim.opt.rnu = true -- Relative line nums
-vim.wo.fillchars = "eob: "
+vim.wo.fillchars = "eob: " -- Remove ~ for end lines
 
 -- Indentation
-IndentSize = 8
-vim.opt.tabstop = IndentSize
-vim.opt.shiftwidth = IndentSize
+local indentSize = 4
+vim.opt.tabstop = indentSize
+vim.opt.shiftwidth = indentSize
 
 -- Line wrapping
 vim.opt.wrap = false
@@ -17,7 +17,6 @@ vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 
 -- Stop autocomment on enter
-vim.opt_local.formatoptions:remove({"r", "o"})
 
 vim.opt.cino:append("(0")
 
@@ -31,7 +30,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 -- Clipboard
-vim.api.nvim_set_option("clipboard", "unnamedplus")
+vim.opt.clipboard:append("unnamedplus")
 
 -- Statusline
 vim.opt.laststatus = 3 -- Global Statusline
@@ -39,7 +38,10 @@ vim.opt.showmode = false
 
 -- Remaps
 vim.g.mapleader = "\\"
-vim.keymap.set("n", "<leader>/", vim.cmd.noh)
+-- vim.keymap.set("n", "<leader>/", vim.cmd.noh) -- Use <C-l> instead
 
 -- Cursor
 vim.opt.cursorline = true
+
+-- Netrw
+vim.g.netrw_liststyle = 3 -- Tree

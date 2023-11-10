@@ -23,13 +23,14 @@ return {
 	"folke/trouble.nvim",
 	{"j-hui/fidget.nvim", event = "LspAttach", tag = "legacy"},
 
-	-- CMP
+	-- Autocomplete
 	"hrsh7th/nvim-cmp",
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
 	"hrsh7th/cmp-nvim-lsp-signature-help",
 	{ "ray-x/lsp_signature.nvim", event = "VeryLazy" },
+	"windwp/nvim-autopairs",
 
 	-- Snippets
 	{
@@ -43,6 +44,7 @@ return {
 	"jay-babu/mason-nvim-dap.nvim",
 	"rcarriga/nvim-dap-ui",
 	"mfussenegger/nvim-dap-python",
+	"theHamsta/nvim-dap-virtual-text",
 
 	-- Languages
 	"windwp/nvim-ts-autotag",
@@ -50,7 +52,6 @@ return {
 	"lervag/vimtex",
 
 	-- Misc
-	"windwp/nvim-autopairs",
 	"lukas-reineke/indent-blankline.nvim",
 	"ThePrimeagen/vim-be-good",
 	"github/copilot.vim",

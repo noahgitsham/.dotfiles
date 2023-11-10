@@ -1,5 +1,6 @@
 -- Native lsp options
 
+
 local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
@@ -49,17 +50,18 @@ local default_on_attach = function(client,bufnr)
 end
 
 local default_capabilities = require("cmp_nvim_lsp").default_capabilities()
+local lspconfig = require("lspconfig")
 
 require("mason-lspconfig").setup_handlers {
 	function(server_name)
-		require("lspconfig")[server_name].setup {
+		lspconfig[server_name].setup {
 			on_attach = default_on_attach,
 			capabilities = default_capabilities,
 		}
 	end,
 
 	["pylsp"] = function ()
-		require("lspconfig")["pylsp"].setup {
+		lspconfig["pylsp"].setup {
 			on_attach = default_on_attach,
 			settings = {
 				pylsp = {
@@ -73,7 +75,7 @@ require("mason-lspconfig").setup_handlers {
 	end,
 
 	["clangd"] = function ()
-		require("lspconfig")["clangd"].setup {
+		lspconfig["clangd"].setup {
 			on_attach = default_on_attach,
 			cmd = {"clangd", "--offset-encoding=utf-16"},
 			capabilities = default_capabilities,
@@ -81,14 +83,13 @@ require("mason-lspconfig").setup_handlers {
 	end,
 
 	["lua_ls"] = function ()
-		require("lspconfig")["lua_ls"].setup {
+		lspconfig["lua_ls"].setup {
 			on_attach = default_on_attach,
 			settings = {
 				Lua = {
 					workspace = {
 						checkThirdParty = false,
 					},
-					
 				},
 			},
 			capabilities = default_capabilities,

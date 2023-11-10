@@ -30,7 +30,7 @@
 (scroll-bar-mode -1)
 
 ;; Themes/Visuals
-(set-frame-font "Terminus 14" nil t)
+(set-frame-font "FragmentMono 14" nil t)
 
 ;; Modeline
 
@@ -115,6 +115,10 @@
 ;; Evil + Org settings
 
 (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
+(define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+(define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+(define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+(define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 
 ;; Colour Schemes
 (unless (package-installed-p 'nano-theme)
@@ -131,7 +135,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("1781e8bccbd8869472c09b744899ff4174d23e4f7517b8a6c721100288311fa5" default))
+   '("de8f2d8b64627535871495d6fe65b7d0070c4a1eb51550ce258cd240ff9394b0" "ba323a013c25b355eb9a0550541573d535831c557674c8d59b9ac6aa720c21d3" "1781e8bccbd8869472c09b744899ff4174d23e4f7517b8a6c721100288311fa5" default))
  '(evil-undo-system 'undo-redo)
  '(org-agenda-files
    '("~/uni/weekly/w5.org" "/home/noah/uni/weekly/w4.org" "/home/noah/todo.org"))

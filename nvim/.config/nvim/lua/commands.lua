@@ -18,3 +18,39 @@ vim.api.nvim_create_user_command("P", function (table)
 	local lua = vim.fn.luaeval(table.args)
 	vim.print(lua)
 end, {nargs = "*"})
+
+function yesNoDialog(message, default, yesFunc, noFunc)
+	vim.validate {
+		message = {message, "string"},
+		age = {default, "string"},
+		yesFunc = {yesFunc, {"function", "nil"}},
+		noFunc = {noFunc, {"function", "nil"}},
+	}
+
+	local yn
+	if default == "y" then
+		yn = "(Y/n)"
+	elseif default == "n" then
+		yn = "(y/N)"
+	elseif default == "" then
+		yn = "(y/n)"
+	else
+		error "default must take value of \"y\", \"n\", or \"\" "
+	end
+
+	vim.ui.input({ prompt = message.. " " .. yn .. ": " },
+		function (choice)
+			if choice == "" then
+				choice = default
+			end
+			choice = string.lower(choice)
+			print(choice)
+			if yesFunc and choice == "y" then
+				yesFunc()
+			elseif noFunc and choice == "n" then
+				print("Here")
+				noFunc()
+			end
+		end
+	)
+end
