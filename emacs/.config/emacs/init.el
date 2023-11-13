@@ -1,4 +1,6 @@
-;; Custom startup page
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Custom startup page ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
 (if (file-exists-p "~/.config/emacs/startupImage")
     (setq fancy-splash-image "~/.config/emacs/startupImage"))
 
@@ -13,7 +15,10 @@
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
 
 ;; Behavior
-(setq mode-require-final-newline nil)
+(save-place-mode 1)
+(global-auto-revert-mode 1)
+(recentf-mode 1)
+(setq use-dialog-box nil)
 
 ;; Clipboard
 (global-set-key (kbd "C-V") 'clipboard-yank)
@@ -24,17 +29,24 @@
 (setq backup-directory-alist '(("." . "~/backups/emacs"))
       backup-by-copying t)
 
-;; UI changes
+;;;;;;;;;;;;;;;;
+;; UI Changes ;;
+;;;;;;;;;;;;;;;;
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+(pixel-scroll-mode 0)
+(pixel-scroll-precision-mode 0)
+(setq pixel-scroll-precision-large-scroll-height 40.0)
 
 ;; Themes/Visuals
-(set-frame-font "FragmentMono 14" nil t)
+(set-frame-font "FragmentMono 12" nil t)
 
 ;; Modeline
 
-;; Packages
+;;;;;;;;;;;;;;
+;; Packages ;;
+;;;;;;;;;;;;;;
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
@@ -64,7 +76,13 @@
 	      scroll-margin 6) ; Scrolloff
 
 
-;; Org
+;;;;;;;;;
+;; Org ;;
+;;;;;;;;;
+
+;; Org Templates
+;; (setq org-capture-templates
+;; 	'(("w" "Weekly" entry (
 (unless (package-installed-p 'org)
   (package-install 'org))
 
@@ -99,7 +117,6 @@
 
 (add-hook 'org-mode-hook 'latex-preview-toggle)
 
-
 ;; Org LaTeX
 (setq org-latex-packages-alist '())
 ;; (add-to-list 'org-latex-packages-alist '("" "tikz" t))
@@ -107,20 +124,47 @@
 ;; (add-to-list 'org-latex-packages-alist '("" "mathtool" t))
 (setq org-latex-create-formula-image-program 'imagemagick)
 
-
 ;; Org Exporting
 (setq org-export-with-section-numbers nil)
 
 
-;; Evil + Org settings
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Evil + Org settings ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
+
+(defun heading-append ()
+  (interactive)
+)
+
+;; Enter insert mode after inserting heading in normal mode
+(evil-define-key 'normal org-mode-map (kbd "C-<return>")
+  #'(lambda () (interactive) (org-insert-heading-respect-content) (evil-append 1)))
+(evil-define-key 'normal org-mode-map (kbd "C-S-<return>")
+  #'(lambda () (interactive)
+      (org-insert-todo-heading-respect-content 1) (evil-append 1))
+)
+
+;; Heading Movement
+(evil-define-key 'normal org-mode-map (kbd "M-j") #'org-metadown)
+(evil-define-key 'normal org-mode-map (kbd "M-k") #'org-metaup)
+
+;; Heading Indentation
+(evil-define-key 'normal org-mode-map (kbd "M-l") #'org-metaright)
+(evil-define-key 'normal org-mode-map (kbd "M-h") #'org-metaleft)
+(evil-define-key 'normal org-mode-map (kbd "M-L") #'org-shiftmetaright)
+(evil-define-key 'normal org-mode-map (kbd "M-H") #'org-shiftmetaleft)
+
+;;Move normally on wrapped text
 (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 
-;; Colour Schemes
+;;;;;;;;;;;;;;;;;;;;
+;; Colour Schemes ;;
+;;;;;;;;;;;;;;;;;;;;
 (unless (package-installed-p 'nano-theme)
   (package-install 'nano-theme))
 
@@ -129,23 +173,8 @@
 
 (load-theme 'gruvbox-dark-hard t)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("de8f2d8b64627535871495d6fe65b7d0070c4a1eb51550ce258cd240ff9394b0" "ba323a013c25b355eb9a0550541573d535831c557674c8d59b9ac6aa720c21d3" "1781e8bccbd8869472c09b744899ff4174d23e4f7517b8a6c721100288311fa5" default))
- '(evil-undo-system 'undo-redo)
- '(org-agenda-files
-   '("~/uni/weekly/w5.org" "/home/noah/uni/weekly/w4.org" "/home/noah/todo.org"))
- '(org-format-latex-options
-   '(:foreground default :background default :scale 2.0 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
-		 ("begin" "$1" "$" "$$" "\\(" "\\[")))
- '(package-selected-packages '(gruvbox-theme org-fragtog org-appear evil)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Custom Set Variables ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq custom-file (locate-user-emacs-file "custom.el"))
+(load custom-file 'noerror 'nomessage)

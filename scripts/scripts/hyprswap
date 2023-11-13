@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+monitors=$(hyprctl monitors -j)
+
+numOfMonitors=$(echo $monitors | jq length)
+
+if [ $numOfMonitors -eq 2 ]; then
+	echo monitors
+fi
