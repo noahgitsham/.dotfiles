@@ -67,3 +67,6 @@ require("live-command").setup {
 		Norm = {cmd = "norm"}
 	}
 }
+
+require("gitsigns").setup()
+vim.keymap.set("n", "<leader>gs", function() vim.cmd("Gitsigns stage_hunk") end)

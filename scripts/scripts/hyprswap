@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
 
-monitors=$(hyprctl monitors -j)
+monitorInfo=$(hyprctl monitors -j)
 
-numOfMonitors=$(echo $monitors | jq length)
+numOfMonitors=$(echo $monitorInfo | jq length)
 
-if [ $numOfMonitors -eq 2 ]; then
-	echo monitors
+
+echo $numOfMonitors
+
+if [[ $numOfMonitors == 2 ]]; then
+	temp=$(echo $monitorInfo | jq '.[0].activeWorkspace.id')
+	echo $temp
+
+
+	hyprctl --batch
 fi

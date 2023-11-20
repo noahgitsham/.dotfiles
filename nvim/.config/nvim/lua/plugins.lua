@@ -1,4 +1,5 @@
 return {
+	"https://github.com/L3afMe/rose-pine-sepia-nvim",
 	-- Treesitter
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -50,6 +51,9 @@ return {
 	"windwp/nvim-ts-autotag",
 	"folke/neodev.nvim",
 	"lervag/vimtex",
+
+	-- Git
+	"lewis6991/gitsigns.nvim",
 
 	-- Misc
 	"lukas-reineke/indent-blankline.nvim",

@@ -1,9 +1,22 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/noah/.dotfiles/emacs/.config/emacs/init.el" . 1941)
- ("/home/noah/uni/weekly/w8.org" . 2)
+(("/home/noah/uni/work/12111/ex4.org" . 51)
+ ("/home/noah/uni/work/12111/vonNeumann.org" . 201)
+ ("/home/noah/documents/ideas.org" . 626)
+ ("/home/noah/todo.org" . 154)
+ ("/home/noah/uni/weekly/w8.org" . 492)
+ ("/home/noah/.local/share/emacs/packages/org-download-20220906.1929/org-download.el" . 14021)
+ ("/home/noah/.dotfiles/emacs/.config/emacs/init.el" . 3199)
+ ("/home/noah/documents/"
+  (dired-filename . "/home/noah/documents/ideas.org"))
+ ("/home/noah/.dotfiles/emacs/.config/emacs/custom.el" . 932)
+ ("/home/noah/uni/work/10120/project/notes.org" . 681)
+ ("/home/noah/uni/work/15111/lec11+12.org" . 73)
+ ("/home/noah/uni/work/15111/armCheatsheet.org" . 323)
+ ("/home/noah/uni/work/10120/wwwvsinternet.org" . 865)
+ ("/home/noah/uni/work/10120/sql.org" . 209)
+ ("/home/noah/uni/weekly/w6.org" . 599)
+ ("/home/noah/uni/work/12111/mu0.org" . 672)
  ("/home/noah/uni/work/12111/3box.org" . 40)
- ("/home/noah/uni/work/12111/mu0.org" . 17)
- ("/home/noah/todo.org" . 1064)
  ("/home/noah/documents/wishlist.org" . 29)
  ("/home/noah/.config/emacs/eshell/"
   (dired-filename . "/home/noah/.config/emacs/eshell/.."))
@@ -15,6 +28,5 @@
  ("/home/noah/.config/emacs/elisp/spash-screen.el" . 67)
  ("/home/noah/.dotfiles/emacs/.config/emacs/"
   (dired-filename . "/home/noah/.dotfiles/emacs/.config/emacs/custom.el"))
- ("/home/noah/.dotfiles/emacs/.config/emacs/custom.el" . 1138)
  ("/home/noah/.dotfiles/emacs/.config/emacs/elisp/"
   (dired-filename . "/home/noah/.dotfiles/emacs/.config/emacs/elisp/..")))

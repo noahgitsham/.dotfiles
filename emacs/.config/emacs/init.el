@@ -75,17 +75,38 @@
 	      scroll-step 1 ; Vim scrolling
 	      scroll-margin 6) ; Scrolloff
 
+;;Move normally on wrapped text
+(define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+(define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+(define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+(define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+
 
 ;;;;;;;;;
 ;; Org ;;
 ;;;;;;;;;
-
-;; Org Templates
-;; (setq org-capture-templates
-;; 	'(("w" "Weekly" entry (
 (unless (package-installed-p 'org)
   (package-install 'org))
 
+;; Org Templates
+(defun promptForWeek () (interactive)
+       (read-string "Week number: "))
+(defun capture-weekly (path)
+  
+)
+
+(setq org-capture-templates
+      '(("w" "Weekly" entry
+	 (file+headline "~/uni/weekly/w%^{week}.org" "Week %^{week}")
+	 "*Week %^{week}\n** COMP10120\n** COMP11120\n** COMP12111\n** COMP15111\n** 16321"
+	 :jump-to-captured t
+	 :empty-lines-after 1
+	 )
+	)
+      )
+
+
+;; Org Settings
 (setq org-hide-leading-stars t
       org-hide-emphasis-markers t)
 
@@ -100,14 +121,18 @@
 ;; (require 'org-table-auto-align-mode)
 
 
-;; Org Appear
+;;;;;;;;;;;;;;;;;
+;; Org Preview ;;
+;;;;;;;;;;;;;;;;;
+
+;; Formatting preview
 (unless (package-installed-p 'org-appear)
   (package-install 'org-appear))
 
+(setq org-appear-autolinks t)
 (add-hook 'org-mode-hook 'org-appear-mode)
 
-
-;; Org Fragtog
+;; Latex preview
 (unless (package-installed-p 'org-fragtog)
   (package-install 'org-fragtog))
 
@@ -116,6 +141,7 @@
   (org-latex-preview '(16)))
 
 (add-hook 'org-mode-hook 'latex-preview-toggle)
+(setq org-latex-image-default-scale 1)
 
 ;; Org LaTeX
 (setq org-latex-packages-alist '())
@@ -127,6 +153,12 @@
 ;; Org Exporting
 (setq org-export-with-section-numbers nil)
 
+;; Org Download
+(unless (package-installed-p 'org-download)
+  (package-install 'org-download))
+
+(require 'org-download)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Evil + Org settings ;;
@@ -134,33 +166,31 @@
 
 (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
 
-(defun heading-append ()
-  (interactive)
-)
-
 ;; Enter insert mode after inserting heading in normal mode
 (evil-define-key 'normal org-mode-map (kbd "C-<return>")
   #'(lambda () (interactive) (org-insert-heading-respect-content) (evil-append 1)))
 (evil-define-key 'normal org-mode-map (kbd "C-S-<return>")
   #'(lambda () (interactive)
-      (org-insert-todo-heading-respect-content 1) (evil-append 1))
-)
+      (org-insert-todo-heading-respect-content 1) (evil-append 1)))
+
+(evil-define-key 'normal org-mode-map (kbd "M-<return>")
+  #'(lambda () (interactive) (org-meta-return) (evil-append 1)))
+(evil-define-key 'normal org-mode-map (kbd "M-S-<return>")
+  #'(lambda () (interactive)
+      (org-insert-todo-heading 1) (evil-append 1)))
 
 ;; Heading Movement
 (evil-define-key 'normal org-mode-map (kbd "M-j") #'org-metadown)
 (evil-define-key 'normal org-mode-map (kbd "M-k") #'org-metaup)
 
 ;; Heading Indentation
-(evil-define-key 'normal org-mode-map (kbd "M-l") #'org-metaright)
-(evil-define-key 'normal org-mode-map (kbd "M-h") #'org-metaleft)
-(evil-define-key 'normal org-mode-map (kbd "M-L") #'org-shiftmetaright)
-(evil-define-key 'normal org-mode-map (kbd "M-H") #'org-shiftmetaleft)
+(evil-define-key 'normal org-mode-map (kbd "M-l") #'org-shiftmetaright)
+(evil-define-key 'normal org-mode-map (kbd "M-h") #'org-shiftmetaleft)
+(evil-define-key 'normal org-mode-map (kbd "M-L") #'org-metaright)
+(evil-define-key 'normal org-mode-map (kbd "M-H") #'org-metaleft)
 
-;;Move normally on wrapped text
-(define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
-(define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
-(define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
-(define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+;; Heading Navigation
+(evil-define-key 'normal org-mode-map (kbd "M-H") #'org-shiftmetaleft)
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; Colour Schemes ;;

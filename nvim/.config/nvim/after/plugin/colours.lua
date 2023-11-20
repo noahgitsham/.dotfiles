@@ -6,9 +6,11 @@ require("ayu").setup {
 require("gruvbox").setup {
 	contrast = "hard",
 	invert_selection = true,
+	inverse_signs = true,
 	bold = false,
 	overrides = {
 		SignColumn = { bg = "None" },
-		CursorLineSign = { link = "CursorLine" }
+		CursorLineSign = { link = "CursorLine" },
+		Visual = {  }
 	},
 }

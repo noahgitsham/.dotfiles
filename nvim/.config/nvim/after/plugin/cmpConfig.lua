@@ -1,9 +1,20 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
+-- Customisable globals
+local maxEntryWidth = 30
+
 luasnip.config.setup()
 
 cmp.setup {
+	formatting = {
+		format = function(entry, vim_item)
+			if string.len(vim_item.abbr) > maxEntryWidth then
+				vim_item.abbr = string.sub(vim_item.abbr, 1, maxEntryWidth - 3) .. "..."
+			end
+			return vim_item
+		end
+	},
 	snippet = {
 		expand = function(args)
 			require("luasnip").lsp_expand(args.body)
@@ -45,6 +56,16 @@ cmp.setup {
 		{name = "nvim_lsp_signature_help"},
 		{name = "path"},
 		{name = "buffer", keyword_length = 5},
+	},
+	sorting = {
+		comparators = {
+			cmp.config.compare.offset,
+			cmp.config.compare.exact,
+			cmp.config.compare.score,
+			cmp.config.compare.recently_used,
+			cmp.config.compare.kind,
+			cmp.config.compare.locality,
+		},
 	},
 }
 
