@@ -8,19 +8,19 @@ unsetopt beep
 bindkey -v
 KEYTIMEOUT=1
 
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/noah/.zshrc'
+# Completion
+zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit
 compinit
 
 # Path
-path+=("/home/noah/scripts")
+path+=("~/scripts")
 export PATH
 
 # Custom prompt
 setopt PROMPT_SUBST
 
-# VCS prompt
+# Git prompt
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
@@ -38,6 +38,7 @@ precmd_functions+=make_prompt
 
 # RPROMPT='%F{${vcs_colour}}${vcs_info_msg_0_}%f'
 
+# Format to branch name only
 zstyle ":vcs_info:git:*" formats "%b"
 
 
@@ -75,7 +76,7 @@ rehash_precmd() {
 add-zsh-hook -Uz precmd rehash_precmd
 
 
-# Foot Integration
+# Foot terminal scrollback Integration
 precmd() {
     print -Pn "\e]133;A\e\\"
 }

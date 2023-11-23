@@ -1,7 +1,8 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/noah/todo.org" . 154)
- ("/home/noah/uni/weekly/w8.org" . 557)
+(("/home/noah/documents/wishlist.org" . 175)
+ ("/home/noah/todo.org" . 154)
  ("/home/noah/uni/weekly/w9.org" . 122)
+ ("/home/noah/uni/weekly/w8.org" . 557)
  ("/home/noah/uni/work/15111/"
   (dired-filename . "/home/noah/uni/work/15111/assembly.org"))
  ("/home/noah/uni/work/15111/assembly.org" . 2182)
@@ -23,7 +24,6 @@
  ("/home/noah/uni/weekly/w6.org" . 599)
  ("/home/noah/uni/work/12111/mu0.org" . 672)
  ("/home/noah/uni/work/12111/3box.org" . 40)
- ("/home/noah/documents/wishlist.org" . 29)
  ("/home/noah/.config/emacs/eshell/"
   (dired-filename . "/home/noah/.config/emacs/eshell/.."))
  ("/home/noah/.config/emacs/"
