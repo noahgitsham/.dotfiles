@@ -1,19 +1,27 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/noah/documents/wishlist.org" . 175)
- ("/home/noah/todo.org" . 154)
- ("/home/noah/uni/weekly/w9.org" . 122)
- ("/home/noah/uni/weekly/w8.org" . 557)
+(("/home/noah/.dotfiles/emacs/.config/emacs/init.el" . 619)
+ ("/home/noah/.dotfiles/emacs/.config/emacs/"
+  (dired-filename . "/home/noah/.dotfiles/emacs/.config/emacs/custom.el"))
+ ("/home/noah/.dotfiles/emacs/.config/emacs/custom.el" . 995)
+ ("/home/noah/todo.org" . 668)
+ ("/home/noah/uni/accom.org" . 20)
+ ("/home/noah/uni/weekly/w8.org" . 580)
+ ("/home/noah/uni/weekly/w9.org" . 91)
+ ("/home/noah/uni/weekly/w10.org" . 83)
+ ("/home/noah/uni/weekly/" . 417)
+ ("/home/noah/uni/"
+  (dired-filename . "/home/noah/uni/weekly"))
+ ("/home/noah/uni/work/12111/w10.org" . 2)
+ ("/home/noah/uni/work/16321/cwk.org" . 221)
+ ("/home/noah/documents/wishlist.org" . 175)
  ("/home/noah/uni/work/15111/"
   (dired-filename . "/home/noah/uni/work/15111/assembly.org"))
  ("/home/noah/uni/work/15111/assembly.org" . 2182)
  ("/home/noah/uni/work/15111/IO.org" . 213)
  ("/home/noah/uni/work/10120/webSecurity.org" . 2)
- ("/home/noah/.dotfiles/emacs/.config/emacs/custom.el" . 963)
  ("/home/noah/uni/work/12111/ex4.org" . 51)
  ("/home/noah/uni/work/12111/vonNeumann.org" . 201)
  ("/home/noah/documents/ideas.org" . 626)
- ("/home/noah/.local/share/emacs/packages/org-download-20220906.1929/org-download.el" . 14021)
- ("/home/noah/.dotfiles/emacs/.config/emacs/init.el" . 3199)
  ("/home/noah/documents/"
   (dired-filename . "/home/noah/documents/ideas.org"))
  ("/home/noah/uni/work/10120/project/notes.org" . 681)
@@ -32,7 +40,5 @@
  ("/home/noah/.config/emacs/elisp/"
   (dired-filename . "/home/noah/.config/emacs/elisp/org-table-live-update.el"))
  ("/home/noah/.config/emacs/elisp/spash-screen.el" . 67)
- ("/home/noah/.dotfiles/emacs/.config/emacs/"
-  (dired-filename . "/home/noah/.dotfiles/emacs/.config/emacs/custom.el"))
  ("/home/noah/.dotfiles/emacs/.config/emacs/elisp/"
   (dired-filename . "/home/noah/.dotfiles/emacs/.config/emacs/elisp/..")))

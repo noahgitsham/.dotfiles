@@ -3,3 +3,5 @@
   (interactive) ;; Make a command
 
 )
+
+(provide 'splash-screen)

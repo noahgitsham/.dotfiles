@@ -8,8 +8,33 @@
 
 ;; Disable startup nonsense
 (setq-default message-log-max nil)
-;;(setq initial-scratch-message ""
-;;      inhibit-startup-message t)
+(kill-buffer "*Messages*")
+(kill-buffer "*Async-native-compile-log*")
+(setq initial-scratch-message "")
+
+;; straight setup
+(make-directory "~/.local/share/emacs" :parents)
+(setq straight-base-dir "~/.local/share/emacs"
+      straight-use-package-by-default t
+      straight-process-buffer " ")
+;; straight.el bootstrap
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(use-package evil)
 
 ;; Load paths
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
@@ -21,8 +46,10 @@
 (setq use-dialog-box nil)
 
 ;; Clipboard
-(global-set-key (kbd "C-V") 'clipboard-yank)
-(global-set-key (kbd "C-C") 'clipboard-kill-ring-save)
+;(global-set-key (kbd "C-V") 'clipboard-yank)
+;(global-set-key (kbd "C-C") 'clipboard-kill-ring-save)
+;;(setq x-select-enable-clipboard t)
+;;(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
 ;; Backups
 (make-directory "~/backups/emacs" :parents)
@@ -44,22 +71,12 @@
 
 ;; Modeline
 
-;;;;;;;;;;;;;;
-;; Packages ;;
-;;;;;;;;;;;;;;
-(require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
 
-(make-directory "~/.local/share/emacs/packages" :parents)
-(setq package-user-dir "~/.local/share/emacs/packages")
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
+;;;;;;;;;;;;;;;;;;;;;
+;; Package configs ;;
+;;;;;;;;;;;;;;;;;;;;;
 
 ;; Evil
-(unless (package-installed-p 'evil)
-  (package-install 'evil))
 
 (setq evil-want-C-u-scroll nil
       evil-want-C-d-scroll nil)
@@ -85,8 +102,7 @@
 ;;;;;;;;;
 ;; Org ;;
 ;;;;;;;;;
-(unless (package-installed-p 'org)
-  (package-install 'org))
+(use-package org)
 
 ;; Org Templates
 (defun promptForWeek () (interactive)
@@ -126,15 +142,13 @@
 ;;;;;;;;;;;;;;;;;
 
 ;; Formatting preview
-(unless (package-installed-p 'org-appear)
-  (package-install 'org-appear))
+(use-package org-appear)
 
 (setq org-appear-autolinks t)
 (add-hook 'org-mode-hook 'org-appear-mode)
 
 ;; Latex preview
-(unless (package-installed-p 'org-fragtog)
-  (package-install 'org-fragtog))
+(use-package org-fragtog)
 
 (defun latex-preview-toggle ()
   (org-fragtog-mode)
@@ -154,8 +168,7 @@
 (setq org-export-with-section-numbers nil)
 
 ;; Org Download
-(unless (package-installed-p 'org-download)
-  (package-install 'org-download))
+(use-package org-download)
 
 (require 'org-download)
 
@@ -195,11 +208,7 @@
 ;;;;;;;;;;;;;;;;;;;;
 ;; Colour Schemes ;;
 ;;;;;;;;;;;;;;;;;;;;
-(unless (package-installed-p 'nano-theme)
-  (package-install 'nano-theme))
-
-(unless (package-installed-p 'gruvbox-theme)
-  (package-install 'gruvbox-theme))
+(use-package gruvbox-theme)
 
 (load-theme 'gruvbox-dark-hard t)
 
