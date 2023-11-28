@@ -9,7 +9,7 @@
 ;; Disable startup nonsense
 (setq-default message-log-max nil)
 (kill-buffer "*Messages*")
-(kill-buffer "*Async-native-compile-log*")
+;(kill-buffer "*Async-native-compile-log*")
 (setq initial-scratch-message "")
 
 ;; straight setup
