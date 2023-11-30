@@ -46,8 +46,8 @@
 (setq use-dialog-box nil)
 
 ;; Clipboard
-;(global-set-key (kbd "C-V") 'clipboard-yank)
-;(global-set-key (kbd "C-C") 'clipboard-kill-ring-save)
+(global-set-key (kbd "C-V") 'clipboard-yank)
+(global-set-key (kbd "C-C") 'clipboard-kill-ring-save)
 ;;(setq x-select-enable-clipboard t)
 ;;(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
