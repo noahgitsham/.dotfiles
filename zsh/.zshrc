@@ -1,11 +1,13 @@
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=500
-SAVEHIST=500
+HISTSIZE=50000
+SAVEHIST=50000
 unsetopt beep
 
 # Vim keybinds
 bindkey -v
+bindkey -v '^?' backward-delete-char
+bindkey '^R' history-incremental-search-backward
 KEYTIMEOUT=1
 
 # Completion
@@ -44,6 +46,7 @@ zstyle ":vcs_info:git:*" formats "%b"
 
 # Syntax Highligting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source /home/noah/.config/broot/launcher/bash/br
 
@@ -84,6 +87,9 @@ precmd() {
 
 # Aliases
 alias ls="ls --color"
+
+alias tree="tree -C"
+
 RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
 INITIAL_QUERY="${*:-}"
 alias fzrg=": | fzf --ansi --disabled --query \"$INITIAL_QUERY\" \

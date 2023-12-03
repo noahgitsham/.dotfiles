@@ -26,7 +26,6 @@ local dap = require("dap")
 -- Language Setups
 
 require("dap-python").setup(getPackagePath("debugpy") .. "/venv/bin/python")
-vim.g.python_recommended_style = 0
 
 -- DAP UI
 local dapui = require("dapui")

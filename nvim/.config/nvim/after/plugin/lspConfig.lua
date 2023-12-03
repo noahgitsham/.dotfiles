@@ -60,19 +60,19 @@ require("mason-lspconfig").setup_handlers {
 		}
 	end,
 
-	["pylsp"] = function ()
-		lspconfig["pylsp"].setup {
-			on_attach = default_on_attach,
-			settings = {
-				pylsp = {
-					plugins = {
-						pycodestyle = {enabled = false},
-					},
-				},
-			},
-			capabilities = default_capabilities,
-		}
-	end,
+	--["pylsp"] = function ()
+	--	lspconfig["pylsp"].setup {
+	--		on_attach = default_on_attach,
+	--		settings = {
+	--			pylsp = {
+	--				plugins = {
+	--					pycodestyle = {enabled = false},
+	--				},
+	--			},
+	--		},
+	--		capabilities = default_capabilities,
+	--	}
+	--end,
 
 	["clangd"] = function ()
 		lspconfig["clangd"].setup {
@@ -96,6 +96,8 @@ require("mason-lspconfig").setup_handlers {
 		}
 	end
 }
+
+vim.g.python_recommended_style = 1
 
 -- Trouble
 require("trouble").setup {
