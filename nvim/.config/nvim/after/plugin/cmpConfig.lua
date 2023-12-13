@@ -6,14 +6,54 @@ local maxEntryWidth = 30
 
 luasnip.config.setup()
 
+local cmp_kinds = {
+	Text = "TXT",
+	Method = "MET",
+	Function = "FUN",
+	Constructor = "CON",
+	Field = "FLD",
+	Variable = "VAR",
+	Class = "CLS",
+	Interface = "ITF",
+	Module = "MOD",
+	Property = "PRO",
+	Unit = "UNT",
+	Value = "",
+	Enum = "",
+	Keyword = "",
+	Snippet = "",
+	Color = "",
+	File = "",
+	Reference = "",
+	Folder = "",
+	EnumMember = "",
+	Constant = "",
+	Struct = "",
+	Event = "",
+	Operator = "",
+	TypeParameter = "Type",
+}
+
 cmp.setup {
 	formatting = {
 		format = function(entry, vim_item)
+			--vim_item.menu = ({
+			--	buffer = "[BUF]",
+			--	nvim_lsp = "[LSP]",
+			--	luasnip = "[SNP]",
+			--	latex_symbols = "[LaTeX]", 
+			--	nvim_lua = "[LUA]",
+			--})[entry.source.name]
+			
+			vim_item.kind = "[" .. string.upper(vim_item.kind) .. "]"
 			if string.len(vim_item.abbr) > maxEntryWidth then
 				vim_item.abbr = string.sub(vim_item.abbr, 1, maxEntryWidth - 3) .. "..."
 			end
 			return vim_item
 		end
+	},
+	view = {
+		entries = {name = "custom", selection_order = "near_cursor"}
 	},
 	snippet = {
 		expand = function(args)

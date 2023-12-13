@@ -16,7 +16,7 @@ autoload -Uz compinit
 compinit
 
 # Path
-path+=("~/scripts")
+path+=("$HOME/scripts")
 export PATH
 
 # Custom prompt
@@ -90,11 +90,20 @@ alias ls="ls --color"
 
 alias tree="tree -C"
 
-RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
 INITIAL_QUERY="${*:-}"
+RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
 alias fzrg=": | fzf --ansi --disabled --query \"$INITIAL_QUERY\" \
     --bind \"start:reload:$RG_PREFIX {q}\" \
     --bind \"change:reload:sleep 0.1; $RG_PREFIX {q} || true\" \
+    --delimiter : \
+    --preview 'bat --color=always {1} --highlight-line {2}' \
+    --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
+    --bind 'enter:become(vim {1} +{2})'"
+
+RG_HIDDEN_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+alias fzrgh=": | fzf --ansi --disabled --query \"$INITIAL_QUERY\" \
+    --bind \"start:reload:$RG_HIDDEN_PREFIX {q}\" \
+    --bind \"change:reload:sleep 0.1; $RG_HIDDEN_PREFIX {q} || true\" \
     --delimiter : \
     --preview 'bat --color=always {1} --highlight-line {2}' \
     --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \

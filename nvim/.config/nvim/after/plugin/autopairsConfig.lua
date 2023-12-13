@@ -1,8 +1,8 @@
 local autopairs = require("nvim-autopairs")
 autopairs.setup {
-	-- disable_filetypes = { "TelescopePrompt" },
+	 disable_filetypes = { "TelescopePrompt" },
 	ignored_next_char = [=[[%w%%%'%[%"%.%`%$]]=],
-	enable_check_bracket_line = false,
+	--enable_check_bracket_line = false,
 	check_ts = true,
 }
 

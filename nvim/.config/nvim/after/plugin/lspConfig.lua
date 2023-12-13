@@ -1,6 +1,5 @@
 -- Native lsp options
 
-
 local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
@@ -45,6 +44,7 @@ local default_on_attach = function(client,bufnr)
 	local bufopts = { noremap=true, silent=true, buffer=bufnr }
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
 	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+	vim.keymap.set("n", "<leader>ef", vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set("n", "<tab>", vim.lsp.buf.hover, bufopts)
 	--client.server_capabilities.semanticTokensProvider = nil
 end
@@ -60,19 +60,19 @@ require("mason-lspconfig").setup_handlers {
 		}
 	end,
 
-	--["pylsp"] = function ()
-	--	lspconfig["pylsp"].setup {
-	--		on_attach = default_on_attach,
-	--		settings = {
-	--			pylsp = {
-	--				plugins = {
-	--					pycodestyle = {enabled = false},
-	--				},
-	--			},
-	--		},
-	--		capabilities = default_capabilities,
-	--	}
-	--end,
+	["pylsp"] = function ()
+		lspconfig["pylsp"].setup {
+			on_attach = default_on_attach,
+			settings = {
+				pylsp = {
+					plugins = {
+						pycodestyle = {enabled = false},
+					},
+				},
+			},
+			capabilities = default_capabilities,
+		}
+	end,
 
 	["clangd"] = function ()
 		lspconfig["clangd"].setup {

@@ -19,13 +19,16 @@ else
 	# Backup grub config
 	cp /etc/default/grub "$backuppath"
 
-
-	## Backup home to external drive ##
-	partitionlabel="$1"
-	backupdrivepath="/run/media/$USER/$partitionlabel/homebackup"
-	if [ ! -d $backupdrivepath ]; then
-		mkdir -p $backupdrivepath
+	# Sync files to external drive
+	drivePath="/run/media/$USER/$1/homebackup"
+	if [ ! -d "$drivepath" ]; then
+	  echo "Drive \"$1\" does not exist"
+	  exit 1
 	fi
-	# Perform home backup
-###	rsync
+	backupPath="$drivePath/homebackup"
+	if [ ! -d "$backupPath" ]; then
+		mkdir -p $backupPath
+	fi
+
+	rsync -avxP $HOME $drivePath --exclude={".local",".cache",".ollama",".rustup",".cargo",".stremio-server"}
 fi
