@@ -48,14 +48,15 @@ return {
 	"theHamsta/nvim-dap-virtual-text",
 
 	-- Languages
-	"windwp/nvim-ts-autotag",
 	"folke/neodev.nvim",
+	"windwp/nvim-ts-autotag",
 	"lervag/vimtex",
 
 	-- Git
 	"lewis6991/gitsigns.nvim",
 
 	-- Misc
+	"nvim-lualine/lualine.nvim",
 	"lukas-reineke/indent-blankline.nvim",
 	"ThePrimeagen/vim-be-good",
 	"github/copilot.vim",

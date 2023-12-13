@@ -5,7 +5,6 @@ SAVEHIST=50000
 unsetopt beep
 
 # Vim keybinds
-bindkey -v
 bindkey -v '^?' backward-delete-char
 bindkey '^R' history-incremental-search-backward
 KEYTIMEOUT=1
