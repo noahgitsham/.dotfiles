@@ -1,7 +1,15 @@
 -- Line numbers
 vim.opt.nu = true -- Line nums
 vim.opt.rnu = true -- Relative line nums
-vim.wo.fillchars = "eob: " -- Remove ~ for end lines
+vim.opt.fillchars:append("eob: ") -- Remove ~ for end lines
+-- Hide window borders
+--vim.opt.fillchars:append("horiz: ")
+--vim.opt.fillchars:append("horizup: ")
+--vim.opt.fillchars:append("horizdown: ")
+--vim.opt.fillchars:append("vert: ")
+--vim.opt.fillchars:append("vertleft: ")
+--vim.opt.fillchars:append("vertright: ")
+--vim.opt.fillchars:append("verthoriz: ")
 
 -- Indentation
 local indentSize = 4

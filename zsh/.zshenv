@@ -1,3 +1,4 @@
+# Defaults
 export EDITOR="nvim"
 export SUDO_EDITOR="nvim"
 export TERMINAL="foot"
@@ -6,3 +7,6 @@ export PAGER="bat -p"
 
 # Themes
 export BAT_THEME="gruvbox-dark"
+
+# Directories
+export VST_PATH="/usr/lib/vst/"

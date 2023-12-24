@@ -1,5 +1,7 @@
 ;; Plugins
 (setq package-enable-at-startup nil)
+;(setq use-package-verbose t
+;      use-package-minimum-reported-time 0)
 
 ;; Move eln-cache
 ;; Set eln-cache dir

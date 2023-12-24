@@ -86,7 +86,7 @@ precmd() {
 
 # Aliases
 alias ls="ls --color"
-
+alias less="less --color=always | less -R"
 alias tree="tree -C"
 
 INITIAL_QUERY="${*:-}"
