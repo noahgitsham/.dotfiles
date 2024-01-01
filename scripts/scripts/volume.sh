@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/bin/sh
 
 case $1 in
 	mute) pamixer -t ;;
@@ -6,10 +6,10 @@ case $1 in
 	-5) pamixer -d 5 ;;
 esac
 
-if $(pamixer --get-mute); then
+if [ "$(pamixer --get-mute)" = "true" ]; then
 	dunstify -r 1 -t 1250 -i "" "Volume | Muted" -h int:value:0
 else
 	volume=$(pamixer --get-volume)
-	dunstify -r 1 -t 1250 -i "" "Volume | $volume%" -h int:value:$volume
+	dunstify -r 1 -t 1250 -i "" "Volume | $volume%" -h int:value:"$volume"
 fi
 

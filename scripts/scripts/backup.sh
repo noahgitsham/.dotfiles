@@ -5,9 +5,9 @@ if [ $# -eq 0 ]; then
 	exit 1
 else
 	## Backup system data to home ##
-	backuppath="~/backups/"
-	if [ ! -d $backuppath ]; then
-		mkdir -p $backuppath
+	backuppath="$HOME/backups/"
+	if [ ! -d "$backuppath" ]; then
+		mkdir -p "$backuppath"
 	fi
 
 	# Backup list of explicitly installed packages
@@ -21,14 +21,14 @@ else
 
 	# Sync files to external drive
 	drivePath="/run/media/$USER/$1/homebackup"
-	if [ ! -d "$drivepath" ]; then
+	if [ ! -d "$drivePath" ]; then
 	  echo "Drive \"$1\" does not exist"
 	  exit 1
 	fi
 	backupPath="$drivePath/homebackup"
 	if [ ! -d "$backupPath" ]; then
-		mkdir -p $backupPath
+		mkdir -p "$backupPath"
 	fi
 
-	rsync -avxP $HOME $drivePath --exclude={".local",".cache",".ollama",".rustup",".cargo",".stremio-server"}
+	rsync -avxP "$HOME" "$drivePath" --exclude ".local" ".cache" ".ollama" ".rustup" ".cargo" ".stremio-server"
 fi

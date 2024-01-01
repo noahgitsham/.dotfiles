@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 j4-dmenu-desktop --dmenu="bemenu --binding=vim \
 	--vim-esc-exits \

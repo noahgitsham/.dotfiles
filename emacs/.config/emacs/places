@@ -1,5 +1,6 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/noah/.dotfiles/emacs/.config/emacs/init.el" . 6169)
+(("/home/noah/documents/want.org" . 187)
+ ("/home/noah/.dotfiles/emacs/.config/emacs/init.el" . 6169)
  ("/home/noah/todo.org" . 399)
  ("/home/noah/.local/share/emacs/straight/repos/org-modern/org-modern.el" . 10456)
  ("/home/noah/uni/weekly/w8.org" . 580)

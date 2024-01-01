@@ -1,3 +1,3 @@
-#!/bin/env bash
+#!/bin/sh
 
 swaylock -i ~/pictures/wallpaper/wallpaper --font "Terminus"

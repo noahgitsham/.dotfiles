@@ -2,14 +2,14 @@
 
 monitorInfo=$(hyprctl monitors -j)
 
-numOfMonitors=$(echo $monitorInfo | jq length)
+numOfMonitors=$(echo "$monitorInfo" | jq length)
 
 
-echo $numOfMonitors
+echo "$numOfMonitors"
 
-if [[ $numOfMonitors == 2 ]]; then
-	temp=$(echo $monitorInfo | jq '.[0].activeWorkspace.id')
-	echo $temp
+if [ "$numOfMonitors" = "2" ]; then
+	temp=$(echo "$monitorInfo" | jq '.[0].activeWorkspace.id')
+	echo "$temp"
 
 
 	hyprctl --batch
