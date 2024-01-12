@@ -59,7 +59,7 @@ return {
 	"nvim-lualine/lualine.nvim",
 	"lukas-reineke/indent-blankline.nvim",
 	"ThePrimeagen/vim-be-good",
-	"github/copilot.vim",
+	--"github/copilot.vim",
 	"smjonas/live-command.nvim",
 	{
 		"turbio/bracey.vim",

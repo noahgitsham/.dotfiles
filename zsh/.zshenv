@@ -2,8 +2,9 @@
 export EDITOR="nvim"
 export SUDO_EDITOR="nvim"
 export TERMINAL="foot"
+export TERM="foot"
 export BROWSER="firefox"
-export PAGER="bat -p"
+#export PAGER="bat -p"
 
 # Themes
 export BAT_THEME="gruvbox-dark"

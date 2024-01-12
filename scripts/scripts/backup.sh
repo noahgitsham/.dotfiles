@@ -22,7 +22,7 @@ else
 	# Sync files to external drive
 	drivePath="/run/media/$USER/$1/homebackup"
 	if [ ! -d "$drivePath" ]; then
-	  echo "Drive \"$1\" does not exist"
+	  echo "Drive \"$1\" does not exist."
 	  exit 1
 	fi
 	backupPath="$drivePath/homebackup"
@@ -30,5 +30,5 @@ else
 		mkdir -p "$backupPath"
 	fi
 
-	rsync -avxP "$HOME" "$drivePath" --exclude ".local" ".cache" ".ollama" ".rustup" ".cargo" ".stremio-server"
+	rsync -avxP "$HOME" "$drivePath" --exclude=".local" --exclude=".cache" --exclude=".ollama" --exclude=".rustup" --exclude=".cargo" --exclude=".stremio-server"
 fi

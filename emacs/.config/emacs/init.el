@@ -41,16 +41,16 @@
   :config
   (setq evil-undo-system 'undo-redo)
   (setq scroll-step 1 ; Vim scrolling
-	scroll-margin 6) ; Scrolloff
+	scroll-margin 8) ; Scrolloff
   ;;Move normally on wrapped text
-  (define-key evil-normal-state-map
-	      (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
-  (define-key evil-normal-state-map
-	      (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
-  (define-key evil-motion-state-map
-	      (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
-  (define-key evil-motion-state-map
-	      (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+;  (define-key evil-normal-state-map
+;	      (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+;  (define-key evil-normal-state-map
+;	      (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+;  (define-key evil-motion-state-map
+;	      (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+;  (define-key evil-motion-state-map
+;	      (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
   ;; Enable evil
   (evil-mode 1))
 
@@ -86,11 +86,7 @@
 ;;;;;;;;;;;;;;;;
 ;; UI Changes ;;
 ;;;;;;;;;;;;;;;;
-(pixel-scroll-mode 0)
-(pixel-scroll-precision-mode 0)
-(setq pixel-scroll-precision-large-scroll-height 40.0)
-
-(set-frame-font "FragmentMono 13" nil t)
+(set-frame-font "Terminus 14" nil t)
 
 ; Modeline
 ;(use-package nano-modeline
@@ -102,6 +98,9 @@
 ;  (add-hook 'org-agenda-mode-hook  #'nano-modeline-org-agenda-mode)
 ;  ;(nano-modeline-text-mode t)
 ;  )
+
+;; Style cursor
+;(set-face-attribute 'cursor nil
 
 ;; Remove cursor blinking
 (if (window-system)
@@ -144,6 +143,7 @@
   :bind ( ;; Global maps
 	 ("C-c a" . org-agenda)
 	 ("C-c c" . org-capture)
+	 ("C-c b" . org-switchb)
 	 :map org-mode-map ;; Local maps
 	 ("M-j" . org-forward-heading-same-level)
 	 ("M-k" . org-backward-heading-same-level)
@@ -177,7 +177,8 @@
   (setq org-startup-with-latex-preview t)
   ;; Exporting
   (setq org-export-with-section-numbers nil)
-  (setq org-startup-indented t)
+  (setq org-startup-indented t
+	org-hide-leading-stars t)
   (add-hook 'org-mode-hook 'visual-line-mode)
   ;; Tables
   (load "org-table-live-update")
@@ -201,6 +202,7 @@
 	org-modern-progress nil
 	org-modern-table    nil)
   (setq org-modern-label-border 0)
+  (set-face-attribute 'org-modern-label nil :width 'regular :height 1.0)
   :init
   (add-hook 'org-mode-hook #'org-modern-mode)
   (add-hook 'org-agenda-finalize-hook #'org-modern-agenda))

@@ -54,13 +54,13 @@ require("twilight").setup {
 
 --vim.api.nvim_set_keymap("i", "<C-J", 'copilot#Accept("<CR>")', {silent = true, expr = true})
 --vim.g.copilot_no_tab_map = true
-vim.g.copilot_assume_mapped = true
-vim.g.copilot_enabled = false
+--vim.g.copilot_assume_mapped = true
+--vim.g.copilot_enabled = false
 --vim.g.copilot_tab_fallback = ""
 
-vim.keymap.set("i", "<C-x>", function ()
-	vim.print(vim.g.copilot_enabled and vim.fn['copilot#GetDisplayedSuggestion']().text ~= '' and vim.fn['copilot#Accept']() ~= "" and type(vim.fn['copilot#Accept']()) == 'string')
-end)
+--vim.keymap.set("i", "<C-x>", function ()
+--	vim.print(vim.g.copilot_enabled and vim.fn['copilot#GetDisplayedSuggestion']().text ~= '' and vim.fn['copilot#Accept']() ~= "" and type(vim.fn['copilot#Accept']()) == 'string')
+--end)
 
 require("live-command").setup {
 	commands = {

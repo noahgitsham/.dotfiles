@@ -5,9 +5,14 @@ SAVEHIST=50000
 unsetopt beep
 
 # Vim keybinds
-bindkey -v '^?' backward-delete-char
-bindkey '^R' history-incremental-search-backward
-KEYTIMEOUT=1
+source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+zvm_bindkey viins '^W' zle backward-kill-word
+#function zvm_after_init() {
+#}
+
+# bindkey -v '^?' backward-delete-char
+# bindkey '^R' history-incremental-search-backward
+# KEYTIMEOUT=1
 
 # Completion
 zstyle :compinstall filename '~/.zshrc'
@@ -88,6 +93,8 @@ precmd() {
 alias ls="ls --color"
 alias less="less --color=always | less -R"
 alias tree="tree -C"
+
+alias emacs="emacs -nw"
 
 INITIAL_QUERY="${*:-}"
 RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
