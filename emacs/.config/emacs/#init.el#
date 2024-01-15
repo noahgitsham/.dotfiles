@@ -220,8 +220,8 @@
 
 ;;;;;;;;;;;;;;;;
 ;; UI Changes ;;
-;;;;;;;;;;;;;;;;
-(set-frame-font "JetBrains Mono 14" nil t)
+;;;;;;;;;;;;;;;;0
+(set-frame-font "Roboto Mono 14" nil t)
 (set-face-attribute 'variable-pitch nil :font "Europa Grotesk SH" :weight 'light)
 
 ; Mode line

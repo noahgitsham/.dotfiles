@@ -57,6 +57,7 @@ source /home/noah/.config/broot/launcher/bash/br
 
 # Login Message
 if [[ -z $DISPLAY ]] then
+	echo "Battery: $(cat /sys/class/power_supply/BAT0/capacity)%"
 	echo '
     /|
    (% 7
@@ -94,7 +95,7 @@ alias ls="ls --color"
 alias less="less --color=always | less -R"
 alias tree="tree -C"
 
-alias emacs="emacs -nw"
+#alias emacs="emacs -nw"
 
 INITIAL_QUERY="${*:-}"
 RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "

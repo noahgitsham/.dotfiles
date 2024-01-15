@@ -39,4 +39,17 @@ require("nvim-treesitter.configs").setup {
 -- Treesitter Folding
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldlevelstart = 99
+
+-- Automatic find fold level
+vim.api.nvim_create_autocmd("BufEnter", {
+	callback = function()
+		local maxfold = 0
+		for line=1,vim.fn.line("$") do
+			local linelevel = vim.fn.foldlevel(line)
+			if linelevel > maxfold then
+				maxfold = linelevel
+			end
+		end
+		vim.o.foldlevel = maxfold
+	end
+})
