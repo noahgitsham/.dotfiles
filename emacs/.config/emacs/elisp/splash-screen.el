@@ -20,6 +20,7 @@
 
 (defun nano-splash ()
   "Nano Emacs splash screen"
+  (remove-hook 'window-setup-hook 'nano-splash)
 
   ;; Hide modeline before window-body-height is computed
   (let* ((splash-buffer (get-buffer-create "*splash*")))

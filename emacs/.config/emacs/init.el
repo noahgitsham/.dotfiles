@@ -94,6 +94,26 @@
 ;; Load paths
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
 
+;;;;;;;;;;;;;;;;
+;; UI Changes ;;
+;;;;;;;;;;;;;;;;
+(set-frame-font "Roboto Mono BD 14" nil t)
+(set-face-attribute 'variable-pitch nil :font "Helvetica Neue" :weight 'bold)
+
+;;;;;;;;;;;;;;;;;;;;
+;; Colour Schemes ;;
+;;;;;;;;;;;;;;;;;;;;
+(use-package gruvbox-theme)
+(use-package color-theme-sanityinc-tomorrow)
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (doom-themes-org-config)
+  ;; Overrides
+  ;(set-face-attribute 'org-todo nil :foreground "Yellow")
+  (load-theme 'doom-tomorrow-day t))
+
 ;;;;;;;;;;;;;;
 ;; Org Mode ;;
 ;;;;;;;;;;;;;;
@@ -137,10 +157,18 @@
     #'(lambda () (interactive) (org-insert-todo-heading 1) (evil-append 1)))
 
   ;; LaTeX Fragments
+  (with-eval-after-load 'org
+    (add-to-list 'org-latex-packages-alist '("" "amssymb" t)))
+  ;; LaTeX Live Preview
   (setq org-latex-preview-live t
 	org-latex-preview-live-debounce 0.0
 	org-startup-with-latex-preview t)
   (add-hook 'org-mode-hook #'org-latex-preview-auto-mode)
+
+  ;; TODO
+  (setq org-todo-keywords
+	'((sequence "TODO(t)" "|" "DONE(d)")
+	  (sequence "|" "CANCELED(c)")))
 
   ;; Editing Style
   (setq org-startup-indented t
@@ -180,21 +208,12 @@
 	   (file+headline "~/uni/weekly/w%^{week}.org" "Week %^{week}")
 	   "*Week %^{week}\n** COMP10120\n** COMP11120\n** COMP12111\n** COMP15111\n** 16321"
 	   :jump-to-captured t
-	   :empty-lines-after 1))))
-
-;;;;;;;;;;;;;;;;;;;;
-;; Colour Schemes ;;
-;;;;;;;;;;;;;;;;;;;;
-(use-package gruvbox-theme)
-(use-package color-theme-sanityinc-tomorrow)
-(use-package doom-themes
-  :config
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t)
-  (doom-themes-org-config)
-  ;; Overrides
-  ;(set-face-attribute 'org-todo nil :foreground "Yellow")
-  (load-theme 'doom-tomorrow-day t))
+	   :empty-lines-after 1)))
+  ;; Custom face changes
+  (with-eval-after-load 'org
+    (set-face-attribute 'org-document-title nil :inherit 'variable-pitch :height 400)
+    (set-face-attribute 'org-document-info nil :inherit 'variable-pitch))
+  )
 
 ;; Startup page
 (load "splash-screen" nil t)
@@ -217,12 +236,6 @@
 (make-directory "~/backups/emacs" :parents)
 (setq backup-directory-alist '(("." . "~/backups/emacs"))
       backup-by-copying t)
-
-;;;;;;;;;;;;;;;;
-;; UI Changes ;;
-;;;;;;;;;;;;;;;;
-(set-frame-font "JetBrains Mono 14" nil t)
-(set-face-attribute 'variable-pitch nil :font "Europa Grotesk SH" :weight 'light)
 
 ; Mode line
 (setq line-number-mode nil ; Hide line number
@@ -300,9 +313,16 @@
   :config
   (setq org-modern-star     nil
 	org-modern-progress nil
-	org-modern-table    nil)
+	org-modern-table    nil
+	org-modern-keyword  nil)
   (setq org-modern-label-border 0)
   (set-face-attribute 'org-modern-label nil :width 'regular :height 1.0)
+  (setq org-modern-todo-faces
+	(quote (("CANCELED" :inherit 'ansi-color-cyan :foreground "white" :weight bold)
+		("TODO" :inherit 'ansi-color-red :foreground "white" :weight bold)
+		("DONE" :inherit 'ansi-color-green :foreground "white" :weight bold))))
+
+
   :init
   (add-hook 'org-mode-hook #'org-modern-mode)
   (add-hook 'org-agenda-finalize-hook #'org-modern-agenda))
@@ -324,8 +344,11 @@
 	org-hide-emphasis-markers t
 	org-appear-hide-emphasis-markers t
 	org-appear-autolinks t
-	org-pretty-entities t
-	org-appear-autoentities t)
+	;org-pretty-entities t
+	;org-pretty-entities-include-sub-superscripts nil
+	;org-appear-autoentities t
+	org-hidden-keywords '(title author date email language)
+	org-appear-autokeywords t)
   :init
   (add-hook 'org-mode-hook 'org-appear-mode))
 
