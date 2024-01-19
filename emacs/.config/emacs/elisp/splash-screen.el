@@ -66,7 +66,7 @@
           (display-buffer-same-window splash-buffer nil)
 
 	  (message "")
-	  (add-hook 'window-state-change-hook 'recenter-or-kill)
+	  (add-hook 'window-state-change-hook #'recenter-or-kill t)
 	  (setq cursor-type nil)
 	  )
       (nano-splash-kill)))
@@ -86,8 +86,11 @@ t
 (defun recenter-or-kill ()
   "Kill the splash screen buffer (hook)."
   (if (not (get-buffer-window "*splash*"))
-      (progn (kill-buffer "*splash*")
-	     (remove-hook 'window-state-change-hook 'recenter-or-kill))
+      (progn (remove-hook 'window-state-change-hook #'recenter-or-kill t)
+	     (message "Hook removed")
+	     (kill-buffer "*splash*")
+	     (message "Buffer killed")
+	     )
     (recenter))
   )
 

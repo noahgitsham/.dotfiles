@@ -5,28 +5,13 @@
 ;		     (format "%.2f seconds"
 ;			     (string-to-number (emacs-init-time))))))
 
-;; straight setup
-;(make-directory "~/.local/share/emacs" :parents)
-;(setq straight-base-dir "~/.local/share/emacs"
-;      straight-use-package-by-default t
-;      straight-process-buffer " "
-;      straight-check-for-modifications '(check-on-save))
-;;; straight.el bootstrap
-;(defvar bootstrap-version)
-;(let ((bootstrap-file
-;       (expand-file-name
-;        "straight/repos/straight.el/bootstrap.el"
-;        (or (bound-and-true-p straight-base-dir)
-;            user-emacs-directory)))
-;      (bootstrap-version 7))
-;  (unless (file-exists-p bootstrap-file)
-;    (with-current-buffer
-;        (url-retrieve-synchronously
-;         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-;         'silent 'inhibit-cookies)
-;      (goto-char (point-max))
-;      (eval-print-last-sexp)))
-;  (load bootstrap-file nil 'nomessage))
+;; Load paths
+(add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
+
+;; Custom paths
+(setq bookmark-default-file "~/.local/share/emacs")
+(when (boundp 'native-comp-eln-load-path)
+  (startup-redirect-eln-cache "~/.locale/share/emacs/eln-cache"))
 
 (defvar package-source-directory "~/.local/share/emacs")
 ;; Elpaca
@@ -86,19 +71,18 @@
   (evil-set-undo-system 'undo-redo)
   (setq scroll-step 1 ; Vim scrolling
 	scroll-margin 8) ; Scrolloff
-  ;;Move normally on wrapped text
+  ;; Move normally on wrapped text
   (setq evil-respect-visual-line-mode t)
+  ;; Fix org src indentation
+  (add-to-list 'evil-buffer-regexps '("^\\*Org Src .*\\*$" . nil))
   ;; Enable evil
   (evil-mode 1))
-
-;; Load paths
-(add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
 
 ;;;;;;;;;;;;;;;;
 ;; UI Changes ;;
 ;;;;;;;;;;;;;;;;
-(set-frame-font "Roboto Mono BD 14" nil t)
-(set-face-attribute 'variable-pitch nil :font "Helvetica Neue" :weight 'bold)
+(set-frame-font "Roboto Mono 12" nil t)
+(set-face-attribute 'variable-pitch nil :font "Europa Grotesk SH")
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; Colour Schemes ;;
@@ -123,6 +107,7 @@
   :bind ( ;; Global maps
 	 ("C-c a" . org-agenda)
 	 ("C-c c" . org-capture)
+	 ("C-c >" . org-goto-calendar)
 	 ("C-c b" . org-switchb)
 	 ("C-c s" . org-timeblock)
 	 ("C-c d" . cfw:open-org-calendar)
@@ -145,7 +130,7 @@
 
   :config
   (setq org-M-RET-may-split-line nil)
-  (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
+  ;(evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
   ;; Enter insert mode after inserting heading in normal mode
   (evil-define-key 'normal org-mode-map (kbd "C-<return>")
     #'(lambda () (interactive) (org-insert-heading-respect-content) (evil-append 1)))
@@ -158,10 +143,16 @@
 
   ;; LaTeX Fragments
   (with-eval-after-load 'org
+    (defun add-latex-packages (package-list)
+      (let (package options )
+    	(dolist package-list
+	  ;(add-to-list 'org-latex-packages-alist '("" ))
+    	  )))
+
     (add-to-list 'org-latex-packages-alist '("" "amssymb" t)))
   ;; LaTeX Live Preview
   (setq org-latex-preview-live t
-	org-latex-preview-live-debounce 0.0
+	org-latex-preview-live-debounce 1.0
 	org-startup-with-latex-preview t)
   (add-hook 'org-mode-hook #'org-latex-preview-auto-mode)
 
@@ -181,12 +172,29 @@
   ;(load "org-table-live-update" nil t)
   ;(add-hook 'org-mode-hook 'org-table-auto-align-mode)
 
+  ;; Blocks
+  (setq org-src-tab-acts-natively t
+	org-src-preserve-indentation nil)
+
+  ;; Babel
+  (org-babel-do-load-languages
+   'org-babel-load-languages '((C . t)
+			       (python . t)
+			       (shell . t)
+			       (emacs-lisp . t)
+			       ))
+  (setq org-babel-default-header-args '(:results . "output"))
+
+  ;; Calendar
+  (setq calendar-week-start-day 1)
+
   ;; Agenda
   (setq ;org-directory "~"
 	org-agenda-files '("~/uni" "~/documents" "~/todo.org")
 	org-agenda-span 22
 	org-agenda-start-on-weekday nil
 	org-agenda-start-day "-7d"
+	org-agenda-window-setup 'only-window
 	org-agenda-confirm-kill t)
   ;; Agenda views
   (setq org-agenda-custom-commands
@@ -201,17 +209,11 @@
   (setq org-export-with-section-numbers nil)
 
   ;; Capture
-  (defun promptForWeek () (interactive)
-	 (read-string "Week number: "))
-  (setq org-capture-templates
-	'(("w" "Weekly" entry
-	   (file+headline "~/uni/weekly/w%^{week}.org" "Week %^{week}")
-	   "*Week %^{week}\n** COMP10120\n** COMP11120\n** COMP12111\n** COMP15111\n** 16321"
-	   :jump-to-captured t
-	   :empty-lines-after 1)))
+  (setq org-capture-templates '())
+
   ;; Custom face changes
   (with-eval-after-load 'org
-    (set-face-attribute 'org-document-title nil :inherit 'variable-pitch :height 400)
+    (set-face-attribute 'org-document-title nil :inherit 'variable-pitch :height 400 :bold nil)
     (set-face-attribute 'org-document-info nil :inherit 'variable-pitch))
   )
 
@@ -314,9 +316,11 @@
   (setq org-modern-star     nil
 	org-modern-progress nil
 	org-modern-table    nil
-	org-modern-keyword  nil)
+	org-modern-keyword  nil
+	org-modern-checkbox nil)
   (setq org-modern-label-border 0)
   (set-face-attribute 'org-modern-label nil :width 'regular :height 1.0)
+  (set-face-attribute 'org-block-begin-line nil :width 'regular :height 1.0)
   (setq org-modern-todo-faces
 	(quote (("CANCELED" :inherit 'ansi-color-cyan :foreground "white" :weight bold)
 		("TODO" :inherit 'ansi-color-red :foreground "white" :weight bold)
