@@ -2,25 +2,20 @@
 (require 'cl-lib)
 
 
-(defgroup nano-splash nil
+(defgroup splash-screen nil
   "Splash screen")
 
-(defcustom nano-splash-title "GNU Emacs"
+(defcustom splash-screen-title "GNU Emacs"
   "Splash screen title"
-  :type 'string :group 'nano-splash)
+  :type 'string :group 'splash-screen)
 
-(defcustom nano-splash-subtitle "By Noah Gitsham"
+(defcustom splash-screen-subtitle "By Noah Gitsham"
   "Splash screen subtitle"
-  :type 'string :group 'nano-splash)
+  :type 'string :group 'splash-screen)
 
-(defcustom nano-splash-duration 10.5
-  "Splash screen duration (in seconds)"
-  :type 'float :group 'nano-splash)
-
-
-(defun nano-splash ()
+(defun splash-screen ()
   "Nano Emacs splash screen"
-  (remove-hook 'window-setup-hook 'nano-splash)
+  (remove-hook 'window-setup-hook #'splash-screen)
 
   ;; Hide modeline before window-body-height is computed
   (let* ((splash-buffer (get-buffer-create "*splash*")))
@@ -55,10 +50,10 @@
 
           ;; Vertical padding to center
           (insert-char ?\n padding-center)
-          (insert (propertize nano-splash-title 'face 'default))
+          (insert (propertize splash-screen-title 'face 'default))
           (center-line)
           (insert "\n")
-          (insert (propertize nano-splash-subtitle 'face 'shadow))
+          (insert (propertize splash-screen-subtitle 'face 'shadow))
           (center-line)
 
           (goto-char 0)
@@ -69,7 +64,7 @@
 	  (add-hook 'window-state-change-hook #'recenter-or-kill t)
 	  (setq cursor-type nil)
 	  )
-      (nano-splash-kill)))
+      (splash-screen-kill)))
 
   )
 
@@ -82,7 +77,7 @@
     (if (and tooltip-mode (fboundp 'x-show-tip))
         string
       (format (format "%%%ds" padding) string))))
-t
+
 (defun recenter-or-kill ()
   "Kill the splash screen buffer (hook)."
   (if (not (get-buffer-window "*splash*"))
@@ -91,10 +86,10 @@ t
 	     (kill-buffer "*splash*")
 	     (message "Buffer killed")
 	     )
-    (recenter))
+    (splash-screen-recenter))
   )
 
-(defun recenter ()
+(defun splash-screen-recenter ()
   "Recenter splash screen"
   (let* ((splash-buffer  (get-buffer-create "*splash*"))
          (height         (round (- (window-body-height nil) 3) ))
@@ -108,10 +103,10 @@ t
     
     ;; Vertical padding to center
     (insert-char ?\n padding-center)
-    (insert (propertize nano-splash-title 'face 'default))
+    (insert (propertize splash-screen-title 'face 'default))
     (center-line)
     (insert "\n")
-    (insert (propertize nano-splash-subtitle 'face 'shadow))
+    (insert (propertize splash-screen-subtitle 'face 'shadow))
     (center-line)
 
     (goto-char 0)
@@ -121,7 +116,7 @@ t
     ))
   )
 
-(defun nano-splash-kill ()
+(defun splash-screen-kill ()
   "Kill the splash screen buffer (immediately)."
   (if (get-buffer "*splash*")
       (progn (message nil)
@@ -137,7 +132,7 @@ t
          ;; (not inhibit-startup-screen)
          )
     (progn
-      (add-hook 'window-setup-hook 'nano-splash)
+      (add-hook 'window-setup-hook #'splash-screen)
       (put 'inhibit-startup-echo-area-message 'saved-value
 	   (setq inhibit-startup-echo-area-message (user-login-name)))
       (setq 
@@ -146,4 +141,4 @@ t
             inhibit-startup-message t
 	    )))
 
-(provide 'nano-splash)
+(provide 'splash-screen)

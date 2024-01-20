@@ -143,13 +143,8 @@
 
   ;; LaTeX Fragments
   (with-eval-after-load 'org
-    (defun add-latex-packages (package-list)
-      (let (package options )
-    	(dolist package-list
-	  ;(add-to-list 'org-latex-packages-alist '("" ))
-    	  )))
-
-    (add-to-list 'org-latex-packages-alist '("" "amssymb" t)))
+    (add-to-list 'org-latex-packages-alist '("" "amssymb" t))
+    )
   ;; LaTeX Live Preview
   (setq org-latex-preview-live t
 	org-latex-preview-live-debounce 1.0
@@ -181,9 +176,8 @@
    'org-babel-load-languages '((C . t)
 			       (python . t)
 			       (shell . t)
-			       (emacs-lisp . t)
-			       ))
-  (setq org-babel-default-header-args '(:results . "output"))
+			       (emacs-lisp . t)))
+  ;(setq org-babel-default-header-args '(:results "output"))
 
   ;; Calendar
   (setq calendar-week-start-day 1)
@@ -369,6 +363,11 @@
   :config
   (require 'org-download))
 
+;; Olivetti
+(use-package olivetti
+  :init
+  (setq olivetti-body-width 100))
+
 ;;;;;;;;;;;
 ;; Utils ;;
 ;;;;;;;;;;;
@@ -377,7 +376,7 @@
 ;; Load profiling
 (use-package esup
   :ensure t
-  ;:config (setq esup-depth 0)
+  :config (setq esup-depth 0)
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
