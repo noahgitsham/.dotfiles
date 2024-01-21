@@ -81,7 +81,7 @@
 ;;;;;;;;;;;;;;;;
 ;; UI Changes ;;
 ;;;;;;;;;;;;;;;;
-(set-frame-font "Hack 12" nil t)
+(set-frame-font "Hack 14" nil t)
 (set-face-attribute 'variable-pitch nil :font "Europa Grotesk SH")
 
 ;;;;;;;;;;;;;;;;;;;;
@@ -350,13 +350,6 @@
   :init
   (add-hook 'org-mode-hook 'org-appear-mode))
 
-;; Auto LaTeX preview
-;(use-package org-fragtog
-;  :hook org-modern-mode-hook
-;  :init
-;  ;(defun latex-preview-toggle () (org-fragtog-mode 1) (org-latex-preview '(16)))
-;  (add-hook 'org-mode-hook 'org-fragtog-mode))
-
 ;; Org Download
 (use-package org-download
   :hook org-mode-hook
@@ -384,4 +377,3 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file 'noerror 'nomessage)
-

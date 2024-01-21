@@ -7,9 +7,9 @@ case $1 in
 esac
 
 if [ "$(pamixer --get-mute)" = "true" ]; then
-	dunstify -r 1 -t 1250 -i "" "Volume | Muted" -h int:value:0
+	notify-send -r 1 -u low -t 1250 -i "" "Volume | Muted" -h int:value:0
 else
 	volume=$(pamixer --get-volume)
-	dunstify -r 1 -t 1250 -i "" "Volume | $volume%" -h int:value:"$volume"
+	notify-send -r 1 -u low -t 1250 -i "" "Volume | $volume%" -h int:value:"$volume"
 fi
 

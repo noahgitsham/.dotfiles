@@ -1,9 +1,23 @@
 #!/bin/sh
 
+brightness=$(light -G)
+brightness=$(echo "$brightness" | awk '{print int($1+0.5)}')
+
 case $1 in
-	"+5") light -A 5 ;;
-	"-5") light -U 5 ;;
+	"+5")
+		brightness=$((brightness + 5))
+		if [ "$brightness" -gt 100 ]; then
+			brightness=100
+		fi
+		;;
+	"-5")
+		brightness=$((brightness - 5))
+		if [ "$brightness" -lt 0 ]; then
+			brightness=0
+		fi
+		;;
 esac
 
-brightness=$(light -G)
-dunstify -r 1 -t 1250 -i "" "Brightness | $brightness%" -h int:value:"$brightness"
+light -S "$brightness"
+
+notify-send -r 1 -u low -t 1250 -i "" "Brightness | $brightness%" -h int:value:"$brightness"

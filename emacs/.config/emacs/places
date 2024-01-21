@@ -1,9 +1,9 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/noah/.dotfiles/emacs/.config/emacs/init.el" . 5483)
- ("/home/noah/documents/wishlist.org" . 711)
+(("/home/noah/documents/test.org" . 630)
+ ("/home/noah/.dotfiles/emacs/.config/emacs/init.el" . 3342)
  ("/home/noah/todo.org" . 790)
+ ("/home/noah/documents/wishlist.org" . 711)
  ("/home/noah/documents/tomorrow.org" . 484)
- ("/home/noah/documents/test.org" . 584)
  ("/home/noah/documents/readinglist.org" . 35)
  ("/home/noah/documents/money.org" . 1058)
  ("/home/noah/documents/ideas.org" . 3444)
