@@ -6,7 +6,7 @@ unsetopt beep
 
 # Vim keybinds
 source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-zvm_bindkey viins '^W' zle backward-kill-word
+#zvm_bindkey viins '^W' zle backward-kill-word
 #function zvm_after_init() {
 #}
 

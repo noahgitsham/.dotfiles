@@ -81,7 +81,7 @@
 ;;;;;;;;;;;;;;;;
 ;; UI Changes ;;
 ;;;;;;;;;;;;;;;;
-(set-frame-font "Hack 12" nil t)
+(set-frame-font "Roboto Mono 12" nil t)
 (set-face-attribute 'variable-pitch nil :font "Europa Grotesk SH")
 
 ;;;;;;;;;;;;;;;;;;;;
@@ -122,15 +122,13 @@
 	 ("M-L" . org-shiftmetaright)
 	 ("M-C-H" . org-metaleft)
 	 ("M-C-L" . org-metaright)
-	 ;:map org-agenda-mode-map
-	 ;("q" . org-agenda-quit)
 	 )
   :init
   (setq org-preview-latex-image-directory "~/.local/share/emacs/ltximg/")
 
   :config
   (setq org-M-RET-may-split-line nil)
-  ;(evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
+  (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
   ;; Enter insert mode after inserting heading in normal mode
   (evil-define-key 'normal org-mode-map (kbd "C-<return>")
     #'(lambda () (interactive) (org-insert-heading-respect-content) (evil-append 1)))
@@ -161,7 +159,9 @@
 	org-hide-leading-stars t
 	org-auto-align-tags nil
 	org-tags-column 0)
+  (setq auto-window-vscroll nil)
   (add-hook 'org-mode-hook 'visual-line-mode)
+  (add-hook 'org-mode-hook (lambda () (display-line-number-mode -1)))
 
   ;; Tables
   ;(load "org-table-live-update" nil t)
@@ -190,6 +190,7 @@
 	org-agenda-start-day "-7d"
 	org-agenda-window-setup 'only-window
 	org-agenda-confirm-kill t)
+  (add-hook 'org-trigger-hook 'save-buffer)
   ;; Agenda views
   (setq org-agenda-custom-commands
 	'(("n" "Agenda and all TODOs" ((agenda "")(alltodo "")))
@@ -315,6 +316,7 @@
   (setq org-modern-label-border 0)
   (set-face-attribute 'org-modern-label nil :width 'regular :height 1.0)
   (set-face-attribute 'org-block-begin-line nil :width 'regular :height 1.0)
+  (set-face-attribute 'org-modern-tag nil :foreground "white")
   (setq org-modern-todo-faces
 	(quote (("CANCELED" :inherit 'ansi-color-cyan :foreground "white" :weight bold)
 		("TODO" :inherit 'ansi-color-red :foreground "white" :weight bold)
@@ -350,13 +352,6 @@
   :init
   (add-hook 'org-mode-hook 'org-appear-mode))
 
-;; Auto LaTeX preview
-;(use-package org-fragtog
-;  :hook org-modern-mode-hook
-;  :init
-;  ;(defun latex-preview-toggle () (org-fragtog-mode 1) (org-latex-preview '(16)))
-;  (add-hook 'org-mode-hook 'org-fragtog-mode))
-
 ;; Org Download
 (use-package org-download
   :hook org-mode-hook
@@ -366,7 +361,8 @@
 ;; Olivetti
 (use-package olivetti
   :init
-  (setq olivetti-body-width 100))
+  (setq olivetti-body-width 100)
+  (add-hook 'org-mode-hook 'olivetti-mode))
 
 ;;;;;;;;;;;
 ;; Utils ;;
@@ -384,4 +380,3 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file 'noerror 'nomessage)
-

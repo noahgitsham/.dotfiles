@@ -30,5 +30,5 @@ else
 		mkdir -p "$backupPath"
 	fi
 
-	rsync -avxP "$HOME" "$drivePath" --exclude=".local" --exclude=".cache" --exclude=".ollama" --exclude=".rustup" --exclude=".cargo" --exclude=".stremio-server"
+	rsync -avxP --delete "$HOME" "$drivePath" --exclude=".local" --exclude=".cache" --exclude=".ollama" --exclude=".rustup" --exclude=".cargo" --exclude=".stremio-server"
 fi
