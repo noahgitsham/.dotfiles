@@ -22,7 +22,3 @@
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = !/usr/bin/gh auth git-credential
-
-# School Config
-[includeIF "gitdir:/home/noah/uni"]
-	path = .gitconfig-uni

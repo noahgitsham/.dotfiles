@@ -1,5 +1,16 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/noah/.dotfiles/emacs/.config/emacs/init.el" . 10081)
+(("/home/noah/uni/work/12111/3box.org" . 40)
+ ("/home/noah/uni/work/12111/complexBinaryFunctionsAndArithmetic.org" . 22)
+ ("/home/noah/uni/work/12111/ex4.org" . 68)
+ ("/home/noah/uni/work/12111/io.org" . 6)
+ ("/home/noah/uni/work/12111/lec3.org" . 500)
+ ("/home/noah/uni/work/12111/mu0.org" . 310)
+ ("/home/noah/uni/work/12111/RTL&FSMs.org" . 1066)
+ ("/home/noah/uni/work/12111/w10.org" . 2)
+ ("/home/noah/uni/work/12111/"
+  (dired-filename . "/home/noah/uni/work/12111/vonNeumann.org"))
+ ("/home/noah/uni/work/12111/vonNeumann.org" . 304)
+ ("/home/noah/.dotfiles/emacs/.config/emacs/init.el" . 10081)
  ("/home/noah/uni/uni.org" . 29)
  ("/home/noah/todo.org" . 1726)
  ("/home/noah/documents/wishlist.org" . 711)
@@ -20,7 +31,6 @@
  ("/home/noah/.dotfiles/emacs/.config/emacs/elisp/splash-screen.el" . 4473)
  ("/home/noah/uni/work/16321/"
   (dired-filename . "/home/noah/uni/work/16321/pastPapers.org"))
- ("/home/noah/programming/engine/notes/camera.org" . 64)
  ("/home/noah/uni/work/11120/"
   (dired-filename . "/home/noah/uni/work/11120/logic.org"))
  ("/home/noah/uni/work/11120/logic.org" . 525)
@@ -59,20 +69,15 @@
  ("/home/noah/uni/work/15111/lec11+12.org" . 73)
  ("/home/noah/uni/work/15111/methods.org" . 737)
  ("/home/noah/uni/work/10120/project/notes.org" . 923)
- ("/home/noah/uni/work/12111/w10.org" . 2)
  ("/home/noah/uni/work/16321/cwk.org" . 221)
  ("/home/noah/uni/work/15111/"
   (dired-filename . "/home/noah/uni/work/15111/assembly.org"))
  ("/home/noah/uni/work/15111/IO.org" . 213)
  ("/home/noah/uni/work/10120/webSecurity.org" . 2)
- ("/home/noah/uni/work/12111/ex4.org" . 51)
- ("/home/noah/uni/work/12111/vonNeumann.org" . 201)
  ("/home/noah/uni/work/15111/armCheatsheet.org" . 323)
  ("/home/noah/uni/work/10120/wwwvsinternet.org" . 865)
  ("/home/noah/uni/work/10120/sql.org" . 209)
  ("/home/noah/uni/weekly/w6.org" . 599)
- ("/home/noah/uni/work/12111/mu0.org" . 672)
- ("/home/noah/uni/work/12111/3box.org" . 40)
  ("/home/noah/.config/emacs/eshell/"
   (dired-filename . "/home/noah/.config/emacs/eshell/.."))
  ("/home/noah/.config/emacs/elisp/"

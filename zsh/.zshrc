@@ -107,7 +107,7 @@ alias fzrg=": | fzf --ansi --disabled --query \"$INITIAL_QUERY\" \
     --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
     --bind 'enter:become(vim {1} +{2})'"
 
-RG_HIDDEN_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+RG_HIDDEN_PREFIX="${RG_PREFIX}--hidden "
 alias fzrgh=": | fzf --ansi --disabled --query \"$INITIAL_QUERY\" \
     --bind \"start:reload:$RG_HIDDEN_PREFIX {q}\" \
     --bind \"change:reload:sleep 0.1; $RG_HIDDEN_PREFIX {q} || true\" \
