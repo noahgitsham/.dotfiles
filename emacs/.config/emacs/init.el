@@ -1,19 +1,10 @@
-;; Show startup time
-;(add-hook 'emacs-startup-hook
-;	  (lambda()
-;	    (message "Emacs loaded in %s"
-;		     (format "%.2f seconds"
-;			     (string-to-number (emacs-init-time))))))
+; Show startup time
+(add-hook 'emacs-startup-hook
+	  (lambda()
+	    (message "Emacs loaded in %s"
+		     (format "%.2f seconds"
+			     (string-to-number (emacs-init-time))))))
 
-;; Load paths
-(add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
-
-;; Custom paths
-(setq bookmark-default-file "~/.local/share/emacs")
-(when (boundp 'native-comp-eln-load-path)
-  (startup-redirect-eln-cache "~/.locale/share/emacs/eln-cache"))
-
-(defvar package-source-directory "~/.local/share/emacs")
 ;; Elpaca
 (defvar elpaca-installer-version 0.6)
 (defvar elpaca-directory (expand-file-name "elpaca/" package-source-directory))
@@ -64,7 +55,7 @@
 ;; Daemon
 ;(server-start)
 
-;; Immediate evil mode
+;; Vim emulation
 (use-package evil
   :ensure t
   :config
@@ -90,13 +81,15 @@
 (use-package gruvbox-theme)
 (use-package color-theme-sanityinc-tomorrow)
 (use-package doom-themes
+  :init
+  (load-theme 'gruvbox-dark-hard t)
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
   (doom-themes-org-config)
   ;; Overrides
   ;(set-face-attribute 'org-todo nil :foreground "Yellow")
-  (load-theme 'doom-tomorrow-day t))
+  )
 
 ;;;;;;;;;;;;;;
 ;; Org Mode ;;

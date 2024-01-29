@@ -16,8 +16,11 @@ source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 # Completion
 zstyle :compinstall filename '~/.zshrc'
+
+# Completion
 autoload -Uz compinit
-compinit
+# XDG
+compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 
 # Path
 path+=("$HOME/scripts")
