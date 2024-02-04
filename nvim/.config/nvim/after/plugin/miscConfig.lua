@@ -67,3 +67,7 @@ require("live-command").setup {
 		Norm = {cmd = "norm"}
 	}
 }
+
+require("nvim-devdocs").setup {
+
+}

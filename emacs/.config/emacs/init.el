@@ -49,6 +49,10 @@
   (elpaca-use-package-mode)
   ;; Assume :elpaca t unless otherwise specified.
   (setq elpaca-use-package-by-default t))
+
+;; Fix weird startup message
+;;(setq elpaca-core-date '(20231211))
+
 (elpaca-wait)
 
 
@@ -61,7 +65,7 @@
   :config
   (evil-set-undo-system 'undo-redo)
   (setq scroll-step 1 ; Vim scrolling
-	scroll-margin 8) ; Scrolloff
+  	scroll-margin 8) ; Scrolloff
   ;; Move normally on wrapped text
   (setq evil-respect-visual-line-mode t)
   ;; Fix org src indentation
@@ -72,7 +76,8 @@
 ;;;;;;;;;;;;;;;;
 ;; UI Changes ;;
 ;;;;;;;;;;;;;;;;
-(set-frame-font "Roboto Mono 12" nil t)
+(set-frame-font "Fragment Mono 14" nil t)
+;(set-face-attribute 'italic nil :font "CommitMono 14" :slant 'italic)
 (set-face-attribute 'variable-pitch nil :font "Europa Grotesk SH")
 
 ;;;;;;;;;;;;;;;;;;;;
@@ -82,13 +87,15 @@
 (use-package color-theme-sanityinc-tomorrow)
 (use-package doom-themes
   :init
-  (load-theme 'gruvbox-dark-hard t)
+  (load-theme 'doom-tomorrow-night t)
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
   (doom-themes-org-config)
   ;; Overrides
   ;(set-face-attribute 'org-todo nil :foreground "Yellow")
+  (set-face-italic-p 'line-number nil)
+  (set-face-italic-p 'line-number-current-line nil)
   )
 
 ;;;;;;;;;;;;;;
@@ -250,7 +257,7 @@
 
 ;; Line numbers
 (global-display-line-numbers-mode 1)
-(display-line-numbers-mode -1)
+;(display-line-numbers-mode -1)
 (setq display-line-numbers-type 'visual
       display-line-numbers-grow-only t
       display-line-numbers-offset 1)
@@ -300,6 +307,9 @@
 (use-package org-modern
   :after org
   :hook org-mode-hook
+  :init
+  (add-hook 'org-mode-hook #'org-modern-mode)
+  (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
   :config
   (setq org-modern-star     nil
 	org-modern-progress nil
@@ -313,12 +323,7 @@
   (setq org-modern-todo-faces
 	(quote (("CANCELED" :inherit 'ansi-color-cyan :foreground "white" :weight bold)
 		("TODO" :inherit 'ansi-color-red :foreground "white" :weight bold)
-		("DONE" :inherit 'ansi-color-green :foreground "white" :weight bold))))
-
-
-  :init
-  (add-hook 'org-mode-hook #'org-modern-mode)
-  (add-hook 'org-agenda-finalize-hook #'org-modern-agenda))
+		("DONE" :inherit 'ansi-color-green :foreground "white" :weight bold)))))
 
 (use-package org-modern-indent
   :elpaca (:host github :repo "jdtsmith/org-modern-indent")
@@ -367,6 +372,10 @@
   :ensure t
   :config (setq esup-depth 0)
   )
+
+;; Runtime profiling
+(global-set-key (kbd "M-p") 'profiler-start)
+(global-set-key (kbd "M-P") 'profiler-stop)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom Set Variables ;;

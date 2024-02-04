@@ -54,26 +54,32 @@ vim.g.mapleader = "\\"
 vim.opt.cursorline = true
 
 -- Netrw
-vim.g.netrw_liststyle = 3 -- Tree
+vim.g.netrw_liststyle = 1 -- Tree
+vim.g.netrw_fastbrowse = 0
 
 -- Return to last cursor position
-vim.api.nvim_create_autocmd('BufRead', {
-	callback = function(opts)
-		vim.api.nvim_create_autocmd('BufWinEnter', {
-			once = true,
-			buffer = opts.buf,
-			callback = function()
-				local ft = vim.bo[opts.buf].filetype
-				local last_known_line = vim.api.nvim_buf_get_mark(opts.buf, '"')[1]
-				if
-					not (ft:match('commit') and ft:match('rebase'))
-					and last_known_line > 1
-					and last_known_line <= vim.api.nvim_buf_line_count(opts.buf)
-					then
-						vim.api.nvim_feedkeys([[g`"]], 'nx', false)
-					end
-					vim.api.nvim_feedkeys("zz", "n", false)
-				end,
-			})
-		end,
-	})
+--vim.api.nvim_create_autocmd('BufRead', {
+--	callback = function(opts)
+--		vim.api.nvim_create_autocmd('BufWinEnter', {
+--			once = true,
+--			buffer = opts.buf,
+--			callback = function()
+--				local ft = vim.bo[opts.buf].filetype
+--				local last_known_line = vim.api.nvim_buf_get_mark(opts.buf, '"')[1]
+--				if
+--					not (ft:match('commit') and ft:match('rebase'))
+--					and last_known_line > 1
+--					and last_known_line <= vim.api.nvim_buf_line_count(opts.buf)
+--					then
+--						vim.api.nvim_feedkeys([[g`"]], 'nx', false)
+--					end
+--					vim.api.nvim_feedkeys("zz", "n", false)
+--				end,
+--			})
+--		end,
+--	})
+vim.api.nvim_create_autocmd('BufReadPost', {
+  desc = 'Open file at the last position it was edited earlier',
+  pattern = '*',
+  command = 'silent! normal! g`"zv'
+})

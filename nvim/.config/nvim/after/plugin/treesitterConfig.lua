@@ -1,5 +1,8 @@
 -- Treesitter
 require("nvim-treesitter.configs").setup {
+	ensure_installed = {
+		"html"
+	},
 	highlight = {
 		enable = true
 	},
@@ -37,19 +40,19 @@ require("nvim-treesitter.configs").setup {
 }
 
 -- Treesitter Folding
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
-
--- Automatic find fold level
-vim.api.nvim_create_autocmd("BufEnter", {
-	callback = function()
-		local maxfold = 0
-		for line=1,vim.fn.line("$") do
-			local linelevel = vim.fn.foldlevel(line)
-			if linelevel > maxfold then
-				maxfold = linelevel
-			end
-		end
-		vim.o.foldlevel = maxfold
-	end
-})
+--vim.o.foldmethod = "expr"
+--vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+--
+---- Automatic find fold level
+--vim.api.nvim_create_autocmd("BufEnter", {
+--	callback = function()
+--		local maxfold = 0
+--		for line=1,vim.fn.line("$") do
+--			local linelevel = vim.fn.foldlevel(line)
+--			if linelevel > maxfold then
+--				maxfold = linelevel
+--			end
+--		end
+--		vim.o.foldlevel = maxfold
+--	end
+--})

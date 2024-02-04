@@ -97,7 +97,7 @@ require("mason-lspconfig").setup_handlers {
 	end
 }
 
-vim.g.python_recommended_style = 1
+vim.g.python_recommended_style = 0
 
 -- Trouble
 require("trouble").setup {
