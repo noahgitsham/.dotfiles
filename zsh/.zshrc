@@ -14,6 +14,9 @@ source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 # bindkey '^R' history-incremental-search-backward
 # KEYTIMEOUT=1
 
+# fzf history completion
+zvm_after_init_commands+=('source /usr/share/fzf/key-bindings.zsh')
+
 # Completion
 zstyle :compinstall filename '~/.zshrc'
 

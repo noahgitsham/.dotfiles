@@ -62,6 +62,7 @@
 ;; Vim emulation
 (use-package evil
   :ensure t
+  :demand t
   :config
   (evil-set-undo-system 'undo-redo)
   (setq scroll-step 1 ; Vim scrolling
@@ -84,7 +85,6 @@
 ;; Colour Schemes ;;
 ;;;;;;;;;;;;;;;;;;;;
 (use-package gruvbox-theme)
-(use-package color-theme-sanityinc-tomorrow)
 (use-package doom-themes
   :init
   (load-theme 'doom-tomorrow-night t)
@@ -143,11 +143,11 @@
   (with-eval-after-load 'org
     (add-to-list 'org-latex-packages-alist '("" "amssymb" t))
     )
-  ;; LaTeX Live Preview
-  (setq org-latex-preview-live t
-	org-latex-preview-live-debounce 1.0
-	org-startup-with-latex-preview t)
   (add-hook 'org-mode-hook #'org-latex-preview-auto-mode)
+  (setq org-latex-preview-numbered t
+	;org-latex-preview-live t
+	org-latex-preview-live-debounce 0.25
+	org-startup-with-latex-preview t)
 
   ;; TODO
   (setq org-todo-keywords
@@ -211,6 +211,10 @@
     (set-face-attribute 'org-document-title nil :inherit 'variable-pitch :height 400 :bold nil)
     (set-face-attribute 'org-document-info nil :inherit 'variable-pitch))
   )
+
+;(use-package org-latex-preview
+;  :config
+;)
 
 ;; Startup page
 (load "splash-screen" nil t)

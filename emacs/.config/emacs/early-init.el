@@ -13,7 +13,6 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (setq initial-scratch-message "")
-;(if 
 
 
 ;; Load paths
@@ -22,5 +21,5 @@
 ;; Custom paths
 (setq bookmark-default-file "~/.local/share/emacs")
 (when (boundp 'native-comp-eln-load-path)
-  (startup-redirect-eln-cache "~/.local/share/emacs/eln-cache"))
+  (startup-redirect-eln-cache "~/.cache/emacs/eln-cache"))
 (defvar package-source-directory "~/.local/share/emacs")
