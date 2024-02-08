@@ -98,124 +98,6 @@
   (set-face-italic-p 'line-number-current-line nil)
   )
 
-;;;;;;;;;;;;;;
-;; Org Mode ;;
-;;;;;;;;;;;;;;
-(use-package org
-  :elpaca (:repo "https://git.tecosaur.net/tec/org-mode.git")
-  :defer nil
-  :bind ( ;; Global maps
-	 ("C-c a" . org-agenda)
-	 ("C-c c" . org-capture)
-	 ("C-c >" . org-goto-calendar)
-	 ("C-c b" . org-switchb)
-	 ("C-c s" . org-timeblock)
-	 ("C-c d" . cfw:open-org-calendar)
-	 :map org-mode-map ;; Local maps
-	 ("M-j" . org-forward-heading-same-level)
-	 ("M-k" . org-backward-heading-same-level)
-	 ("M-h" . org-up-element)
-	 ("M-l" . org-down-element)
-	 ("M-J" . org-metadown)
-	 ("M-K" . org-metaup)
-	 ("M-H" . org-shiftmetaleft)
-	 ("M-L" . org-shiftmetaright)
-	 ("M-C-H" . org-metaleft)
-	 ("M-C-L" . org-metaright)
-	 )
-  :init
-  (setq org-preview-latex-image-directory "~/.local/share/emacs/ltximg/")
-
-  :config
-  (setq org-M-RET-may-split-line nil)
-  (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
-  ;; Enter insert mode after inserting heading in normal mode
-  (evil-define-key 'normal org-mode-map (kbd "C-<return>")
-    #'(lambda () (interactive) (org-insert-heading-respect-content) (evil-append 1)))
-  (evil-define-key 'normal org-mode-map (kbd "C-S-<return>")
-    #'(lambda () (interactive) (org-insert-todo-heading-respect-content 1) (evil-append 1)))
-  (evil-define-key 'normal org-mode-map (kbd "M-<return>")
-    #'(lambda () (interactive) (org-meta-return) (evil-append 1)))
-  (evil-define-key 'normal org-mode-map (kbd "M-S-<return>")
-    #'(lambda () (interactive) (org-insert-todo-heading 1) (evil-append 1)))
-
-  ;; LaTeX Fragments
-  (with-eval-after-load 'org
-    (add-to-list 'org-latex-packages-alist '("" "amssymb" t))
-    )
-  (add-hook 'org-mode-hook #'org-latex-preview-auto-mode)
-  (setq org-latex-preview-numbered t
-	;org-latex-preview-live t
-	org-latex-preview-live-debounce 0.25
-	org-startup-with-latex-preview t)
-
-  ;; TODO
-  (setq org-todo-keywords
-	'((sequence "TODO(t)" "|" "DONE(d)")
-	  (sequence "|" "CANCELED(c)")))
-
-  ;; Editing Style
-  (setq org-startup-indented t
-	org-hide-leading-stars t
-	org-auto-align-tags nil
-	org-tags-column 0)
-  (setq auto-window-vscroll nil)
-  (add-hook 'org-mode-hook 'visual-line-mode)
-  (add-hook 'org-mode-hook (lambda () (display-line-number-mode -1)))
-
-  ;; Tables
-  ;(load "org-table-live-update" nil t)
-  ;(add-hook 'org-mode-hook 'org-table-auto-align-mode)
-
-  ;; Blocks
-  (setq org-src-tab-acts-natively t
-	org-src-preserve-indentation nil)
-
-  ;; Babel
-  (org-babel-do-load-languages
-   'org-babel-load-languages '((C . t)
-			       (python . t)
-			       (shell . t)
-			       (emacs-lisp . t)))
-  ;(setq org-babel-default-header-args '(:results "output"))
-
-  ;; Calendar
-  (setq calendar-week-start-day 1)
-
-  ;; Agenda
-  (setq ;org-directory "~"
-	org-agenda-files '("~/uni" "~/documents" "~/todo.org")
-	org-agenda-span 22
-	org-agenda-start-on-weekday nil
-	org-agenda-start-day "-7d"
-	org-agenda-window-setup 'only-window
-	org-agenda-confirm-kill t)
-  (add-hook 'org-trigger-hook 'save-buffer)
-  ;; Agenda views
-  (setq org-agenda-custom-commands
-	'(("n" "Agenda and all TODOs" ((agenda "")(alltodo "")))
-	  ("c" "Calendar view" cfw:open-org-calendar)))
-
-  ;; Agenda style
-  (setq org-agenda-tags-column 0
-	org-agenda-block-separator ?─)
-
-  ;; Exporting
-  (setq org-export-with-section-numbers nil)
-
-  ;; Capture
-  (setq org-capture-templates '())
-
-  ;; Custom face changes
-  (with-eval-after-load 'org
-    (set-face-attribute 'org-document-title nil :inherit 'variable-pitch :height 400 :bold nil)
-    (set-face-attribute 'org-document-info nil :inherit 'variable-pitch))
-  )
-
-;(use-package org-latex-preview
-;  :config
-;)
-
 ;; Startup page
 (load "splash-screen" nil t)
 
@@ -300,11 +182,137 @@
 ;(use-package calfw-org
 ;  :after (org calfw))
 
-(use-package org-timeblock
-  :after org
+;;;;;;;;;;;;;;
+;; Org Mode ;;
+;;;;;;;;;;;;;;
+(use-package org
+  :elpaca (:repo "https://git.tecosaur.net/tec/org-mode.git")
+  :defer nil
+  :bind ( ;; Global maps
+	 ("C-c a" . org-agenda)
+	 ("C-c c" . org-capture)
+	 ("C-c >" . org-goto-calendar)
+	 ("C-c b" . org-switchb)
+	 ("C-c s" . org-timeblock)
+	 ("C-c d" . cfw:open-org-calendar)
+	 :map org-mode-map ;; Local maps
+	 ("M-j" . org-forward-heading-same-level)
+	 ("M-k" . org-backward-heading-same-level)
+	 ("M-h" . org-up-element)
+	 ("M-l" . org-down-element)
+	 ("M-J" . org-metadown)
+	 ("M-K" . org-metaup)
+	 ("M-H" . org-shiftmetaleft)
+	 ("M-L" . org-shiftmetaright)
+	 ("M-C-H" . org-metaleft)
+	 ("M-C-L" . org-metaright)
+	 )
+  :init
+  (setq org-preview-latex-image-directory "~/.local/share/emacs/ltximg/")
+
   :config
-  (display-line-numbers-mode -1)
-  ;(setq org-timeblock-svg)
+  (setq org-M-RET-may-split-line nil)
+  (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
+  ;; Enter insert mode after inserting heading in normal mode
+  (evil-define-key 'normal org-mode-map (kbd "C-<return>")
+    #'(lambda () (interactive) (org-insert-heading-respect-content) (evil-append 1)))
+  (evil-define-key 'normal org-mode-map (kbd "C-S-<return>")
+    #'(lambda () (interactive) (org-insert-todo-heading-respect-content 1) (evil-append 1)))
+  (evil-define-key 'normal org-mode-map (kbd "M-<return>")
+    #'(lambda () (interactive) (org-meta-return) (evil-append 1)))
+  (evil-define-key 'normal org-mode-map (kbd "M-S-<return>")
+    #'(lambda () (interactive) (org-insert-todo-heading 1) (evil-append 1)))
+
+  ;; Editing Style
+  (setq org-startup-indented t
+	org-hide-leading-stars t
+	org-auto-align-tags nil
+	org-tags-column 0)
+  (setq auto-window-vscroll nil)
+  (add-hook 'org-mode-hook 'visual-line-mode)
+  (add-hook 'org-mode-hook (lambda () (display-line-number-mode -1)))
+
+  ;; LaTeX Fragments
+  (with-eval-after-load 'org
+    (add-to-list 'org-latex-packages-alist '("" "amssymb" t) '("" "amsmath" t)))
+  (add-hook 'org-mode-hook 'org-latex-preview-auto-mode)
+  (setq org-latex-preview-numbered t
+	org-latex-preview-live t
+	org-latex-preview-live-debounce 0.25
+	org-startup-with-latex-preview t)
+
+  ;; Tables
+  ;(load "org-table-live-update" nil t)
+  ;(add-hook 'org-mode-hook 'org-table-auto-align-mode)
+
+  ;; Blocks
+  (setq org-src-tab-acts-natively t
+	org-src-preserve-indentation nil)
+
+  ;; TODO
+  (setq org-todo-keywords
+	'((sequence "TODO(t)" "|" "DONE(d)")
+	  (sequence "|" "CANCELED(c)")))
+
+  ;; Priorities
+  (setq org-priority-highest 1
+	org-priority-default 2
+	org-priority-lowest  3)
+
+  ;; Agenda
+  (setq ;org-directory "~"
+	org-agenda-files '("~/uni" "~/documents" "~/todo.org")
+	org-agenda-span 22
+	org-agenda-start-on-weekday nil
+	org-agenda-start-day "-7d"
+	org-agenda-window-setup 'only-window
+	org-agenda-confirm-kill t)
+  (add-hook 'org-trigger-hook 'save-buffer)
+  ;; Agenda views
+  (setq org-agenda-custom-commands
+	'(("n" "Agenda and all TODOs" ((agenda "")(alltodo "")))
+	  ("c" "Calendar view" cfw:open-org-calendar)
+	  ("u" "Uni agenda view" ((agenda "")(tags "uni")))
+	  ;; GTD
+	  ("g" . "Getting Things Done")
+	  ;; Eisenhower Matrix
+	  ("ga" "Do" (agenda ""))       ("gc" "Schedule" (agenda ""))
+	  ("gb" "Delegate" (agenda ""))	("gd" "Eliminate" (agenda ""))
+	  ))
+
+  ;; Agenda style
+  (setq org-agenda-tags-column 0
+	org-agenda-block-separator ?─
+        ;org-agenda-
+	)
+
+  ;; Calendar
+  (setq calendar-week-start-day 1)
+
+  ;; Capture
+  (setq org-capture-templates '())
+
+  ;; Babel
+  (org-babel-do-load-languages
+   'org-babel-load-languages '((C . t)
+			       (python . t)
+			       (shell . t)
+			       (emacs-lisp . t)))
+  ;(setq org-babel-default-header-args '(:results "output"))
+
+  ;; Exporting
+  (setq org-export-with-section-numbers nil)
+
+  ;; Custom face changes
+  (with-eval-after-load 'org
+    (set-face-attribute 'org-document-title nil :inherit 'variable-pitch :height 400 :bold nil)
+    (set-face-attribute 'org-document-info nil :inherit 'variable-pitch))
+  )
+
+;; Super agenda
+(use-package org-super-agenda
+  :init
+  :config
   )
 
 ;; Org mode style
@@ -327,7 +335,12 @@
   (setq org-modern-todo-faces
 	(quote (("CANCELED" :inherit 'ansi-color-cyan :foreground "white" :weight bold)
 		("TODO" :inherit 'ansi-color-red :foreground "white" :weight bold)
-		("DONE" :inherit 'ansi-color-green :foreground "white" :weight bold)))))
+		("DONE" :inherit 'ansi-color-green :foreground "white" :weight bold))))
+
+  (setq org-modern-priority-faces
+	(quote ((?A :background "red")
+		(?B :background "orange")
+		(?C :background "yellow")))))
 
 (use-package org-modern-indent
   :elpaca (:host github :repo "jdtsmith/org-modern-indent")
@@ -336,7 +349,6 @@
   :init
   (add-hook 'org-modern-mode-hook #'org-modern-indent-mode)
   )
-
 
 ;; Hide verbatim symbols
 (use-package org-appear
@@ -359,6 +371,25 @@
   :hook org-mode-hook
   :config
   (require 'org-download))
+
+(use-package org-timeblock
+  :after org
+  :config
+  (display-line-numbers-mode -1)
+  ;(setq org-timeblock-svg)
+  )
+
+(use-package smartparens
+  :config
+  (require 'smartparens-config)
+  (smartparens-global-mode 1))
+;; Snippets
+;(use-package yasnippet
+;  :config
+;  ;; Org snippets
+;  (add-hook 'org-mode-hook 'yas-minor-mode)
+;  ()
+;  )
 
 ;; Olivetti
 (use-package olivetti
