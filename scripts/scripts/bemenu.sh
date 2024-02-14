@@ -1,9 +1,10 @@
 #!/bin/sh
 
-j4-dmenu-desktop --dmenu="bemenu --binding=vim \
-	--vim-esc-exits \
+j4-dmenu-desktop --dmenu="bemenu --ifne \
 	--fn='Terminus 14' \
 	--no-cursor \
+	--cw 2 \
+	--ch 14 \
 	-i -c \
 	-l 10 \
 	-P '>' \
@@ -15,3 +16,5 @@ j4-dmenu-desktop --dmenu="bemenu --binding=vim \
 	--fb=#1D2021 --ff=#FBF1C7 \
 	-B 2 --bdr=#595959 \
 	"
+	#--
+	#--vim-esc-exits \

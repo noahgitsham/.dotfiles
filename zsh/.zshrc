@@ -6,13 +6,21 @@ unsetopt beep
 
 # Vim keybinds
 source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-#zvm_bindkey viins '^W' zle backward-kill-word
 #function zvm_after_init() {
 #}
 
 # bindkey -v '^?' backward-delete-char
 # bindkey '^R' history-incremental-search-backward
 # KEYTIMEOUT=1
+
+# Set the default WORDCHARS
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+# The plugin will auto execute this zvm_after_init function
+function zvm_after_init() {
+  zvm_bindkey viins '^W' zle backward-kill-word
+}
+
 
 # fzf history completion
 zvm_after_init_commands+=('source /usr/share/fzf/key-bindings.zsh')

@@ -1,16 +1,21 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/noah/.dotfiles/emacs/.config/emacs/init.el" . 11778)
+(("/home/noah/.dotfiles/emacs/.config/emacs/init.el" . 3100)
+ ("/home/noah/uni/work/10120/"
+  (dired-filename . "/home/noah/uni/work/10120/js.org"))
+ ("/home/noah/uni/work/16412/lab3.org" . 88)
+ ("/home/noah/documents/wishlist.org" . 142)
+ ("/home/noah/documents/ideas.org" . 4696)
+ ("/home/noah/uni/work/13212/"
+  (dired-filename . "/home/noah/uni/work/13212/dataVisualisation.org"))
+ ("/home/noah/uni/work/13212/dataVisualisation.org" . 70)
+ ("/home/noah/uni/work/11212/lec2.org" . 4)
  ("/home/noah/documents/test.org" . 150)
  ("/home/noah/uni/work/13212/lec3.org" . 229)
- ("/home/noah/uni/work/13212/"
-  (dired-filename . "/home/noah/uni/work/13212/lec3.org"))
  ("/home/noah/uni/work/11120/sem2/lec2.org" . 214)
  ("/home/noah/todo.org" . 484)
- ("/home/noah/documents/wishlist.org" . 711)
  ("/home/noah/documents/tomorrow.org" . 271)
  ("/home/noah/documents/readinglist.org" . 35)
  ("/home/noah/documents/money.org" . 1417)
- ("/home/noah/documents/ideas.org" . 4542)
  ("/home/noah/documents/degoogle.org" . 334)
  ("/home/noah/uni/weekly.org" . 9)
  ("/home/noah/uni/uni.org" . 593)

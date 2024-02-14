@@ -17,6 +17,9 @@ local indentSize = 4
 vim.opt.tabstop = indentSize
 vim.opt.shiftwidth = indentSize
 
+-- Align parameters
+--vim.opt.cino:append("(0")
+
 -- Line wrapping
 vim.opt.wrap = false
 vim.opt.linebreak = true
@@ -27,7 +30,6 @@ vim.opt.sidescrolloff = 8
 
 -- Stop autocomment on enter
 
-vim.opt.cino:append("(0")
 
 -- Search
 vim.opt.hlsearch = true

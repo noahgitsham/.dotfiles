@@ -87,7 +87,7 @@
 (use-package gruvbox-theme)
 (use-package doom-themes
   :init
-  (load-theme 'doom-tomorrow-night t)
+  (load-theme 'gruvbox-dark-hard t)
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
