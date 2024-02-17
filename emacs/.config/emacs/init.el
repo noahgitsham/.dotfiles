@@ -68,7 +68,7 @@
   (setq scroll-step 1 ; Vim scrolling
   	scroll-margin 8) ; Scrolloff
   ;; Move normally on wrapped text
-  (setq evil-respect-visual-line-mode t)
+  (setq evil-respect-visual-line-mode nil)
   ;; Fix org src indentation
   (add-to-list 'evil-buffer-regexps '("^\\*Org Src .*\\*$" . nil))
   ;; Enable evil
@@ -96,6 +96,9 @@
   ;(set-face-attribute 'org-todo nil :foreground "Yellow")
   (set-face-italic-p 'line-number nil)
   (set-face-italic-p 'line-number-current-line nil)
+  ;(set-face-attrubte 'line-number nil :background )
+  (steal-face-attribute 'line-number :background 'default)
+  (steal-face-attribute 'line-number-current-line :background 'default)
   )
 
 ;; Startup page
@@ -224,6 +227,7 @@
     #'(lambda () (interactive) (org-insert-todo-heading 1) (evil-append 1)))
 
   ;; Editing Style
+  (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode)))
   (setq org-startup-indented t
 	org-hide-leading-stars t
 	org-auto-align-tags nil

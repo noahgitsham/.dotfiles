@@ -14,7 +14,7 @@ source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 # KEYTIMEOUT=1
 
 # Set the default WORDCHARS
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+WORDCHARS='*?_[]~=&;!#$%^(){}<>'
 
 # The plugin will auto execute this zvm_after_init function
 function zvm_after_init() {

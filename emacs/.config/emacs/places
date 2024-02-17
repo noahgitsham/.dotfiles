@@ -1,37 +1,43 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/noah/.dotfiles/emacs/.config/emacs/init.el" . 3100)
- ("/home/noah/uni/work/10120/"
-  (dired-filename . "/home/noah/uni/work/10120/js.org"))
- ("/home/noah/uni/work/16412/lab3.org" . 88)
- ("/home/noah/documents/wishlist.org" . 142)
- ("/home/noah/documents/ideas.org" . 4696)
- ("/home/noah/uni/work/13212/"
-  (dired-filename . "/home/noah/uni/work/13212/dataVisualisation.org"))
- ("/home/noah/uni/work/13212/dataVisualisation.org" . 70)
+(("/home/noah/uni/work/13212/uncertancyAndSampling.org" . 386)
+ ("/home/noah/.dotfiles/emacs/.config/emacs/init.el" . 9847)
+ ("/home/noah/uni/work/15212/operatingSystems.org" . 225)
+ ("/home/noah/uni/work/11212/exSheet1.org" . 63)
+ ("/home/noah/uni/work/11212/lec1.org" . 365)
  ("/home/noah/uni/work/11212/lec2.org" . 4)
- ("/home/noah/documents/test.org" . 150)
- ("/home/noah/uni/work/13212/lec3.org" . 229)
- ("/home/noah/uni/work/11120/sem2/lec2.org" . 214)
+ ("/home/noah/uni/work/11120/sem2/lec3.org" . 21)
+ ("/home/noah/documents/test.org" . 111)
  ("/home/noah/todo.org" . 484)
+ ("/home/noah/documents/wishlist.org" . 142)
  ("/home/noah/documents/tomorrow.org" . 271)
  ("/home/noah/documents/readinglist.org" . 35)
  ("/home/noah/documents/money.org" . 1417)
+ ("/home/noah/documents/ideas.org" . 4696)
  ("/home/noah/documents/degoogle.org" . 334)
  ("/home/noah/uni/weekly.org" . 9)
  ("/home/noah/uni/uni.org" . 593)
  ("/home/noah/uni/accom.org" . 36)
+ ("/home/noah/documents/"
+  (dired-filename . "/home/noah/documents/events.org"))
+ ("/home/noah/.local/share/emacs/elpaca/repos/org/lisp/org-mobile.el" . 1208)
+ ("/home/noah/documents/events.org" . 12)
+ ("/home/noah/uni/work/10120/"
+  (dired-filename . "/home/noah/uni/work/10120/js.org"))
+ ("/home/noah/uni/work/16412/lab3.org" . 88)
+ ("/home/noah/uni/work/13212/"
+  (dired-filename . "/home/noah/uni/work/13212/dataVisualisation.org"))
+ ("/home/noah/uni/work/13212/dataVisualisation.org" . 70)
+ ("/home/noah/uni/work/13212/lec3.org" . 229)
+ ("/home/noah/uni/work/11120/sem2/lec2.org" . 214)
  ("/home/noah/.dotfiles/emacs/.config/emacs/elisp/splash-screen.el" . 2031)
  ("/home/noah/.dotfiles/emacs/.config/emacs/early-init.el" . 398)
- ("/home/noah/uni/work/11212/exSheet1.org" . 63)
  ("/home/noah/uni/work/11212/"
   (dired-filename . "/home/noah/uni/work/11212/.."))
  ("/home/noah/programming/projects/web/etsflask/notes.org" . 466)
  ("/home/noah/uni/work/13212/lec2.org" . 265)
- ("/home/noah/uni/work/15212/operatingSystems.org" . 116)
  ("/home/noah/uni/work/13212/lec1.org" . 14)
  ("/home/noah/uni/work/11120/sem2/" . 126)
  ("/home/noah/uni/work/11120/sem2/lec1.org" . 119)
- ("/home/noah/uni/work/11212/lec1.org" . 365)
  ("/usr/share/emacs/29.2/lisp/simple.el.gz" . 116727)
  ("/home/noah/uni/work/15111/pastpaper.org" . 914)
  ("/home/noah/uni/work/12111/3box.org" . 40)
@@ -56,8 +62,6 @@
   (dired-filename . "/home/noah/uni/work/11120/logic.org"))
  ("/home/noah/uni/weekly/"
   (dired-filename . "/home/noah/uni/weekly/w5.org"))
- ("/home/noah/documents/"
-  (dired-filename . "/home/noah/documents/ideas.org"))
  ("/home/noah/uni/"
   (dired-filename . "/home/noah/uni/weekly"))
  ("/home/noah/.config/emacs/"
