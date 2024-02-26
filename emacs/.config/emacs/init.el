@@ -48,7 +48,7 @@
   ;; Enable :elpaca use-package keyword.
   (elpaca-use-package-mode)
   ;; Assume :elpaca t unless otherwise specified.
-  (setq elpaca-use-package-by-default t))
+  (setq use-package-always-ensure t))
 
 ;; Fix weird startup message
 ;;(setq elpaca-core-date '(20231211))
@@ -77,9 +77,9 @@
 ;;;;;;;;;;;;;;;;
 ;; UI Changes ;;
 ;;;;;;;;;;;;;;;;
-(set-frame-font "Fragment Mono 14" nil t)
+(set-frame-font "Fragment Mono 16" nil t)
 ;(set-face-attribute 'italic nil :font "CommitMono 14" :slant 'italic)
-(set-face-attribute 'variable-pitch nil :font "Europa Grotesk SH")
+(set-face-attribute 'variable-pitch nil :font "Helvetica Neue")
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; Colour Schemes ;;
@@ -173,23 +173,13 @@
 (defun steal-face-attribute (face attribute source &optional frame)
   (set-face-attribute face frame attribute (face-attribute source attribute)))
 
-; Org mode extensions
-;(use-package calfw
-;  :elpaca (:host github :repo "haji-ali/emacs-calfw")
-;  ;:straight (:type git :host github :repo "kiwanami/emacs-calfw" :fork (:host github :repo "haji-ali/emacs-calfw"))
-;  :config
-;  (steal-face-attribute 'cfw:face-toolbar :background 'cfw:face-toolbar-button-off)
-;  ;(steal-face-attribute '
-;  )
-;
-;(use-package calfw-org
-;  :after (org calfw))
+(steal-face-attribute 'mode-line :background 'minibuffer-prompt)
 
 ;;;;;;;;;;;;;;
 ;; Org Mode ;;
 ;;;;;;;;;;;;;;
 (use-package org
-  :elpaca (:repo "https://git.tecosaur.net/tec/org-mode.git")
+  :ensure (:repo "https://git.tecosaur.net/tec/org-mode.git")
   :defer nil
   :bind ( ;; Global maps
 	 ("C-c a" . org-agenda)
@@ -216,6 +206,7 @@
   :config
   (setq org-M-RET-may-split-line nil)
   (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
+  (evil-define-key 'normal org-mode-map (kbd "M-<tab>") #'org-cycle)
   ;; Enter insert mode after inserting heading in normal mode
   (evil-define-key 'normal org-mode-map (kbd "C-<return>")
     #'(lambda () (interactive) (org-insert-heading-respect-content) (evil-append 1)))
@@ -227,14 +218,18 @@
     #'(lambda () (interactive) (org-insert-todo-heading 1) (evil-append 1)))
 
   ;; Editing Style
-  (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode)))
   (setq org-startup-indented t
 	org-hide-leading-stars t
 	org-auto-align-tags nil
 	org-tags-column 0)
-  (setq auto-window-vscroll nil)
+
+  ; Do not insert new line between headers and list elements
+  (setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
+  ; Idk
+  ;(setq auto-window-vscroll nil)
   (add-hook 'org-mode-hook 'visual-line-mode)
-  (add-hook 'org-mode-hook (lambda () (display-line-number-mode -1)))
+  ;(add-hook 'org-mode-hook (lambda () (display-line-number-mode -1)))
+  ;(add-hook 'org-mode-hook (lambda () (display-line-numbers-mode)))
 
   ;; LaTeX Fragments
   (with-eval-after-load 'org
@@ -302,6 +297,7 @@
 			       (python . t)
 			       (shell . t)
 			       (emacs-lisp . t)))
+  (setq org-confirm-babel-evaluate nil)
   ;(setq org-babel-default-header-args '(:results "output"))
 
   ;; Exporting
@@ -309,15 +305,15 @@
 
   ;; Custom face changes
   (with-eval-after-load 'org
-    (set-face-attribute 'org-document-title nil :inherit 'variable-pitch :height 400 :bold nil)
+    (set-face-attribute 'org-document-title nil :inherit 'variable-pitch :bold nil) ;:height 400
     (set-face-attribute 'org-document-info nil :inherit 'variable-pitch))
   )
 
 ;; Super agenda
-(use-package org-super-agenda
-  :init
-  :config
-  )
+;;(use-package org-super-agenda
+;;  :init
+;;  :config
+;;  )
 
 ;; Org mode style
 (use-package org-modern
@@ -331,8 +327,10 @@
 	org-modern-progress nil
 	org-modern-table    nil
 	org-modern-keyword  nil
-	org-modern-checkbox nil)
-  (setq org-modern-label-border 0)
+	org-modern-checkbox nil
+	org-modern-block-name nil)
+  (setq org-modern-label-border 0
+	org-modern-block-fringe 20)
   (set-face-attribute 'org-modern-label nil :width 'regular :height 1.0)
   (set-face-attribute 'org-block-begin-line nil :width 'regular :height 1.0)
   (set-face-attribute 'org-modern-tag nil :foreground "white")
@@ -347,11 +345,11 @@
 		(?C :background "yellow")))))
 
 (use-package org-modern-indent
-  :elpaca (:host github :repo "jdtsmith/org-modern-indent")
-  :after (org org-modern)
+  :ensure (:host github :repo "jdtsmith/org-modern-indent")
+  :after org-modern
   :hook org-mode-hook
   :init
-  (add-hook 'org-modern-mode-hook #'org-modern-indent-mode)
+  ;;(add-hook 'org-modern-mode-hook #'org-modern-indent-mode)
   )
 
 ;; Hide verbatim symbols
@@ -376,17 +374,30 @@
   :config
   (require 'org-download))
 
-(use-package org-timeblock
-  :after org
-  :config
-  (display-line-numbers-mode -1)
-  ;(setq org-timeblock-svg)
-  )
+;;(use-package org-timeblock
+;;  :after org
+;;  :config
+;;  (display-line-numbers-mode -1)
+;;  ;(setq org-timeblock-svg)
+;;  )
+
+; Org mode extensions
+;(use-package calfw
+;  :elpaca (:host github :repo "haji-ali/emacs-calfw")
+;  ;:straight (:type git :host github :repo "kiwanami/emacs-calfw" :fork (:host github :repo "haji-ali/emacs-calfw"))
+;  :config
+;  (steal-face-attribute 'cfw:face-toolbar :background 'cfw:face-toolbar-button-off)
+;  ;(steal-face-attribute '
+;  )
+;
+;(use-package calfw-org
+;  :after (org calfw))
 
 (use-package smartparens
   :config
   (require 'smartparens-config)
   (smartparens-global-mode 1))
+
 ;; Snippets
 ;(use-package yasnippet
 ;  :config
@@ -400,6 +411,7 @@
   :init
   (setq olivetti-body-width 100)
   (add-hook 'org-mode-hook 'olivetti-mode))
+
 
 ;;;;;;;;;;;
 ;; Utils ;;

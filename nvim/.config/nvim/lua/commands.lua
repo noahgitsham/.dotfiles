@@ -19,7 +19,7 @@ vim.api.nvim_create_user_command("P", function (table)
 	vim.print(lua)
 end, {nargs = "*"})
 
-function yesNoDialog(message, default, yesFunc, noFunc)
+function YesNoDialog(message, default, yesFunc, noFunc)
 	vim.validate {
 		message = {message, "string"},
 		age = {default, "string"},

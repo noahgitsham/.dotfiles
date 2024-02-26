@@ -108,6 +108,7 @@ precmd() {
 alias ls="ls --color"
 alias less="less --color=always | less -R"
 alias tree="tree -C"
+alias tmuxa="tmux a || tmux"
 
 #alias emacs="emacs -nw"
 

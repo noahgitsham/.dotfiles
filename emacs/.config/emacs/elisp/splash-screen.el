@@ -9,7 +9,7 @@
   "Splash screen title"
   :type 'string :group 'splash-screen)
 
-(defcustom splash-screen-subtitle "By Noah Gitsham"
+(defcustom splash-screen-subtitle '(version);"2024"
   "Splash screen subtitle"
   :type 'string :group 'splash-screen)
 
@@ -22,6 +22,11 @@
     (with-current-buffer splash-buffer
       (setq header-line-format nil)
       (setq mode-line-format nil)
+      (setq cursor-type nil)
+      (if (fboundp 'evil-mode)
+	  (setq-local evil-normal-state-cursor nil)
+	  (setq-local evil-emacs-state-cursor nil)
+	(setq-local cursor-type nil))
       (display-line-numbers-mode 0)))
   
   (let* ((splash-buffer  (get-buffer-create "*splash*"))
@@ -129,7 +134,6 @@
          (not (member "--file"      command-line-args))
          (not (member "--insert"    command-line-args))
          (not (member "--find-file" command-line-args))
-         ;; (not inhibit-startup-screen)
          )
     (progn
       (add-hook 'window-setup-hook #'splash-screen)
