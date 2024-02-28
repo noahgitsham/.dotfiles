@@ -9,7 +9,7 @@
   "Splash screen title"
   :type 'string :group 'splash-screen)
 
-(defcustom splash-screen-subtitle '(version);"2024"
+(defcustom splash-screen-subtitle "2024"
   "Splash screen subtitle"
   :type 'string :group 'splash-screen)
 
@@ -111,7 +111,7 @@
     (insert (propertize splash-screen-title 'face 'default))
     (center-line)
     (insert "\n")
-    (insert (propertize splash-screen-subtitle 'face 'shadow))
+    (insert (propertize (concat "v" (number-to-string emacs-major-version) "." (number-to-string emacs-minor-version)) 'face 'shadow))
     (center-line)
 
     (goto-char 0)

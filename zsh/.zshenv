@@ -45,6 +45,10 @@ export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/config
 export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
 export NPM_CONFIG_TMP=$XDG_RUNTIME_DIR/npm
 export SQLITE_HISTORY="$XDG_CACHE_HOME"/sqlite_history
+export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export W3M_DIR="$XDG_DATA_HOME"/w3m
+export XINITRC="$XDG_CONFIG_HOME"/xinitrc
 
 alias units=units --history "$XDG_DATA_HOME"/units_history
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"

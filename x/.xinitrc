@@ -7,7 +7,7 @@ xset r rate 250 30
 #exec kitty
 
 picom &
-~/.fehbg &
+feh --no-fehbg --bg-fill '~/pictures/wallpaper/village.jpeg' &
 $HOME/.config/polybar/launch.sh &
 dunst &
 xmousepasteblock &

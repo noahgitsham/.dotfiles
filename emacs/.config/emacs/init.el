@@ -79,7 +79,7 @@
 ;;;;;;;;;;;;;;;;
 (set-frame-font "Fragment Mono 16" nil t)
 ;(set-face-attribute 'italic nil :font "CommitMono 14" :slant 'italic)
-(set-face-attribute 'variable-pitch nil :font "Helvetica Neue")
+(set-face-attribute 'variable-pitch nil :family "Helvetica Neue" :weight 'bold)
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; Colour Schemes ;;
@@ -100,6 +100,10 @@
   (steal-face-attribute 'line-number :background 'default)
   (steal-face-attribute 'line-number-current-line :background 'default)
   )
+
+;(defun switch-theme ()
+;  (interactive)
+;  )
 
 ;; Startup page
 (load "splash-screen" nil t)
@@ -145,11 +149,12 @@
   (setq visible-cursor nil))
 
 ;; Line numbers
-(global-display-line-numbers-mode 1)
-;(display-line-numbers-mode -1)
+;(global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'visual
       display-line-numbers-grow-only t
       display-line-numbers-offset 1)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+;(display-line-numbers-mode -1)
 
 ;; Minibuffer
 (setq read-buffer-completion-ignore-case t)
@@ -228,7 +233,7 @@
   ; Idk
   ;(setq auto-window-vscroll nil)
   (add-hook 'org-mode-hook 'visual-line-mode)
-  ;(add-hook 'org-mode-hook (lambda () (display-line-number-mode -1)))
+  (add-hook 'org-mode-hook (lambda () (display-line-number-mode -1)))
   ;(add-hook 'org-mode-hook (lambda () (display-line-numbers-mode)))
 
   ;; LaTeX Fragments
@@ -251,7 +256,8 @@
   ;; TODO
   (setq org-todo-keywords
 	'((sequence "TODO(t)" "|" "DONE(d)")
-	  (sequence "|" "CANCELED(c)")))
+	  (sequence "|" "CANCELED(c)")
+	  (sequence "|" "WORKING(w)")))
 
   ;; Priorities
   (setq org-priority-highest 1
@@ -305,8 +311,9 @@
 
   ;; Custom face changes
   (with-eval-after-load 'org
-    (set-face-attribute 'org-document-title nil :inherit 'variable-pitch :bold nil) ;:height 400
-    (set-face-attribute 'org-document-info nil :inherit 'variable-pitch))
+    (set-face-attribute 'org-document-title nil :inherit 'variable-pitch :height 3.0 :box '(:line-width 20 :color "#1d2021"))
+    (set-face-attribute 'org-document-info nil :inherit 'variable-pitch)
+    )
   )
 
 ;; Super agenda
@@ -366,7 +373,8 @@
 	org-hidden-keywords '(title author date email language)
 	org-appear-autokeywords t)
   :init
-  (add-hook 'org-mode-hook 'org-appear-mode))
+  (add-hook 'org-mode-hook 'org-appear-mode)
+  )
 
 ;; Org Download
 (use-package org-download
