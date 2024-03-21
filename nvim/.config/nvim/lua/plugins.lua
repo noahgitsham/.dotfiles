@@ -62,6 +62,7 @@ return {
 	"NvChad/nvim-colorizer.lua",
 	"folke/zen-mode.nvim",
 	"folke/twilight.nvim",
+	"amarakon/nvim-unfocused-cursor",
 
 	-- Colours
 	"Shatur/neovim-ayu",

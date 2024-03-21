@@ -1,8 +1,17 @@
-# Lines configured by zsh-newuser-install
+#zmodload zsh/zprof
+# History
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt histignorealldups
 HISTFILE=~/.histfile
 HISTSIZE=50000
 SAVEHIST=50000
-unsetopt beep
+
+#unsetopt beep
 
 # Vim keybinds
 source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
@@ -31,36 +40,38 @@ zstyle :compinstall filename '~/.zshrc'
 # Completion
 autoload -Uz compinit
 # XDG
+mkdir -p "$XDG_CACHE_HOME"/zsh
 compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 
 # Path
 path+=("$HOME/scripts")
 export PATH
 
-# Custom prompt
-setopt PROMPT_SUBST
+### Custom prompt
+##setopt PROMPT_SUBST
+##
+### Git prompt
+##autoload -Uz vcs_info
+##precmd_vcs_info() { vcs_info }
+##precmd_functions+=( precmd_vcs_info )
+##vcs_colour=blue
+##
+##make_prompt() {
+##	if [[ -z ${vcs_info_msg_0_} ]] then
+##		PROMPT="%F{yellow}%n%f %F{gray}$%f "
+##	else
+##		PROMPT="%F{yellow}%n%f %F{${vcs_colour}}${vcs_info_msg_0_}%f %F{gray}$%f "
+##	fi
+##}
+##
+##precmd_functions+=make_prompt
+##
+### RPROMPT='%F{${vcs_colour}}${vcs_info_msg_0_}%f'
+##
+### Format to branch name only
+##zstyle ":vcs_info:git:*" formats "%b"
 
-# Git prompt
-autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-vcs_colour=blue
-
-make_prompt() {
-	if [[ -z ${vcs_info_msg_0_} ]] then
-		PROMPT="%F{yellow}%n%f %F{gray}$%f "
-	else
-		PROMPT="%F{yellow}%n%f %F{${vcs_colour}}${vcs_info_msg_0_}%f %F{gray}$%f "
-	fi
-}
-
-precmd_functions+=make_prompt
-
-# RPROMPT='%F{${vcs_colour}}${vcs_info_msg_0_}%f'
-
-# Format to branch name only
-zstyle ":vcs_info:git:*" formats "%b"
-
+eval "$(starship init zsh)"
 
 # Syntax Highligting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -130,3 +141,5 @@ alias fzrgh=": | fzf --ansi --disabled --query \"$INITIAL_QUERY\" \
     --preview 'bat --color=always {1} --highlight-line {2}' \
     --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
     --bind 'enter:become(vim {1} +{2})'"
+
+#zprof

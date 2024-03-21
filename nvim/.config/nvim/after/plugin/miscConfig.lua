@@ -71,3 +71,5 @@ require("live-command").setup {
 require("nvim-devdocs").setup {
 
 }
+
+require("unfocused-cursor").setup()

@@ -66,12 +66,13 @@ require("mason-lspconfig").setup_handlers {
 			settings = {
 				pylsp = {
 					plugins = {
-						pycodestyle = {enabled = false},
+						pycodestyle = {enabled = true},
 					},
 				},
 			},
 			capabilities = default_capabilities,
 		}
+		vim.g.python_recommended_style = 1
 	end,
 
 	["clangd"] = function ()
@@ -97,7 +98,6 @@ require("mason-lspconfig").setup_handlers {
 	end
 }
 
-vim.g.python_recommended_style = 0
 
 -- Trouble
 require("trouble").setup {
