@@ -43,7 +43,9 @@ return {
 	-- DAP
 	"mfussenegger/nvim-dap",
 	"jay-babu/mason-nvim-dap.nvim",
-	"rcarriga/nvim-dap-ui",
+	{"rcarriga/nvim-dap-ui",
+		dependencies = {"nvim-neotest/nvim-nio"}
+	},
 	"mfussenegger/nvim-dap-python",
 	"theHamsta/nvim-dap-virtual-text",
 

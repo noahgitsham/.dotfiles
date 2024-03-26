@@ -19,7 +19,8 @@
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
 
 ;; Custom paths
-(setq bookmark-default-file "~/.local/share/emacs")
+(defvar package-source-directory "~/.local/share/emacs")
+(setq bookmark-default-file "~/.local/share/emacs"
+	  package-user-dir (expand-file-name package-source-directory "elpa"))
 (when (boundp 'native-comp-eln-load-path)
   (startup-redirect-eln-cache "~/.cache/emacs/eln-cache"))
-(defvar package-source-directory "~/.local/share/emacs")

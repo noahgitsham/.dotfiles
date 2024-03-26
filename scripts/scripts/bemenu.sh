@@ -14,7 +14,6 @@ j4-dmenu-desktop --dmenu="bemenu --ifne \
 	--ab=#1D2021 --af=#A89984 \
 	--hb=#1D2021 --hf=#8EC07C \
 	--fb=#1D2021 --ff=#FBF1C7 \
-	-B 2 --bdr=#595959 \
+	-B 1 --bdr=#A89984 \
 	"
-	#--
 	#--vim-esc-exits \

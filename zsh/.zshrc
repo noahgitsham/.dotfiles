@@ -80,18 +80,6 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /home/noah/.config/broot/launcher/bash/br
 
 
-# Login Message
-if [[ -z $DISPLAY ]] then
-	echo "Battery: $(cat /sys/class/power_supply/BAT0/capacity)%"
-	echo '
-    /|
-   (% 7
-   |  \
-   lU_,)/
-'
-fi
-
-
 # Rehash after package install
 zshcache_time="$(date +%s%N)"
 autoload -Uz add-zsh-hook

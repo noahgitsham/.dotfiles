@@ -24,7 +24,6 @@ export XDG_CACHE_HOME=$HOME/.cache
 export HISTFILE="$XDG_STATE_HOME"/zsh/history
 
 export ANDROID_HOME="$XDG_DATA_HOME"/android
-export HISTFILE="${XDG_STATE_HOME}"/bash/history
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
@@ -49,6 +48,7 @@ export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export W3M_DIR="$XDG_DATA_HOME"/w3m
 export XINITRC="$XDG_CONFIG_HOME"/xinitrc
+export GOPATH="$XDG_DATA_HOME"/go
 
 alias units=units --history "$XDG_DATA_HOME"/units_history
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
