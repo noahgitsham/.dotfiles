@@ -6,12 +6,11 @@ xset r rate 250 30
 #exec /home/noah/programming/wm/xwm/wm
 #exec kitty
 
-picom &
+xmousepasteblock &
 feh --no-fehbg --bg-fill '~/pictures/wallpaper/village.jpeg' &
 $HOME/.config/polybar/launch.sh &
 dunst &
-xmousepasteblock &
-emacs --daemon &
+picom &
 exec bspwm
 
 #exec herbstluftwm
