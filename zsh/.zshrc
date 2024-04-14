@@ -97,7 +97,7 @@ rehash_precmd() {
 add-zsh-hook -Uz precmd rehash_precmd
 
 
-# Foot terminal scrollback Integration
+# OSC 133
 precmd() {
     print -Pn "\e]133;A\e\\"
 }
