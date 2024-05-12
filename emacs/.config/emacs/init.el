@@ -124,12 +124,12 @@
 ;;(setq x-select-enable-clipboard t)
 ;;(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
-;; Backups
+;; Backups TODO fix
 (make-directory "~/.backups/emacs" :parents)
 (setq backup-directory-alist '(("." . "~/.backups/emacs"))
       backup-by-copying t)
 
-; Mode line
+;; Mode line
 (setq line-number-mode nil ; Hide line number
       mode-line-modes nil  ; Hide modes
       )
@@ -141,9 +141,20 @@
 	 (min-width
 	  (2.0)))
 	evil-mode-line-tag
-	mode-line-frame-identification
 	mode-line-buffer-identification
 	mode-line-modes mode-line-misc-info mode-line-end-spaces))
+
+;; Header line
+(setq header-line-format
+      '("" header-line-indent
+	(:propertize
+	 ("" mode-line-client mode-line-modified)
+	 display
+	 (min-width
+	  (2.0)))
+	" "
+	mode-line-buffer-identification
+	))
 
 ;; Remove cursor blinking
 (if (window-system)

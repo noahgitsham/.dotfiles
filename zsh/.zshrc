@@ -7,7 +7,6 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 setopt histignorealldups
-HISTFILE=~/.histfile
 HISTSIZE=50000
 SAVEHIST=50000
 

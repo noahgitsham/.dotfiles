@@ -1,6 +1,6 @@
 require("telescope").setup {
 	defaults = {
-		path_display = { "shorten", shorten = 3},
+		path_display = { filename_first = true },
 	}
 }
 
