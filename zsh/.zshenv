@@ -4,7 +4,17 @@ export SUDO_EDITOR="nvim"
 export TERMINAL="foot"
 export TERM="foot"
 export BROWSER="firefox"
-#export PAGER="bat -p"
+
+#XDG
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_STATE_HOME=$HOME/.local/state
+export XDG_CACHE_HOME=$HOME/.cache
+
+# Path
+path+=("$HOME/.local/bin")
+path+=("$HOME/scripts")
+export PATH
 
 # Themes
 export BAT_THEME="gruvbox-dark"
@@ -14,12 +24,6 @@ export VST_PATH=/usr/lib/vst/
 
 # Wine
 export ABLETON_DIR="$HOME/software/wine/Ableton/drive_c/ProgramData/Ableton/Live 11 Suite/"
-
-#XDG
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_STATE_HOME=$HOME/.local/state
-export XDG_CACHE_HOME=$HOME/.cache
 
 export HISTFILE="$XDG_STATE_HOME"/zsh/history
 

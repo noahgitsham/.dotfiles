@@ -23,7 +23,7 @@ source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 # KEYTIMEOUT=1
 
 # Set the default WORDCHARS
-WORDCHARS='*?_[]~=&;!#$%^(){}<>'
+WORDCHARS='*?_[]~=&;|!#$%^(){}<>'
 
 # The plugin will auto execute this zvm_after_init function
 function zvm_after_init() {
@@ -42,10 +42,6 @@ autoload -Uz compinit
 # XDG
 mkdir -p "$XDG_CACHE_HOME"/zsh
 compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
-
-# Path
-path+=("$HOME/scripts")
-export PATH
 
 ### Custom prompt
 ##setopt PROMPT_SUBST

@@ -30,13 +30,16 @@ require("mason").setup()
 
 require("mason-lspconfig").setup {
 	ensure_installed = {"bashls",
-			    "clangd",
-			    "cssls",
-			    "html",
-			    "jsonls",
-			    "lua_ls",
-			    "pylsp",
-			    "rust_analyzer"}
+	                    "clangd",
+	                    "cssls",
+	                    "cmake",
+	                    "html",
+	                    "jdtls",
+	                    "jsonls",
+	                    "lua_ls",
+	                    "pylsp",
+	                    "rust_analyzer",
+	                    "tsserver"}
 }
 
 local default_on_attach = function(client,bufnr)
@@ -95,9 +98,10 @@ require("mason-lspconfig").setup_handlers {
 			},
 			capabilities = default_capabilities,
 		}
-	end
-}
+	end,
 
+	["jdtls"] = function () end
+}
 
 -- Trouble
 require("trouble").setup {

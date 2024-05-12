@@ -65,3 +65,6 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   pattern = '*',
   command = 'silent! normal! g`"zv'
 })
+
+-- Spellcheck
+vim.opt.spelllang = "en_gb"

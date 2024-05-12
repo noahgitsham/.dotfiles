@@ -1,5 +1,5 @@
 #!/bin/sh
 
 date
-swaylock
+waylock
 date

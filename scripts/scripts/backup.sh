@@ -5,7 +5,7 @@ if [ $# -eq 0 ]; then
 	exit 1
 else
 	## Backup system data to home ##
-	backuppath="$HOME/backups/"
+	backuppath="$HOME/.backups/"
 	if [ ! -d "$backuppath" ]; then
 		mkdir -p "$backuppath"
 	fi

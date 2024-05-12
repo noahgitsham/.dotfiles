@@ -7,7 +7,7 @@
 
 ;; Elpaca
 (defvar elpaca-installer-version 0.7)
-(defvar elpaca-directory (expand-file-name "elpaca/" package-source-directory))
+(defvar elpaca-directory (expand-file-name "elpaca/" emacs-data-path))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
 (defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
@@ -125,8 +125,8 @@
 ;;(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
 ;; Backups
-(make-directory "~/backups/emacs" :parents)
-(setq backup-directory-alist '(("." . "~/backups/emacs"))
+(make-directory "~/.backups/emacs" :parents)
+(setq backup-directory-alist '(("." . "~/.backups/emacs"))
       backup-by-copying t)
 
 ; Mode line
@@ -420,7 +420,12 @@
 (use-package olivetti
   :init
   (setq olivetti-body-width 100)
-  (add-hook 'org-mode-hook 'olivetti-mode))
+  (add-hook 'org-mode-hook 'olivetti-mode)
+  :config
+  ;;(steal-face-attribute 'olivetti-fringe :background 'solaire-fringe-face)
+  ;;(set-face-attribute 'olivetti-fringe nil :background "red")
+  ;;(set-face-attribute 'fringe nil :background "red")
+  )
 
 
 ;;;;;;;;;;;

@@ -6,21 +6,37 @@ local maxEntryWidth = 30
 
 luasnip.config.setup()
 
+local cmp_kinds = {
+	Function = "func",
+	Field = "field",
+	Text = "text",
+	Enum = "enum",
+	EnumMember = "enumm",
+	Variable = "var",
+	Struct = "strct",
+	Snippet = "snip",
+	Keyword = "kwd",
+	Constant = "const",
+	Class = "class",
+	Module = "mod",
+	File = "file",
+	Folder = "fldr",
+	Interface = "intfc",
+	Reference = "ref",
+}
+
 cmp.setup {
 	formatting = {
 		format = function(entry, vim_item)
-			--vim_item.menu = ({
-			--	buffer = "[BUF]",
-			--	nvim_lsp = "[LSP]",
-			--	luasnip = "[SNP]",
-			--	latex_symbols = "[LaTeX]", 
-			--	nvim_lua = "[LUA]",
-			--})[entry.source.name]
-			
+			-- Format Kinds
+			vim_item.kind = cmp_kinds[vim_item.kind] or vim_item.kind
 			vim_item.kind = "[" .. string.upper(vim_item.kind) .. "]"
+
+			-- Format main text
 			if string.len(vim_item.abbr) > maxEntryWidth then
 				vim_item.abbr = string.sub(vim_item.abbr, 1, maxEntryWidth - 3) .. "..."
 			end
+
 			return vim_item
 		end,
 	},
@@ -65,7 +81,7 @@ cmp.setup {
 	sources = {
 		{name = "nvim_lsp"},
 		{name = "luasnip"},
-		{name = "nvim_lsp_signature_help"},
+		--{name = "nvim_lsp_signature_help"},
 		{name = "path"},
 		{name = "buffer", keyword_length = 5},
 	},

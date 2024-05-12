@@ -1,5 +1,4 @@
 return {
-	"https://github.com/L3afMe/rose-pine-sepia-nvim",
 	-- Treesitter
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -29,7 +28,6 @@ return {
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
-	"hrsh7th/cmp-nvim-lsp-signature-help",
 	{ "ray-x/lsp_signature.nvim", event = "VeryLazy" },
 	"windwp/nvim-autopairs",
 
@@ -53,6 +51,7 @@ return {
 	"folke/neodev.nvim",
 	"windwp/nvim-ts-autotag",
 	"lervag/vimtex",
+	"mfussenegger/nvim-jdtls",
 
 	-- Git
 	"lewis6991/gitsigns.nvim",
@@ -73,7 +72,9 @@ return {
 	"rebelot/kanagawa.nvim",
 	"loctvl842/monokai-pro.nvim",
 	"sainnhe/gruvbox-material",
-	"cocopon/iceberg.vim",
+	"savq/melange-nvim",
+	"jaredgorski/fogbell.vim",
+	"mcchrish/zenbones.nvim",
 
 	-- Misc
 	"ThePrimeagen/vim-be-good",
