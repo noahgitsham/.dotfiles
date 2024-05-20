@@ -79,7 +79,8 @@
 ;;;;;;;;;;;;;;;;
 ;; UI Changes ;;
 ;;;;;;;;;;;;;;;;
-(set-frame-font "Fragment Mono 16" nil t)
+;;(set-frame-font "Fragment Mono 16" nil t)
+(set-frame-font "TT Interphases Pro Mono Trl 16" nil t)
 ;(set-face-attribute 'italic nil :font "CommitMono 14" :slant 'italic)
 (set-face-attribute 'variable-pitch nil :family "Helvetica Neue" :weight 'bold)
 
@@ -89,6 +90,7 @@
 (use-package gruvbox-theme)
 (use-package doom-themes
   :init
+  (setq doom-gruvbox-dark-variant "hard")
   (load-theme 'gruvbox-dark-hard t)
   :config
   (setq doom-themes-enable-bold t
@@ -185,7 +187,9 @@
 
 (use-package solaire-mode
   :init
-  (solaire-global-mode 1))
+  (solaire-global-mode 1)
+
+  )
 
 
 (defun steal-face-attribute (face attribute source &optional frame)
@@ -241,6 +245,13 @@
 	org-auto-align-tags nil
 	org-tags-column 0)
 
+  (add-to-list 'font-lock-extra-managed-props 'display)
+  (font-lock-add-keywords 'org-mode
+			  `(("[^:]\\( \\)\\(:.*:\\)$"
+			     (1 `(face nil
+				       display (space :align-to (- right ,(length (match-string 2)) 1)))
+				prepend))) t)
+
   ; Do not insert new line between headers and list elements
   (setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
   ; Idk
@@ -271,6 +282,7 @@
 	'((sequence "TODO(t)" "|" "DONE(d)")
 	  (sequence "|" "CANCELED(c)")
 	  (sequence "|" "WORKING(w)")))
+  (setq org-log-done 'time)
 
   ;; Priorities
   (setq org-priority-highest 1
@@ -278,12 +290,11 @@
 	org-priority-lowest  3)
 
   ;; Agenda
-  (setq ;org-directory "~"
-	org-agenda-files '("~/uni" "~/documents" "~/todo.org")
+  (setq org-agenda-files '("~/uni" "~/documents" "~/todo.org")
 	org-agenda-span 22
 	org-agenda-start-on-weekday nil
 	org-agenda-start-day "-7d"
-	org-agenda-window-setup 'only-window
+	org-agenda-window-setup 'current-window
 	org-agenda-confirm-kill t)
   (add-hook 'org-trigger-hook 'save-buffer)
   ;; Agenda views
@@ -301,7 +312,12 @@
   ;; Agenda style
   (setq org-agenda-tags-column 0
 	org-agenda-block-separator ?─
-        ;org-agenda-
+	org-agenda-prefix-format '((agenda . "%t ")
+				   (todo . " %i %-12:c")
+				   (tags . " %i %-12:c")
+				   (search . "asdfad %i %-12:c"))
+	org-agenda-remove-tags t
+	;;org-agenda-category-icon-alist '(())
 	)
 
   ;; Calendar
@@ -327,6 +343,10 @@
     (set-face-attribute 'org-document-title nil :inherit 'variable-pitch :height 3.0 :box '(:line-width 20 :color "#1d2021"))
     (set-face-attribute 'org-document-info nil :inherit 'variable-pitch)
     )
+  (setq org-todo-keyword-faces
+	'(("TODO" . error)
+	  ("DONE" . success)
+	  ("CANCELED" . shadow)))
   )
 
 ;; Super agenda
@@ -340,8 +360,8 @@
   :after org
   :hook org-mode-hook
   :init
-  (add-hook 'org-mode-hook #'org-modern-mode)
-  (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
+  ;;(add-hook 'org-mode-hook #'org-modern-mode)
+  ;;(add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
   :config
   (setq org-modern-star     nil
 	org-modern-progress nil
@@ -354,10 +374,10 @@
   (set-face-attribute 'org-modern-label nil :width 'regular :height 1.0)
   (set-face-attribute 'org-block-begin-line nil :width 'regular :height 1.0)
   (set-face-attribute 'org-modern-tag nil :foreground "white")
-  (setq org-modern-todo-faces
-	(quote (("CANCELED" :inherit 'ansi-color-cyan :foreground "white" :weight bold)
-		("TODO" :inherit 'ansi-color-red :foreground "white" :weight bold)
-		("DONE" :inherit 'ansi-color-green :foreground "white" :weight bold))))
+  (setq org-modern-todo-faces ;; TODO make work
+  	(quote (("TODO"     :background (face-foreground 'error)   :weight bold)
+  		("DONE"     :background "green" :weight bold)
+		("CANCELED" :background "blue"  :weight bold))))
 
   (setq org-modern-priority-faces
 	(quote ((?A :background "red")

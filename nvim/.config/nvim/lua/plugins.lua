@@ -75,6 +75,7 @@ return {
 	"savq/melange-nvim",
 	"jaredgorski/fogbell.vim",
 	"mcchrish/zenbones.nvim",
+	"https://github.com/chriskempson/vim-tomorrow-theme",
 
 	-- Misc
 	"ThePrimeagen/vim-be-good",

@@ -3,11 +3,6 @@
 ;(setq use-package-verbose t
 ;      use-package-minimum-reported-time 0)
 
-;; Move eln-cache
-;; Set eln-cache dir
-(when (boundp 'native-comp-eln-load-path)
-  (startup-redirect-eln-cache (expand-file-name "~/.cache/eln-cache/" user-emacs-directory)))
-
 ;; UI
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -17,12 +12,6 @@
 
 ;; Load paths
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
-
-;; Custom paths
-
-;;(defvar emacs-data-path "~/.local/share/emacs")
-;;(defvar emacs-cache-path "~/.cache/emacs")
-;;(defvar emacs-state-path "~/.local/state/emacs")
 
 (defvar emacs-data-path (if (getenv "XDG_DATA_HOME")
 			    (expand-file-name "emacs" (getenv "XDG_DATA_HOME"))
@@ -46,7 +35,8 @@
       transient-levels-file        (expand-file-name "levels.el" emacs-state-path)
       transient-values-file        (expand-file-name "values.el" emacs-state-path)
       transient-history-file       (expand-file-name "history.el" emacs-state-path)
-      auto-save-list-file-prefix   (expand-file-name "autosaves/.saves-" emacs-data-path))
+      auto-save-list-file-prefix   (expand-file-name "autosaves/.saves-" emacs-data-path)
+      gamegrid-user-score-file-directory (expand-file-name "game-scores" emacs-state-path))
 
 (when (boundp 'native-comp-eln-load-path)
   (startup-redirect-eln-cache (expand-file-name "eln-cache" emacs-cache-path)))
