@@ -21,3 +21,5 @@ require("lazy").setup("plugins", {
 		notify = false,
 	},
 })
+
+vim.keymap.set("n", "<leader>lz", function () vim.api.nvim_command("Lazy") end)

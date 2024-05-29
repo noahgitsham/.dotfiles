@@ -54,3 +54,6 @@ function YesNoDialog(message, default, yesFunc, noFunc)
 		end
 	)
 end
+
+vim.api.nvim_create_user_command("E", function () vim.cmd("Explore") end, {})
+vim.api.nvim_create_user_command("V", function () vim.cmd("Vexplore") end, {})

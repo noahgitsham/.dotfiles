@@ -30,8 +30,8 @@
       (display-line-numbers-mode 0)))
   
   (let* ((splash-buffer  (get-buffer-create "*splash*"))
-         (height         (round (- (window-body-height nil) 1) ))
-         (width          (round (window-body-width nil)        ))
+         (height         (round (- (window-total-height nil) 1) ))
+         (width          (round (window-total-width nil)        ))
          (padding-center (+ (/ height 2) 1)))
     
     ;; If there are buffer associated with filenames,
@@ -66,7 +66,7 @@
           (display-buffer-same-window splash-buffer nil)
 
 	  (message "")
-	  (add-hook 'window-state-change-hook #'recenter-or-kill t)
+	  (add-hook 'window-state-change-hook #'recenter-or-kill nil t)
 	  (setq cursor-type nil)
 	  )
       (splash-screen-kill)))
@@ -84,21 +84,22 @@
       (format (format "%%%ds" padding) string))))
 
 (defun recenter-or-kill ()
-  "Kill the splash screen buffer (hook)."
-  (if (not (get-buffer-window "*splash*"))
+  "Recenter the splash screen or kill it if no longer visible"
+  (if (not (get-buffer-window (current-buffer)))
       (progn (remove-hook 'window-state-change-hook #'recenter-or-kill t)
 	     (message "Hook removed")
 	     (kill-buffer "*splash*")
 	     (message "Buffer killed")
 	     )
-    (splash-screen-recenter))
+    (splash-screen-recenter)
+    )
   )
 
 (defun splash-screen-recenter ()
   "Recenter splash screen"
-  (let* ((splash-buffer  (get-buffer-create "*splash*"))
-         (height         (round (- (window-body-height nil) 3) ))
-         (width          (round (window-body-width nil)        ))
+  (let* ((splash-buffer  (get-buffer-create (current-buffer)))
+         (height         (round (- (window-body-height (get-buffer-window splash-buffer)) 3) ))
+         (width          (round (window-body-width (get-buffer-window splash-buffer))        ))
          (padding-center (+ (/ height 2) 1)))
   (with-current-buffer splash-buffer
     (read-only-mode -1)

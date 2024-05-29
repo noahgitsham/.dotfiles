@@ -65,12 +65,16 @@
 (use-package evil
   :ensure t
   :demand t
+  :init
+  ;; Move normally on wrapped text
+  (setq evil-respect-visual-line-mode t)
   :config
   (evil-set-undo-system 'undo-redo)
   (setq scroll-step 1 ; Vim scrolling
   	scroll-margin 8) ; Scrolloff
-  ;; Move normally on wrapped text
-  (setq evil-respect-visual-line-mode nil)
+  (setq evil-echo-state nil)
+  ;; C-w in minibuffer
+  (add-hook 'minibuffer-mode-hook (lambda () (local-set-key (kbd "C-w") 'backward-kill-word)))
   ;; Fix org src indentation
   (add-to-list 'evil-buffer-regexps '("^\\*Org Src .*\\*$" . nil))
   ;; Enable evil
@@ -100,7 +104,8 @@
   ;(set-face-attribute 'org-todo nil :foreground "Yellow")
   (set-face-italic-p 'line-number nil)
   (set-face-italic-p 'line-number-current-line nil)
-  ;(set-face-attrubte 'line-number nil :background )
+  (set-face-attribute 'mode-line nil :background "#32302F")
+  (set-face-attribute 'header-line nil :background "#32302F")
   (steal-face-attribute 'line-number :background 'default)
   (steal-face-attribute 'line-number-current-line :background 'default)
   )
@@ -135,28 +140,28 @@
 (setq line-number-mode nil ; Hide line number
       mode-line-modes nil  ; Hide modes
       )
-(setq mode-line-format
-      '("%e" mode-line-front-space
-	(:propertize
-	 ("" mode-line-client mode-line-modified)
-	 display
-	 (min-width
-	  (2.0)))
-	evil-mode-line-tag
-	mode-line-buffer-identification
-	mode-line-modes mode-line-misc-info mode-line-end-spaces))
+(setq-default mode-line-format nil)
+      ;;'("%e" mode-line-front-space
+      ;;	(:propertize
+      ;;	 ("" mode-line-client mode-line-modified)
+      ;;	 display
+      ;;	 (min-width
+      ;;	  (2.0)))
+      ;;	evil-mode-line-tag
+      ;;	mode-line-buffer-identification
+      ;;	mode-line-modes mode-line-misc-info mode-line-end-spaces))
 
 ;; Header line
-(setq header-line-format
-      '("" header-line-indent
-	(:propertize
-	 ("" mode-line-client mode-line-modified)
-	 display
-	 (min-width
-	  (2.0)))
-	" "
-	mode-line-buffer-identification
-	))
+(setq-default header-line-format
+	      '("" header-line-indent
+		(:propertize
+		 ("" mode-line-modified)
+		 display
+		 (min-width
+		  (2.0)))
+		" "
+		mode-line-buffer-identification
+		))
 
 ;; Remove cursor blinking
 (if (window-system)
@@ -244,21 +249,18 @@
 	org-hide-leading-stars t
 	org-auto-align-tags nil
 	org-tags-column 0)
+  ;;(load "rougier-org" nil t)
 
   (add-to-list 'font-lock-extra-managed-props 'display)
   (font-lock-add-keywords 'org-mode
 			  `(("[^:]\\( \\)\\(:.*:\\)$"
 			     (1 `(face nil
-				       display (space :align-to (- right ,(length (match-string 2)) 1)))
+				       display (space :align-to (- right ,(length (match-string 2)) 3)))
 				prepend))) t)
 
   ; Do not insert new line between headers and list elements
   (setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
-  ; Idk
-  ;(setq auto-window-vscroll nil)
   (add-hook 'org-mode-hook 'visual-line-mode)
-  (add-hook 'org-mode-hook (lambda () (display-line-number-mode -1)))
-  ;(add-hook 'org-mode-hook (lambda () (display-line-numbers-mode)))
 
   ;; LaTeX Fragments
   (with-eval-after-load 'org
@@ -363,11 +365,12 @@
   ;;(add-hook 'org-mode-hook #'org-modern-mode)
   ;;(add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
   :config
-  (setq org-modern-star     nil
-	org-modern-progress nil
-	org-modern-table    nil
-	org-modern-keyword  nil
-	org-modern-checkbox nil
+  (setq org-modern-star       'fold
+	org-modern-fold-stars '((">" . "*"))
+	org-modern-progress   nil
+	org-modern-table      nil
+	org-modern-keyword    nil
+	org-modern-checkbox   nil
 	org-modern-block-name nil)
   (setq org-modern-label-border 0
 	org-modern-block-fringe 20)
@@ -450,11 +453,12 @@
 ;; Olivetti
 (use-package olivetti
   :init
-  (setq olivetti-body-width 100)
+  (setq olivetti-body-width 60)
   (add-hook 'org-mode-hook 'olivetti-mode)
   :config
-  ;;(steal-face-attribute 'olivetti-fringe :background 'solaire-fringe-face)
-  ;;(set-face-attribute 'olivetti-fringe nil :background "red")
+  (setq olivetti-style  'fancy)
+  ;;(steal-face-attribute 'olivetti-fringe :background 'menu)
+  (set-face-attribute 'olivetti-fringe nil :background "#282828")
   ;;(set-face-attribute 'fringe nil :background "red")
   )
 

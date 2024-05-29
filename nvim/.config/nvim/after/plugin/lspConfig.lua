@@ -28,6 +28,8 @@ require("neodev").setup {
 -- Mason
 require("mason").setup()
 
+vim.keymap.set("n", "<leader>ms", function () vim.api.nvim_command("Mason") end)
+
 require("mason-lspconfig").setup {
 	ensure_installed = {"bashls",
 	                    "clangd",
@@ -49,7 +51,7 @@ local default_on_attach = function(client,bufnr)
 	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
 	vim.keymap.set("n", "<leader>ef", vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set("n", "<tab>", vim.lsp.buf.hover, bufopts)
-	--client.server_capabilities.semanticTokensProvider = nil
+	client.server_capabilities.semanticTokensProvider = nil
 end
 
 local default_capabilities = require("cmp_nvim_lsp").default_capabilities()

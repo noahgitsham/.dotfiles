@@ -28,6 +28,7 @@ export ABLETON_DIR="$HOME/software/wine/Ableton/drive_c/ProgramData/Ableton/Live
 # Fuck you microsoft
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
+# Dmenu replacement
 export BEMENU_OPTS="--ifne \
 	--fn='Terminus 14' \
 	--no-cursor \

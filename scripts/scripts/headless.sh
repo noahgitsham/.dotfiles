@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 nohup "$@" >&/dev/null &
-echo "Pid: $!"
+echo "$(ps -p $! -o comm=) launched with PID: $!"
 #disown "%nohup"
