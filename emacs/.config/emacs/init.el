@@ -5,7 +5,8 @@
 		     (format "%.2f seconds"
 			     (string-to-number (emacs-init-time))))))
 
-;; Elpaca
+;; Package Manager
+;(load "elpaca" nil t)
 (defvar elpaca-installer-version 0.7)
 (defvar elpaca-directory (expand-file-name "elpaca/" emacs-data-path))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
@@ -54,12 +55,7 @@
 
 ;; Fix weird startup message
 ;;(setq elpaca-core-date '(20231211))
-
 (elpaca-wait)
-
-
-;; Daemon
-;(server-start)
 
 ;; Vim emulation
 (use-package evil
@@ -77,14 +73,23 @@
   (add-hook 'minibuffer-mode-hook (lambda () (local-set-key (kbd "C-w") 'backward-kill-word)))
   ;; Fix org src indentation
   (add-to-list 'evil-buffer-regexps '("^\\*Org Src .*\\*$" . nil))
+  ;; Hide "Quit" on ex command exit TODO
+  ;(advice-add 'abort-recursive-edit :around (lambda (orig-fun &rest args)
+  ;					      (let ((inhibit-message t))
+  ;						(apply orig-fun args))))
+  ;; Allow :x to close read only buffers
+  (advice-add 'evil-save-modified-and-close :around (lambda (orig-fun &rest args)
+						      (if buffer-read-only
+							  (kill-buffer-and-window)
+							(apply orig-fun args))))
   ;; Enable evil
   (evil-mode 1))
+
 
 ;;;;;;;;;;;;;;;;
 ;; UI Changes ;;
 ;;;;;;;;;;;;;;;;
-;;(set-frame-font "Fragment Mono 16" nil t)
-(set-frame-font "TT Interphases Pro Mono Trl 16" nil t)
+(set-frame-font "Fragment Mono 14" nil t)
 ;(set-face-attribute 'italic nil :font "CommitMono 14" :slant 'italic)
 (set-face-attribute 'variable-pitch nil :family "Helvetica Neue" :weight 'bold)
 
@@ -131,11 +136,6 @@
 ;;(setq x-select-enable-clipboard t)
 ;;(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
-;; Backups TODO fix
-(make-directory "~/.backups/emacs" :parents)
-(setq backup-directory-alist '(("." . "~/.backups/emacs"))
-      backup-by-copying t)
-
 ;; Mode line
 (setq line-number-mode nil ; Hide line number
       mode-line-modes nil  ; Hide modes
@@ -178,6 +178,16 @@
 
 ;; Minibuffer
 (setq read-buffer-completion-ignore-case t)
+
+(defun my-command-error-function (data context caller)
+  "Ignore the buffer-read-only, beginning-of-buffer,
+end-of-buffer signals; pass the rest to the default handler."
+  (when (not (memq (car data) '(buffer-read-only
+                                beginning-of-buffer
+                                end-of-buffer)))
+    (command-error-default-function data context caller)))
+
+(setq command-error-function #'my-command-error-function)
 
 (use-package vertico
   :init (vertico-mode 1)

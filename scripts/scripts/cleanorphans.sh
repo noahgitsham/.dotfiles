@@ -1,3 +1,3 @@
 #!/bin/sh
 
-pacman -Qtdq | sudo pacman -Rns -
+paru -Qtdq | paru -Rns -

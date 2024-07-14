@@ -85,7 +85,7 @@
 
 (defun recenter-or-kill ()
   "Recenter the splash screen or kill it if no longer visible"
-  (if (not (get-buffer-window (current-buffer)))
+  (if (not (get-buffer-window "*splash*"))
       (progn (remove-hook 'window-state-change-hook #'recenter-or-kill t)
 	     (message "Hook removed")
 	     (kill-buffer "*splash*")
@@ -97,7 +97,7 @@
 
 (defun splash-screen-recenter ()
   "Recenter splash screen"
-  (let* ((splash-buffer  (get-buffer-create (current-buffer)))
+  (let* ((splash-buffer  (get-buffer-create "*splash*"))
          (height         (round (- (window-body-height (get-buffer-window splash-buffer)) 3) ))
          (width          (round (window-body-width (get-buffer-window splash-buffer))        ))
          (padding-center (+ (/ height 2) 1)))

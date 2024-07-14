@@ -39,7 +39,7 @@ require("mason-lspconfig").setup {
 	                    "jdtls",
 	                    "jsonls",
 	                    "lua_ls",
-	                    "pylsp",
+	                    --"pylsp",
 	                    "rust_analyzer",
 	                    "tsserver"}
 }
@@ -71,13 +71,13 @@ require("mason-lspconfig").setup_handlers {
 			settings = {
 				pylsp = {
 					plugins = {
-						pycodestyle = {enabled = true},
+						pycodestyle = {enabled = false},
 					},
 				},
 			},
 			capabilities = default_capabilities,
 		}
-		vim.g.python_recommended_style = 1
+		vim.g.python_recommended_style = 0
 	end,
 
 	["clangd"] = function ()

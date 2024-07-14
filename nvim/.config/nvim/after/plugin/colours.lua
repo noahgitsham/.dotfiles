@@ -14,3 +14,17 @@ require("gruvbox").setup {
 		Visual = {  }
 	},
 }
+
+vim.g.tundra_biome = "jungle"
+require("nvim-tundra").setup {
+	plugins = {
+		lsp = true,
+		semantic_tokens = true,
+		treesitter = true,
+		telescope = true,
+		cmp = true,
+		gitsigns = true,
+		neogit = true,
+		textfsm = true,
+	},
+}

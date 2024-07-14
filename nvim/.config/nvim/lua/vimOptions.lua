@@ -46,7 +46,7 @@ vim.opt.clipboard:append("unnamedplus")
 -- Statusline
 vim.opt.laststatus = 3 -- Global Statusline
 vim.opt.showmode = false
---vim.opt.cmdheight = 0
+--vim.opt.cmdheight = 0 -- TODO show macro recording
 
 -- Leader
 vim.g.mapleader = "\\"

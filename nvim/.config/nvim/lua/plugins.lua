@@ -47,6 +47,7 @@ return {
 	"theHamsta/nvim-dap-virtual-text",
 
 	-- Languages
+	"Zeioth/compiler.nvim",
 	"folke/neodev.nvim",
 	"windwp/nvim-ts-autotag",
 	"lervag/vimtex",
@@ -74,7 +75,9 @@ return {
 	"savq/melange-nvim",
 	"jaredgorski/fogbell.vim",
 	"mcchrish/zenbones.nvim",
-	"https://github.com/chriskempson/vim-tomorrow-theme",
+	"chriskempson/vim-tomorrow-theme",
+	"sjl/badwolf",
+	"sam4llis/nvim-tundra",
 
 	-- Misc
 	"ThePrimeagen/vim-be-good",

@@ -68,11 +68,16 @@ compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 
 eval "$(starship init zsh)"
 
-# Syntax Highligting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Autofill
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history)
 
 #source /home/noah/.config/broot/launcher/bash/br
+
+lfcd () {
+    # `command` is needed in case `lfcd` is aliased to `lf`
+    cd "$(command lf -print-last-dir "$@")"
+}
 
 
 # Rehash after package install
@@ -96,6 +101,9 @@ add-zsh-hook -Uz precmd rehash_precmd
 precmd() {
     print -Pn "\e]133;A\e\\"
 }
+
+# Syntax Highlighting
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 # Aliases
