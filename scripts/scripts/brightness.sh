@@ -18,6 +18,7 @@ case $1 in
 		;;
 esac
 
-light -S "$brightness"
-
 notify-send -r 1 -u low -t 1250 -i "" "Brightness | $brightness%" -h int:value:"$brightness"
+
+ddcutil setvcp 10 "$brightness" &
+light -S "$brightness" &
