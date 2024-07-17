@@ -13,7 +13,7 @@ SAVEHIST=50000
 #unsetopt beep
 
 # Vim keybinds
-source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+#source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 #function zvm_after_init() {
 #}
 
@@ -69,8 +69,8 @@ compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 eval "$(starship init zsh)"
 
 # Autofill
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history)
+#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+#ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history)
 
 #source /home/noah/.config/broot/launcher/bash/br
 
