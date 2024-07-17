@@ -2,4 +2,3 @@
 
 nohup "$@" >&/dev/null &
 echo "$(ps -p $! -o comm=) launched with PID: $!"
-#disown "%nohup"
