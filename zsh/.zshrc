@@ -122,7 +122,7 @@ alias fzrg=": | fzf --ansi --disabled --query \"$INITIAL_QUERY\" \
     --delimiter : \
     --preview 'bat --color=always {1} --highlight-line {2}' \
     --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
-    --bind 'enter:become(vim {1} +{2})'"
+    --bind 'enter:become(nvim {1} +{2})'"
 
 RG_HIDDEN_PREFIX="${RG_PREFIX}--hidden "
 alias fzrgh=": | fzf --ansi --disabled --query \"$INITIAL_QUERY\" \
@@ -131,6 +131,6 @@ alias fzrgh=": | fzf --ansi --disabled --query \"$INITIAL_QUERY\" \
     --delimiter : \
     --preview 'bat --color=always {1} --highlight-line {2}' \
     --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
-    --bind 'enter:become(vim {1} +{2})'"
+    --bind 'enter:become(nvim {1} +{2})'"
 
 #zprof

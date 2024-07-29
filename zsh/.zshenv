@@ -16,9 +16,6 @@ path+=("$HOME/.local/bin")
 path+=("$HOME/scripts")
 export PATH
 
-# Themes
-export BAT_THEME="gruvbox-dark"
-
 # Directories
 export VST_PATH=/usr/lib/vst/
 
@@ -30,7 +27,7 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # Dmenu replacement
 export BEMENU_OPTS="--ifne \
-	--fn='Terminus 14' \
+	--fn=Terminus 18 \
 	--no-cursor \
 	--cw 2 \
 	--ch 14 \
@@ -38,14 +35,22 @@ export BEMENU_OPTS="--ifne \
 	-l 10 \
 	-P '>' \
 	-n -W 0.5 \
-	--tb=#A89984 --tf=#1D2021 \
-	--nb=#1D2021 --nf=#A89984 \
-	--ab=#1D2021 --af=#A89984 \
-	--hb=#1D2021 --hf=#8EC07C \
-	--fb=#1D2021 --ff=#FBF1C7 \
-	-B 1 --bdr=#A89984"
+	--tb=#60605F --tf=#FFFFFF \
+	--nb=#FFFFFF --nf=#60605F \
+	--ab=#FFFFFF --af=#60605F \
+	--hb=#FFFFFF --hf=#F5871F \
+	--fb=#FFFFFF --ff=#4D4D4C \
+	--bdr=#60605F"
 
-# XDG User Directories
+	#--tb=#A89984 --tf=#1D2021 \
+	#--nb=#1D2021 --nf=#A89984 \
+	#--ab=#1D2021 --af=#A89984 \
+	#--hb=#1D2021 --hf=#8EC07C \
+	#--fb=#1D2021 --ff=#FBF1C7 \
+	#--bdr=#A89984"
+
+
+# XDG User #Directories
 export HISTFILE="$XDG_STATE_HOME"/zsh/history
 export ANDROID_HOME="$XDG_DATA_HOME"/android
 export CARGO_HOME="$XDG_DATA_HOME"/cargo

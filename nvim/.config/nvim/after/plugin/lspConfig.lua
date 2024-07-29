@@ -107,14 +107,19 @@ require("mason-lspconfig").setup_handlers {
 
 -- Trouble
 require("trouble").setup {
-	icons = false,
-	fold_open = "v", -- icon used for open folds
-	fold_closed = ">", -- icon used for closed folds
+	icons = {
+		indent = {
+			fold_open = "v",
+			fold_closed = ">",
+		},
+	},
 	indent_lines = false, -- add an indent guide below the fold icons
 	use_diagnostic_signs = true,
+	warn_no_results = false
+	
 }
 
-vim.keymap.set("n","<leader>er", vim.cmd.TroubleToggle)
+vim.keymap.set("n","<leader>er", ":Trouble diagnostics toggle<CR>")
 
 -- Vimtex
 vim.g.vimtex_view_method = "zathura"
