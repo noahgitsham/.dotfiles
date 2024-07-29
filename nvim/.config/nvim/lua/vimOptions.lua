@@ -68,3 +68,6 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 
 -- Spellcheck
 vim.opt.spelllang = "en_gb"
+
+-- Mouse
+vim.opt.mouse = ""

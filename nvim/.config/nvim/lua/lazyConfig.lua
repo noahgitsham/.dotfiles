@@ -20,6 +20,28 @@ require("lazy").setup("plugins", {
 	change_detection = {
 		notify = false,
 	},
+	ui ={
+		icons = {
+			cmd = "",
+			config = "",
+			event = "",
+			favorite = "",
+			ft = "",
+			init = "",
+			import = "",
+			keys = "",
+			lazy = "",
+			loaded = "+",
+			not_loaded = "-",
+			plugin = "",
+			runtime = "",
+			require = "",
+			source = "",
+			start = "",
+			task = "--",
+			list = { "*", "*", "*", "*", },
+		}
+	}
 })
 
 vim.keymap.set("n", "<leader>lz", function () vim.api.nvim_command("Lazy") end)

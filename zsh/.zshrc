@@ -12,14 +12,13 @@ SAVEHIST=50000
 
 #unsetopt beep
 
-# Vim keybinds
-#source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-#function zvm_after_init() {
-#}
-
-# bindkey -v '^?' backward-delete-char
-# bindkey '^R' history-incremental-search-backward
-# KEYTIMEOUT=1
+bindkey -v '^?' backward-delete-char
+bindkey '^R' history-incremental-search-backward
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-search
+bindkey "^W" backward-kill-word
+bindkey '^_' backward-kill-word
+KEYTIMEOUT=1
 
 # Set the default WORDCHARS
 WORDCHARS='*?_[]~=&;|!#$%^(){}<>'
@@ -30,9 +29,6 @@ function zvm_after_init() {
 }
 
 
-# fzf history completion
-zvm_after_init_commands+=('source /usr/share/fzf/key-bindings.zsh')
-
 # Completion
 zstyle :compinstall filename '~/.zshrc'
 
@@ -42,43 +38,36 @@ autoload -Uz compinit
 mkdir -p "$XDG_CACHE_HOME"/zsh
 compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 
-### Custom prompt
-##setopt PROMPT_SUBST
-##
-### Git prompt
-##autoload -Uz vcs_info
-##precmd_vcs_info() { vcs_info }
-##precmd_functions+=( precmd_vcs_info )
-##vcs_colour=blue
-##
-##make_prompt() {
-##	if [[ -z ${vcs_info_msg_0_} ]] then
-##		PROMPT="%F{yellow}%n%f %F{gray}$%f "
-##	else
-##		PROMPT="%F{yellow}%n%f %F{${vcs_colour}}${vcs_info_msg_0_}%f %F{gray}$%f "
-##	fi
-##}
-##
-##precmd_functions+=make_prompt
-##
-### RPROMPT='%F{${vcs_colour}}${vcs_info_msg_0_}%f'
-##
-### Format to branch name only
-##zstyle ":vcs_info:git:*" formats "%b"
+# Custom prompt
+setopt PROMPT_SUBST
 
-eval "$(starship init zsh)"
+# Git prompt
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+
+make_prompt() {
+	if [[ -z ${vcs_info_msg_0_} ]] then
+		PROMPT="%F{yellow}%n%f %F{gray}$%f "
+	else
+		PROMPT="%F{yellow}%n%f %F{magenta}${vcs_info_msg_0_}%f %F{gray}$%f "
+	fi
+}
+
+precmd_functions+=make_prompt
+
+# RPROMPT='%F{${vcs_colour}}${vcs_info_msg_0_}%f'
+
+# Format to branch name only
+zstyle ":vcs_info:git:*" check-for-changes true
+zstyle ":vcs_info:git:*" formats "%b" # %u %c
+
+
+#eval "$(starship init zsh)"
 
 # Autofill
 #source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 #ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history)
-
-#source /home/noah/.config/broot/launcher/bash/br
-
-lfcd () {
-    # `command` is needed in case `lfcd` is aliased to `lf`
-    cd "$(command lf -print-last-dir "$@")"
-}
-
 
 # Rehash after package install
 zshcache_time="$(date +%s%N)"
@@ -132,5 +121,10 @@ alias fzrgh=": | fzf --ansi --disabled --query \"$INITIAL_QUERY\" \
     --preview 'bat --color=always {1} --highlight-line {2}' \
     --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
     --bind 'enter:become(nvim {1} +{2})'"
+
+lfcd () {
+    # `command` is needed in case `lfcd` is aliased to `lf`
+    cd "$(command lf -print-last-dir "$@")"
+}
 
 #zprof
