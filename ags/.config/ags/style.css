@@ -1,0 +1,62 @@
+@define-color bg #FAFAFA; /*#1D2021;*/
+@define-color fg #4D4D4C; /*#A89984;*/
+
+* {
+	font-family: Terminus;
+}
+
+.bar {
+	min-width: 60px;
+	background-color: rgba(0,0,0,0.0);
+}
+
+.widget-box {
+	background: @bg;
+	color: @fg;
+}
+
+.padded-box {
+	padding: 8px;
+}
+
+.widget-contents {
+	color: @fg;
+}
+
+
+.big-time {
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.small-time {
+}
+
+.inverted {
+	background-color: @fg;
+	color: @bg;
+}
+
+
+.workspaces > box {
+	border-radius: 0;
+	border: none;
+	background: @bg;
+	color: @fg;
+	font-size: 22px;
+}
+
+.workspaces > .focused {
+	background: @fg;
+	color: @bg;
+}
+
+.flashing {
+	animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
