@@ -1,0 +1,22 @@
+# -*- conf -*-
+# Gruvbox
+
+[colors]
+background	=	1C0E16
+foreground	=	BAB496
+regular0	=	321C27
+regular1	=	A54242
+regular2	=	8C8C40
+regular3	=	C68D49
+regular4	=	5f8181
+regular5	=	85678f
+regular6	=	81BAA1
+regular7	=	696969
+bright0		=	402834
+bright1		=	CC6666
+bright2		=	98985F
+bright3		=	CC9E71
+bright4		=	7F9393
+bright5		=	7c6783
+bright6		=	95A7A1
+bright7		=	BBBBBB

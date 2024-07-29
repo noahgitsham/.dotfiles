@@ -1,0 +1,50 @@
+# -*- conf -*-
+# Gruvbox
+
+[colors]
+background	=	FFFFFF
+foreground	=	60605F
+regular0	=	282828
+regular1	=	D43E36
+regular2	=	839B00
+regular3	=	EAB700
+regular4	=	458588
+regular5	=	b16286
+regular6	=	689d6a
+regular7	=	a89984
+bright0		=	928374
+bright1		=	fb4934
+bright2		=	b8bb26
+bright3		=	fabd2f
+bright4		=	83a598
+bright5		=	d3869b
+bright6		=	8ec07c
+bright7		=	ebdbb2
+
+#  ;; name        gui       256       16
+#  ((bg         '("#ffffff" "white"   "white" ))
+#   (bg-alt     '("#f2f2f2" nil       nil     ))
+#   (base0      '("#f2f2f2" "white"   "white" ))
+#   (base1      '("#e4e4e4" "#e4e4e4"         ))
+#   (base2      '("#dedede" "#cccccc"         ))
+#   (base3      '("#d6d4d4" "#cccccc" "silver"))
+#   (base4      '("#C0bfbf" "#c0c0c0" "silver"))
+#   (base5      '("#a3a1a1" "#adadad" "silver"))
+#   (base6      '("#8a8787" "#949494" "silver"))
+#   (base7      '("#696769" "#6b6b6b" "silver"))
+#   (base8      '("#000000" "#000000" "black" ))
+#   (fg         '("#4d4d4c" "#3a3a3a" "black"))
+#   (fg-alt     (doom-darken fg 0.6))
+#
+#   (grey       '("#8e908c" "#999999" "silver"))
+#   (red        '("#c82829" "#cc3333" "red"))
+#   (orange     '("#f5871f" "#ff9933" "brightred"))
+#   (yellow     '("#eab700" "#ffcc00" "yellow"))
+#   (green      '("#718c00" "#669900" "green"))
+#   (blue       '("#4271ae" "#339999" "brightblue"))
+#   (dark-blue  (doom-darken blue 0.25))
+#   (teal       '("#3e999f" "#339999" "brightblue"))
+#   (magenta    '("#c678dd" "#c9b4cf" "magenta"))
+#   (violet     '("#8959a8" "#996699" "brightmagenta"))
+#   (cyan       '("#8abeb7" "#8abeb7" "cyan"))
+#   (dark-cyan  (doom-lighten cyan 0.4))
