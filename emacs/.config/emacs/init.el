@@ -100,7 +100,7 @@
 (use-package doom-themes
   :init
   (setq doom-gruvbox-dark-variant "hard")
-  (load-theme 'gruvbox-dark-hard t)
+  (load-theme 'doom-tomorrow-day t)
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
