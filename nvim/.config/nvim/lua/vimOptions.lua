@@ -28,9 +28,6 @@ vim.opt.linebreak = true
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 
--- Stop autocomment on enter
-
-
 -- Search
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
