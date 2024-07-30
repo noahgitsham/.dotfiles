@@ -1,0 +1,19 @@
+browser "xdg-open %u"
+
+unbind-key h
+unbind-key j
+unbind-key k
+unbind-key l
+
+bind-key h quit
+bind-key j down
+bind-key k up
+bind-key l open
+
+unbind-key g
+bind-key g home
+unbind-key G
+bind-key G end
+
+bind-key z sort
+bind-key Z rev-sort
