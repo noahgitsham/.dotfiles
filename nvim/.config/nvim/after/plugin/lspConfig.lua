@@ -30,18 +30,7 @@ require("mason").setup()
 
 vim.keymap.set("n", "<leader>ms", function () vim.api.nvim_command("Mason") end)
 
-require("mason-lspconfig").setup {
-	ensure_installed = {"bashls",
-	                    "clangd",
-	                    "cssls",
-	                    "cmake",
-	                    "html",
-	                    "jdtls",
-	                    "jsonls",
-	                    "lua_ls",
-	                    "rust_analyzer",
-	                    "tsserver"}
-}
+require("mason-lspconfig").setup()
 
 local default_on_attach = function(client,bufnr)
 	-- Mappings.

@@ -70,20 +70,38 @@ zstyle ":vcs_info:git:*" formats "%b" # %u %c
 #ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history)
 
 # Rehash after package install
-zshcache_time="$(date +%s%N)"
-autoload -Uz add-zsh-hook
 
-rehash_precmd() {
-	if [[ -a /var/cache/zsh/pacman ]]; then
-		local paccache_time="$(date -r /var/cache/zsh/pacman +%s%N)"
-		if (( zshcache_time < paccache_time )); then
-			rehash
-			zshcache_time="$paccache_time"
+
+OS=$(grep -Po "(?<=^ID=).*(?=$)" /etc/os-release)
+
+if [[ $OS -eq "arch" ]]; then
+	zshcache_time="$(date +%s%N)"
+	autoload -Uz add-zsh-hook
+
+	rehash_precmd() {
+		if [[ -a /var/cache/zsh/pacman ]]; then
+			local paccache_time="$(date -r /var/cache/zsh/pacman +%s%N)"
+			if (( zshcache_time < paccache_time )); then
+				rehash
+				zshcache_time="$paccache_time"
+			fi
 		fi
-	fi
-}
+	}
+	add-zsh-hook -Uz precmd rehash_precmd
 
-add-zsh-hook -Uz precmd rehash_precmd
+elif [[ $OS -eq "nixos" ]]; then
+	zsh_system_build="$(readlink /run/current-system)"
+	autoload -Uz add-zsh-hook
+	rehash_precmd() {
+		local new_build="$(readlink /run/current-system)"
+		if (( zsh_system_build != new_build )); then
+			rehash
+			zsh_system_build="$new_build"
+		fi
+	}
+	add-zsh-hook -Uz precmd rehash_precmd
+fi
+
 
 
 # OSC 133
