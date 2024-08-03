@@ -72,9 +72,8 @@ zstyle ":vcs_info:git:*" formats "%b" # %u %c
 # Rehash after package install
 
 
-OS=$(grep -Po "(?<=^ID=).*(?=$)" /etc/os-release)
-
-if [[ $OS -eq "arch" ]]; then
+zsh_OS=$(grep -Po "(?<=^ID=).*(?=$)" /etc/os-release)
+if [ "$zsh_OS" = "arch" ]; then
 	zshcache_time="$(date +%s%N)"
 	autoload -Uz add-zsh-hook
 
@@ -89,12 +88,12 @@ if [[ $OS -eq "arch" ]]; then
 	}
 	add-zsh-hook -Uz precmd rehash_precmd
 
-elif [[ $OS -eq "nixos" ]]; then
+elif [ $zsh_OS = "nixos" ]; then
 	zsh_system_build="$(readlink /run/current-system)"
 	autoload -Uz add-zsh-hook
 	rehash_precmd() {
 		local new_build="$(readlink /run/current-system)"
-		if (( zsh_system_build != new_build )); then
+		if [ zsh_system_build != new_build ]; then
 			rehash
 			zsh_system_build="$new_build"
 		fi
