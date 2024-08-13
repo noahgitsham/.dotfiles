@@ -10,7 +10,8 @@ setopt histignorealldups
 HISTSIZE=50000
 SAVEHIST=50000
 
-#unsetopt beep
+# Set the default WORDCHARS
+WORDCHARS='*?_[]~=&;|!#$%^(){}<>'
 
 bindkey -v '^?' backward-delete-char
 bindkey '^R' history-incremental-search-backward
@@ -19,15 +20,6 @@ bindkey "^N" down-line-or-search
 bindkey "^W" backward-kill-word
 bindkey '^_' backward-kill-word
 KEYTIMEOUT=1
-
-# Set the default WORDCHARS
-WORDCHARS='*?_[]~=&;|!#$%^(){}<>'
-
-# The plugin will auto execute this zvm_after_init function
-function zvm_after_init() {
-  zvm_bindkey viins '^W' zle backward-kill-word
-}
-
 
 # Completion
 zstyle :compinstall filename '~/.zshrc'
