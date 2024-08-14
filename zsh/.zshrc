@@ -30,20 +30,24 @@ autoload -Uz compinit
 mkdir -p "$XDG_CACHE_HOME"/zsh
 compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 
+
 # Custom prompt
 setopt PROMPT_SUBST
 
 # Git prompt
 autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
+precmd_functions+=( vcs_info )
 
 make_prompt() {
-	if [[ -z ${vcs_info_msg_0_} ]] then
-		PROMPT="%F{yellow}%n%f %F{gray}$%f "
-	else
-		PROMPT="%F{yellow}%n%f %F{magenta}${vcs_info_msg_0_}%f %F{gray}$%f "
+	PROMPT="%F{yellow}%n%f "
+	if [[ -n ${vcs_info_msg_0_} ]] then
+		case ${vcs_info_msg_0_} in
+			"main"|"master") local color=magenta ;;
+			*) local color=blue ;;
+		esac
+		PROMPT+="%F{$color}${vcs_info_msg_0_}%f "
 	fi
+	PROMPT+="%F{gray}$%f "
 }
 
 precmd_functions+=make_prompt
