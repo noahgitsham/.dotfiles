@@ -167,7 +167,7 @@ const BatteryIndicator = () => Widget.Box({
 	hpack: "fill",
 	child: Widget.Box({ widthRequest: gridSize, class_name: "flashing" })
 }).hook(Battery, self => {
-	self["css"] = `background-color: ${coloursMix("B8BB26", "FB4934", Battery.percent)};`;
+	self["css"] = `background-color: ${coloursMix("839B00", "D43E36", Battery.percent)};`;
 	if (!Battery.charging && Battery.percent <= 20) self["class_name"] = "flashing"
 	else self["class_name"] = ""
 }, 'changed');

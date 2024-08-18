@@ -25,10 +25,6 @@ else
 	  echo "Drive \"$1\" does not exist."
 	  exit 1
 	fi
-	backupPath="$drivePath/homebackup"
-	if [ ! -d "$backupPath" ]; then
-		mkdir -p "$backupPath"
-	fi
 
-	rsync -avxP --delete "$HOME" "$drivePath" --exclude=".local" --exclude=".cache" --exclude=".ollama" --exclude=".rustup" --exclude=".cargo" --exclude=".stremio-server"
+	rsync -avxP --delete "$HOME" "$drivePath" --exclude=".local" --exclude=".cache" --exclude=".ollama" --exclude=".rustup" --exclude=".cargo" --exclude=".stremio-server" --exclude="software/wine"
 fi
