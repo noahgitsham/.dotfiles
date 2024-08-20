@@ -12,7 +12,7 @@
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
 (defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
-                              :ref nil :depth 1
+
                               :files (:defaults "elpaca-test.el" (:exclude "extensions"))
                               :build (:not elpaca--activate-package)))
 (let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
@@ -89,18 +89,20 @@
 ;;;;;;;;;;;;;;;;
 ;; UI Changes ;;
 ;;;;;;;;;;;;;;;;
-(set-frame-font "Fragment Mono 14" nil t)
-;(set-face-attribute 'italic nil :font "CommitMono 14" :slant 'italic)
+(if (find-font (font-spec :name "Fragment Mono"))
+    (set-frame-font "Hack 14" nil t))
+
 (set-face-attribute 'variable-pitch nil :family "Helvetica Neue" :weight 'bold)
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; Colour Schemes ;;
 ;;;;;;;;;;;;;;;;;;;;
 (use-package gruvbox-theme)
+(use-package leuven-theme)
 (use-package doom-themes
   :init
   (setq doom-gruvbox-dark-variant "hard")
-  (load-theme 'doom-tomorrow-day t)
+  (load-theme 'modus-operandi t)
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
