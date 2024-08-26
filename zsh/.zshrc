@@ -89,7 +89,9 @@ elif [ $zsh_OS = "nixos" ]; then
 	autoload -Uz add-zsh-hook
 	rehash_precmd() {
 		local new_build="$(readlink /run/current-system)"
-		if [ zsh_system_build != new_build ]; then
+		if [ "$zsh_system_build" != "$new_build" ]; then
+			echo $zsh_system_build
+			echo $new_build
 			rehash
 			zsh_system_build="$new_build"
 		fi

@@ -52,6 +52,7 @@ return {
 	"windwp/nvim-ts-autotag",
 	"lervag/vimtex",
 	"mfussenegger/nvim-jdtls",
+	"hitsmaxft/vim-nix",
 
 	-- Git
 	"lewis6991/gitsigns.nvim",

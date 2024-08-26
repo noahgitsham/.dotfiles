@@ -27,6 +27,14 @@ vim.opt.linebreak = true
 -- Scroll
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
+vim.api.nvim_create_autocmd("TermOpen", {
+	pattern = "*",
+	callback = function (_) 
+		vim.opt_local.scrolloff = 0
+		vim.opt_local.sidescrolloff = 0
+		vim.cmd("startinsert")
+	end,
+})
 
 -- Search
 vim.opt.hlsearch = true
@@ -57,8 +65,8 @@ vim.opt.cursorline = true
 vim.g.netrw_liststyle = 1 -- Tree
 vim.g.netrw_fastbrowse = 0
 
-vim.api.nvim_create_autocmd('BufReadPost', {
-  desc = 'Open file at the last position',
+vim.api.nvim_create_autocmd("BufReadPost", {
+  desc = "Open file at the last position",
   pattern = '*',
   command = 'silent! normal! g`"zv'
 })

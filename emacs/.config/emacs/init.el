@@ -12,7 +12,7 @@
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
 (defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
-
+                              :ref nil :depth 1
                               :files (:defaults "elpaca-test.el" (:exclude "extensions"))
                               :build (:not elpaca--activate-package)))
 (let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
@@ -89,7 +89,7 @@
 ;;;;;;;;;;;;;;;;
 ;; UI Changes ;;
 ;;;;;;;;;;;;;;;;
-(if (find-font (font-spec :name "Fragment Mono"))
+(if (find-font (font-spec :name "Hack"))
     (set-frame-font "Hack 14" nil t))
 
 (set-face-attribute 'variable-pitch nil :family "Helvetica Neue" :weight 'bold)

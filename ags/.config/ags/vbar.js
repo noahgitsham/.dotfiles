@@ -23,7 +23,7 @@ const Time = () => Widget.Box({
 		Widget.Box({
 			vexpand: true,
 			hpack: "fill",
-			height_request: 48,
+			height_request: 64,
 			child: Widget.Label({
 				hexpand: true,
 				hpack: "center",
